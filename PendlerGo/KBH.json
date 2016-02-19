@@ -1,0 +1,277 @@
+
+{
+    "DepartureBoard":{
+        "noNamespaceSchemaLocation":"http://xmlopen.rejseplanen.dk/xml/rest/hafasRestDepartureBoard.xsd",
+        "Departure":[{
+                     "name":"ØR 1904",
+                     "type":"TOG",
+                     "stop":"København H",
+                     "time":"21:40",
+                     "date":"18.02.16",
+                     "messages":"0",
+                     "track":"5",
+                     "rtTime":"21:41",
+                     "rtDate":"18.02.16",
+                     "rtTrack":"6",
+                     "finalStop":"Københavns Lufthavn St.",
+                     "direction":"Københavns Lufthavn St.",
+                     "JourneyDetailRef":{
+                     "ref":"http://xmlopen.rejseplanen.dk/bin/rest.exe/journeyDetail?ref=702957%2F268679%2F467360%2F641%2F86%3Fdate%3D18.02.16%26format%3Djson%26"
+                     }
+                     },{
+                     "name":"H",
+                     "type":"S",
+                     "stop":"København H",
+                     "time":"21:41",
+                     "date":"18.02.16",
+                     "messages":"0",
+                     "rtTrack":"9",
+                     "finalStop":"Østerport St.",
+                     "direction":"Østerport St.",
+                     "JourneyDetailRef":{
+                     "ref":"http://xmlopen.rejseplanen.dk/bin/rest.exe/journeyDetail?ref=855231%2F317463%2F218930%2F175622%2F86%3Fdate%3D18.02.16%26format%3Djson%26"
+                     }
+                     },{
+                     "name":"ØR 1907",
+                     "type":"TOG",
+                     "stop":"København H",
+                     "time":"21:41",
+                     "date":"18.02.16",
+                     "messages":"0",
+                     "track":"2",
+                     "rtTrack":"2",
+                     "finalStop":"Helsingør St.",
+                     "direction":"Helsingør St.",
+                     "JourneyDetailRef":{
+                     "ref":"http://xmlopen.rejseplanen.dk/bin/rest.exe/journeyDetail?ref=208605%2F103854%2F929632%2F395287%2F86%3Fdate%3D18.02.16%26format%3Djson%26"
+                     }
+                     },{
+                     "name":"E",
+                     "type":"S",
+                     "stop":"København H",
+                     "time":"21:42",
+                     "date":"18.02.16",
+                     "messages":"0",
+                     "rtTrack":"12",
+                     "finalStop":"Køge St.",
+                     "direction":"Køge St.",
+                     "JourneyDetailRef":{
+                     "ref":"http://xmlopen.rejseplanen.dk/bin/rest.exe/journeyDetail?ref=826269%2F307677%2F220398%2F165235%2F86%3Fdate%3D18.02.16%26format%3Djson%26"
+                     }
+                     },{
+                     "name":"A",
+                     "type":"S",
+                     "stop":"København H",
+                     "time":"21:43",
+                     "date":"18.02.16",
+                     "messages":"0",
+                     "rtTrack":"10",
+                     "finalStop":"Hillerød St.",
+                     "direction":"Hillerød St.",
+                     "JourneyDetailRef":{
+                     "ref":"http://xmlopen.rejseplanen.dk/bin/rest.exe/journeyDetail?ref=891078%2F329359%2F6558%2F293758%2F86%3Fdate%3D18.02.16%26format%3Djson%26"
+                     }
+                     },{
+                     "name":"Re 4064",
+                     "type":"REG",
+                     "stop":"København H",
+                     "time":"21:44",
+                     "date":"18.02.16",
+                     "messages":"0",
+                     "track":"1",
+                     "rtTrack":"1",
+                     "finalStop":"Østerport St.",
+                     "direction":"Østerport St.",
+                     "JourneyDetailRef":{
+                     "ref":"http://xmlopen.rejseplanen.dk/bin/rest.exe/journeyDetail?ref=456807%2F160899%2F623540%2F159501%2F86%3Fdate%3D18.02.16%26format%3Djson%26"
+                     }
+                     },{
+                     "name":"H",
+                     "type":"S",
+                     "stop":"København H",
+                     "time":"21:46",
+                     "date":"18.02.16",
+                     "messages":"0",
+                     "rtTrack":"11-12",
+                     "finalStop":"Frederikssund St.",
+                     "direction":"Frederikssund St.",
+                     "JourneyDetailRef":{
+                     "ref":"http://xmlopen.rejseplanen.dk/bin/rest.exe/journeyDetail?ref=868935%2F321894%2F955792%2F188262%2F86%3Fdate%3D18.02.16%26format%3Djson%26"
+                     }
+                     },{
+                     "name":"Re 4185",
+                     "type":"REG",
+                     "stop":"København H",
+                     "time":"21:47",
+                     "date":"18.02.16",
+                     "messages":"0",
+                     "track":"4",
+                     "rtTrack":"4",
+                     "finalStop":"Ringsted St.",
+                     "direction":"Ringsted St.",
+                     "JourneyDetailRef":{
+                     "ref":"http://xmlopen.rejseplanen.dk/bin/rest.exe/journeyDetail?ref=717126%2F247577%2F746962%2F134439%2F86%3Fdate%3D18.02.16%26format%3Djson%26"
+                     }
+                     },{
+                     "name":"Re 1585",
+                     "type":"REG",
+                     "stop":"København H",
+                     "time":"21:47",
+                     "date":"18.02.16",
+                     "messages":"0",
+                     "track":"8",
+                     "rtTrack":"8",
+                     "finalStop":"Kalundborg St.",
+                     "direction":"Kalundborg St.",
+                     "JourneyDetailRef":{
+                     "ref":"http://xmlopen.rejseplanen.dk/bin/rest.exe/journeyDetail?ref=64659%2F30411%2F662916%2F309905%2F86%3Fdate%3D18.02.16%26format%3Djson%26"
+                     }
+                     },{
+                     "name":"C",
+                     "type":"S",
+                     "stop":"København H",
+                     "time":"21:49",
+                     "date":"18.02.16",
+                     "messages":"0",
+                     "rtTrack":"9-10",
+                     "finalStop":"Klampenborg St.",
+                     "direction":"Klampenborg St.",
+                     "JourneyDetailRef":{
+                     "ref":"http://xmlopen.rejseplanen.dk/bin/rest.exe/journeyDetail?ref=489921%2F195677%2F127206%2F99715%2F86%3Fdate%3D18.02.16%26format%3Djson%26"
+                     }
+                     },{
+                     "name":"B",
+                     "type":"S",
+                     "stop":"København H",
+                     "time":"21:50",
+                     "date":"18.02.16",
+                     "messages":"0",
+                     "rtTrack":"11-12",
+                     "finalStop":"Høje Taastrup St.",
+                     "direction":"Høje Taastrup St.",
+                     "JourneyDetailRef":{
+                     "ref":"http://xmlopen.rejseplanen.dk/bin/rest.exe/journeyDetail?ref=541659%2F212770%2F560668%2F99787%2F86%3Fdate%3D18.02.16%26format%3Djson%26"
+                     }
+                     },{
+                     "name":"ØR 1107",
+                     "type":"TOG",
+                     "stop":"København H",
+                     "time":"21:52",
+                     "date":"18.02.16",
+                     "messages":"0",
+                     "track":"1",
+                     "rtTrack":"1",
+                     "finalStop":"Østerport St.",
+                     "direction":"Østerport St.",
+                     "JourneyDetailRef":{
+                     "ref":"http://xmlopen.rejseplanen.dk/bin/rest.exe/journeyDetail?ref=993786%2F369079%2F769432%2F53454%2F86%3Fdate%3D18.02.16%26format%3Djson%26"
+                     }
+                     },{
+                     "name":"A",
+                     "type":"S",
+                     "stop":"København H",
+                     "time":"21:54",
+                     "date":"18.02.16",
+                     "messages":"0",
+                     "rtTrack":"11-12",
+                     "finalStop":"Hundige St.",
+                     "direction":"Hundige St.",
+                     "JourneyDetailRef":{
+                     "ref":"http://xmlopen.rejseplanen.dk/bin/rest.exe/journeyDetail?ref=238773%2F111785%2F520816%2F180827%2F86%3Fdate%3D18.02.16%26format%3Djson%26"
+                     }
+                     },{
+                     "name":"E",
+                     "type":"S",
+                     "stop":"København H",
+                     "time":"21:55",
+                     "date":"18.02.16",
+                     "messages":"0",
+                     "rtTrack":"9-10",
+                     "finalStop":"Holte St.",
+                     "direction":"Holte St.",
+                     "JourneyDetailRef":{
+                     "ref":"http://xmlopen.rejseplanen.dk/bin/rest.exe/journeyDetail?ref=286704%2F127959%2F641832%2F225359%2F86%3Fdate%3D18.02.16%26format%3Djson%26"
+                     }
+                     },{
+                     "name":"B",
+                     "type":"S",
+                     "stop":"København H",
+                     "time":"21:57",
+                     "date":"18.02.16",
+                     "messages":"0",
+                     "rtTrack":"9-10",
+                     "finalStop":"Farum St.",
+                     "direction":"Farum St.",
+                     "JourneyDetailRef":{
+                     "ref":"http://xmlopen.rejseplanen.dk/bin/rest.exe/journeyDetail?ref=736980%2F278016%2F622630%2F65659%2F86%3Fdate%3D18.02.16%26format%3Djson%26"
+                     }
+                     },{
+                     "name":"C",
+                     "type":"S",
+                     "stop":"København H",
+                     "time":"21:58",
+                     "date":"18.02.16",
+                     "messages":"0",
+                     "rtTrack":"11-12",
+                     "finalStop":"Ballerup St.",
+                     "direction":"Ballerup St.",
+                     "JourneyDetailRef":{
+                     "ref":"http://xmlopen.rejseplanen.dk/bin/rest.exe/journeyDetail?ref=934917%2F343757%2F323302%2F150000%2F86%3Fdate%3D18.02.16%26format%3Djson%26"
+                     }
+                     },{
+                     "name":"ØR 1906",
+                     "type":"TOG",
+                     "stop":"København H",
+                     "time":"22:00",
+                     "date":"18.02.16",
+                     "messages":"0",
+                     "track":"5",
+                     "rtTrack":"6",
+                     "finalStop":"Københavns Lufthavn St.",
+                     "direction":"Københavns Lufthavn St.",
+                     "JourneyDetailRef":{
+                     "ref":"http://xmlopen.rejseplanen.dk/bin/rest.exe/journeyDetail?ref=629334%2F244138%2F194586%2F112488%2F86%3Fdate%3D18.02.16%26format%3Djson%26"
+                     }
+                     },{
+                     "name":"H",
+                     "type":"S",
+                     "stop":"København H",
+                     "time":"22:01",
+                     "date":"18.02.16",
+                     "messages":"0",
+                     "rtTrack":"9-10",
+                     "finalStop":"Østerport St.",
+                     "direction":"Østerport St.",
+                     "JourneyDetailRef":{
+                     "ref":"http://xmlopen.rejseplanen.dk/bin/rest.exe/journeyDetail?ref=308988%2F135382%2F254084%2F24057%2F86%3Fdate%3D18.02.16%26format%3Djson%26"
+                     }
+                     },{
+                     "name":"ØR 1909",
+                     "type":"TOG",
+                     "stop":"København H",
+                     "time":"22:01",
+                     "date":"18.02.16",
+                     "messages":"0",
+                     "track":"1",
+                     "rtTrack":"1",
+                     "finalStop":"Helsingør St.",
+                     "direction":"Helsingør St.",
+                     "JourneyDetailRef":{
+                     "ref":"http://xmlopen.rejseplanen.dk/bin/rest.exe/journeyDetail?ref=181524%2F94827%2F786848%2F332923%2F86%3Fdate%3D18.02.16%26format%3Djson%26"
+                     }
+                     },{
+                     "name":"E",
+                     "type":"S",
+                     "stop":"København H",
+                     "time":"22:02",
+                     "date":"18.02.16",
+                     "messages":"0",
+                     "rtTrack":"11-12",
+                     "finalStop":"Køge St.",
+                     "direction":"Køge St.",
+                     "JourneyDetailRef":{
+                     "ref":"http://xmlopen.rejseplanen.dk/bin/rest.exe/journeyDetail?ref=210072%2F102278%2F411818%2F135897%2F86%3Fdate%3D18.02.16%26format%3Djson%26"
+                     }
+                     }]
+    }
+}

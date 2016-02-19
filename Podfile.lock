@@ -1,0 +1,44 @@
+PODS:
+  - Action (1.2.0):
+    - RxCocoa (~> 2.1.0)
+    - RxSwift (~> 2.1.0)
+  - Alamofire (3.2.0)
+  - DateTools (1.7.0)
+  - Moya/Core (6.1.3):
+    - Alamofire (~> 3.0)
+    - Result (~> 1.0)
+  - Moya/RxSwift (6.1.3):
+    - Moya/Core
+    - RxSwift (~> 2.0)
+  - Result (1.0.2)
+  - Reveal-iOS-SDK (1.6.2)
+  - RxCocoa (2.1.0):
+    - RxSwift (~> 2.0)
+  - RxSwift (2.1.0)
+  - SnapKit (0.19.1)
+  - SwiftyJSON (2.3.2)
+
+DEPENDENCIES:
+  - Action (= 1.2.0)
+  - Alamofire (= 3.2.0)
+  - DateTools (= 1.7.0)
+  - Moya/RxSwift (= 6.1.3)
+  - Reveal-iOS-SDK
+  - RxCocoa (= 2.1.0)
+  - RxSwift (= 2.1.0)
+  - SnapKit (= 0.19.1)
+  - SwiftyJSON (= 2.3.2)
+
+SPEC CHECKSUMS:
+  Action: 14614ba954555cfde5035cec93e8d030f962876c
+  Alamofire: 4da478599fccddff361205c8929333d7fe18dceb
+  DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
+  Moya: 26b290a8d675c167ea6229ba08e07dce562265a5
+  Result: dd3dd71af3fa2e262f1a999e14fba2c25ec14f16
+  Reveal-iOS-SDK: e2250b3c155bcfac53ae223ddc1f76d08f206c33
+  RxCocoa: 79b5feb8378545336e756a0a33fcf5e95050b71c
+  RxSwift: 110fb07f81c17c2c3b3254d168363057b1880d18
+  SnapKit: eff58d6e3451bf2f482db2eccf86aecf371dc62d
+  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
+
+COCOAPODS: 0.39.0
