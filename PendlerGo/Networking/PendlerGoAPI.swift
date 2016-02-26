@@ -34,7 +34,7 @@ let PendlerGoDebugAPI = API(stubClosure: { target -> StubBehavior in
 )
 
 enum PendlerGoTarget {
-    case Board
+    case Board(locationId: String)
     case Location(query: String)
 }
 
@@ -66,8 +66,8 @@ extension PendlerGoTarget: TargetType {
     
     var parameters : [String: AnyObject]? {
         switch self {
-        case .Board:
-            return ["id":"008600608", "date":NSDateFormatter.dateFormatter().stringFromDate(NSDate()), "format":"json", "useBus":false, "useMetro":false]
+        case .Board(let locationId):
+            return ["id":locationId, "format":"json", "useBus":false]
         case .Location(let query):
             return ["input":query, "format":"json"]
         }

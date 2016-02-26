@@ -18,7 +18,7 @@ struct SettingsViewModel {
     let query = Variable<String>("")
     
     init() {
-        query.asObservable().subscribeNext { (_) -> Void in
+        query.asObservable().subscribeNext { (query) -> Void in
             self.update()
         }.addDisposableTo(bag)
     }

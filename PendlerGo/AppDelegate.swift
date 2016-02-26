@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Google
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,11 +20,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        #if !(TARGET_IPHONE_SIMULATOR)
+        Fabric.with([Crashlytics.self])
+        #endif
         
-        self.window?.rootViewController = UINavigationController(rootViewController: BoardViewController())
+        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        self.window?.backgroundColor = UIColor.whiteColor()
+        
+        self.window?.rootViewController = UINavigationController(rootViewController: BoardContainmentViewController())
         
         self.window?.makeKeyAndVisible()
+        
+        // Configure tracker from GoogleService-Info.plist.
+        var configureError:NSError?
+        GGLContext.sharedInstance().configureWithError(&configureError)
+        assert(configureError == nil, "Error configuring Google services: \(configureError)")
         
         return true
     }
@@ -41,6 +54,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
+        
+        Settings.sharedSettings.initialize()
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
 

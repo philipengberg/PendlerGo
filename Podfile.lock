@@ -3,7 +3,27 @@ PODS:
     - RxCocoa (~> 2.1.0)
     - RxSwift (~> 2.1.0)
   - Alamofire (3.2.0)
+  - Crashlytics (3.7.0):
+    - Fabric (~> 1.6.3)
   - DateTools (1.7.0)
+  - Fabric (1.6.6)
+  - Google-Mobile-Ads-SDK (7.6.0)
+  - Google/Analytics (1.3.2):
+    - Google/Core
+    - GoogleAnalytics (~> 3.12)
+  - Google/Core (1.3.2):
+    - GoogleInterchangeUtilities (~> 1.0)
+    - GoogleNetworkingUtilities (~> 1.0)
+    - GoogleSymbolUtilities (~> 1.0)
+    - GoogleUtilities (~> 1.1)
+  - GoogleAnalytics (3.14.0)
+  - GoogleInterchangeUtilities (1.1.0):
+    - GoogleSymbolUtilities (~> 1.0)
+  - GoogleNetworkingUtilities (1.0.0):
+    - GoogleSymbolUtilities (~> 1.0)
+  - GoogleSymbolUtilities (1.0.3)
+  - GoogleUtilities (1.1.0):
+    - GoogleSymbolUtilities (~> 1.0.0)
   - Moya/Core (6.1.3):
     - Alamofire (~> 3.0)
     - Result (~> 1.0)
@@ -21,7 +41,11 @@ PODS:
 DEPENDENCIES:
   - Action (= 1.2.0)
   - Alamofire (= 3.2.0)
+  - Crashlytics (= 3.7.0)
   - DateTools (= 1.7.0)
+  - Fabric (= 1.6.6)
+  - Google-Mobile-Ads-SDK (~> 7.0)
+  - Google/Analytics
   - Moya/RxSwift (= 6.1.3)
   - Reveal-iOS-SDK
   - RxCocoa (= 2.1.0)
@@ -32,7 +56,16 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   Action: 14614ba954555cfde5035cec93e8d030f962876c
   Alamofire: 4da478599fccddff361205c8929333d7fe18dceb
+  Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
+  Fabric: 1abc1e59f11fa39ede6f690ef7309d8563e3ec59
+  Google: 97618e118111b998cce1d8dd1bd98b82301d72db
+  Google-Mobile-Ads-SDK: 0290020329c61183c4685304264b73382bc49fb4
+  GoogleAnalytics: 9be1afdb8deeac4bb5f13ca7f7d3b9db2a1f43dc
+  GoogleInterchangeUtilities: d7f7174176fbcf9710f696f1acebad4dbd98ac03
+  GoogleNetworkingUtilities: 292992ab31b7b4ba32809a0e8b40e324cdfb2c0c
+  GoogleSymbolUtilities: 82ad9f93d3615244b3f4ce440f5ab2515e8b4f56
+  GoogleUtilities: 8ed9134debe11719097881711464752900668f10
   Moya: 26b290a8d675c167ea6229ba08e07dce562265a5
   Result: dd3dd71af3fa2e262f1a999e14fba2c25ec14f16
   Reveal-iOS-SDK: e2250b3c155bcfac53ae223ddc1f76d08f206c33

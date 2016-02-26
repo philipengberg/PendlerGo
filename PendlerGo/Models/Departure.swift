@@ -21,6 +21,7 @@ struct Departure {
     let realTrack: String?
     let finalStop: String
     let direction: String
+    let cancelled: Bool
 }
 
 extension Departure {
@@ -93,6 +94,7 @@ extension Departure : JSONAble {
             track: json["track"].stringValue,
             realTrack: json["rtTrack"].string,
             finalStop: json["finalStop"].stringValue,
-            direction: json["direction"].stringValue)
+            direction: json["direction"].stringValue,
+            cancelled: json["cancelled"].boolValue)
     }
 }
