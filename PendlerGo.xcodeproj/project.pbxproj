@@ -398,6 +398,11 @@
 					D485465B1C761BED0011E149 = {
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = 3X36G2LREE;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					D485466F1C761BED0011E149 = {
 						CreatedOnToolsVersion = 7.2.1;
