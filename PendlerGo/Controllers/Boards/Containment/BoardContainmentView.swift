@@ -21,6 +21,8 @@ class BoardContainmentView : UIView {
         $0.adSize = kGADAdSizeSmartBannerPortrait
     }
     
+    var showAdBanner: Bool = false
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -42,10 +44,14 @@ class BoardContainmentView : UIView {
         }
         
         
-        adBannerView.snp_updateConstraintsWithSuper { (make, superview) -> Void in
-            make.bottom.equalTo(superview)
+        adBannerView.snp_remakeConstraintsWithSuper { (make, superview) -> Void in
             make.width.equalTo(superview)
             make.height.equalTo(50)
+            if showAdBanner {
+                make.bottom.equalTo(superview)
+            } else {
+                make.top.equalTo(superview.snp_bottom)
+            }
         }
         
         super.updateConstraints()

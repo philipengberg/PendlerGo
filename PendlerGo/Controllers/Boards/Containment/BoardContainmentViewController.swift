@@ -32,7 +32,7 @@ class BoardContainmentViewController : FinitePagedContainmentViewController {
     }
     
     override var pagedScrollViewBottomOffset: Float {
-        return Float(50)
+        return Float(self._view.showAdBanner ? 50 : 0)
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
@@ -88,6 +88,7 @@ class BoardContainmentViewController : FinitePagedContainmentViewController {
         adRequest.testDevices = ["kGADSimulatorID", "4c67d9c602e1157d68e93c106413b5f8"]
         #endif
         _view.adBannerView.rootViewController = self
+        _view.adBannerView.delegate = self
         _view.adBannerView.loadRequest(GADRequest())
     }
     
@@ -168,5 +169,25 @@ class BoardContainmentViewController : FinitePagedContainmentViewController {
     
     func setHairLineImageViewHidden(hidden: Bool) {
         findHairlineImageViewUnder(self.navigationController!.navigationBar)!.hidden = hidden;
+    }
+}
+
+extension BoardContainmentViewController : GADBannerViewDelegate {
+    func adViewDidReceiveAd(bannerView: GADBannerView!) {
+        _view.showAdBanner = true
+        _view.setNeedsUpdateConstraints()
+        
+        UIView.animateWithDuration(0.5, delay: 1, usingSpringWithDamping: 0.9, initialSpringVelocity: 20, options: UIViewAnimationOptions.BeginFromCurrentState, animations: { () -> Void in
+            self._view.layoutIfNeeded()
+        }, completion: nil)
+    }
+    
+    func adView(bannerView: GADBannerView!, didFailToReceiveAdWithError error: GADRequestError!) {
+        _view.showAdBanner = false
+        _view.setNeedsUpdateConstraints()
+        
+        UIView.animateWithDuration(0.5, delay: 1, usingSpringWithDamping: 0.9, initialSpringVelocity: 20, options: UIViewAnimationOptions.BeginFromCurrentState, animations: { () -> Void in
+            self._view.layoutIfNeeded()
+        }, completion: nil)
     }
 }

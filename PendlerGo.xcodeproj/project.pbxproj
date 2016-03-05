@@ -337,9 +337,9 @@
 				D48546581C761BED0011E149 /* Sources */,
 				D48546591C761BED0011E149 /* Frameworks */,
 				D485465A1C761BED0011E149 /* Resources */,
-				D4DEF5091C7B4633007738DC /* Crashlytics */,
 				7B9B14E68C0D7EE91578E774 /* Copy Pods Resources */,
 				8049A7D4B5F34E080749726A /* Embed Pods Frameworks */,
+				D4DEF5091C7B4633007738DC /* Crashlytics */,
 			);
 			buildRules = (
 			);
