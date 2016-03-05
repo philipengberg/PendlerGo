@@ -22,4 +22,4 @@ pod 'Action', '1.2.0'
 pod 'DateTools', '1.7.0'
 
 pod 'Google/Analytics'
-pod 'Google-Mobile-Ads-SDK', '~> 7.0'
+pod 'Google-Mobile-Ads-SDK', '7.7.0'

@@ -18,10 +18,26 @@
                      "ref":"http://xmlopen.rejseplanen.dk/bin/rest.exe/journeyDetail?ref=35052%2F50544%2F185138%2F80885%2F86%3Fdate%3D23.02.16%26format%3Djson%26"
                      }
                      },{
+                     "name":"IC 825",
+                     "type":"IC",
+                     "stop":"Sorø St.",
+                     "time":"07:34",
+                     "rtTime":"07:36"
+                     "date":"23.02.16",
+                     "messages":"0",
+                     "track":"1",
+                     "rtTrack":"2",
+                     "finalStop":"Esbjerg St.",
+                     "direction":"Esbjerg St.",
+                     "JourneyDetailRef":{
+                     "ref":"http://xmlopen.rejseplanen.dk/bin/rest.exe/journeyDetail?ref=849729%2F294190%2F469844%2F48322%2F86%3Fdate%3D23.02.16%26format%3Djson%26"
+                     }
+                     },{
                      "name":"Re 4323",
                      "type":"REG",
                      "stop":"Sorø St.",
-                     "time":"07:16",
+                     "time":"07:39",
+                     "rtTime":"07:43",
                      "date":"23.02.16",
                      "messages":"0",
                      "track":"1",
