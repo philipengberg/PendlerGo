@@ -90,27 +90,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
         
-        self.scheduleNotification("Background check \(NSDate())")
         PendlerGoDebugAPI.request(.Board(locationId: Settings.sharedSettings.homeLocation!.id)).mapJSON().mapToObject(DepartureBoard).map({ (board) -> [Departure] in
             return board.departures
         }).subscribeNext { (departures) -> Void in
             
-            self.scheduleNotification("Background check succeeded \(NSDate())")
-            
             var changes = Dictionary<String, String>()
-//            var delayed = ""
-//            var track = ""
+            
             for departure in departures {
                 
-                guard departure.departureTime.hour() == 7 && departure.departureTime.minute() < 45 && departure.departureTime.minute() > 30 else { continue }
+                guard departure.departureTime.hour() == 7 && departure.departureTime.minute() <= 45 && departure.departureTime.minute() >= 30 else { continue }
                 
-                if !departure.realTime.isEmpty && departure.time != departure.realTime {
+                if departure.cancelled {
+                    changes[departure.name] = "\(departure.name) kl. \(departure.time) er AFLYST"
+                    continue
+                }
+                
+                if departure.isDelayed {
                     changes[departure.name] = "\(departure.name) kl. \(departure.time) er \(abs(Int(departure.realDepartureTime.minutesFrom(departure.departureTime)))) min forsinket"
                 }
                 
-                if let realTrack = departure.realTrack where  realTrack != departure.track {
+                if let realTrack = departure.realTrack where departure.hasChangedTrack {
                     if var delay = changes[departure.name] {
                         delay += " og skiftet til spor \(realTrack)"
+                        changes[departure.name] = delay
                     } else {
                         changes[departure.name] = "\(departure.name) kl. \(departure.time) er ændret til Spor \(realTrack)"
                     }
@@ -118,14 +120,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             
             if changes.count > 0 {
-                
-                var result = ""
-                
-                for key in changes.keys {
-                    result += changes[key]! + "\n"
-                }
-                
-                self.scheduleNotification(result)
+                self.scheduleNotification(Array(changes.values).joinWithSeparator("\n"))
             }
             
             completionHandler(.NewData)
@@ -143,7 +138,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func scheduleNotification(message: String) {
-//        UIApplication.sharedApplication().cancelAllLocalNotifications()
+        UIApplication.sharedApplication().cancelAllLocalNotifications()
         let notification = UILocalNotification()
         notification.alertBody = message
         notification.fireDate = NSDate()
