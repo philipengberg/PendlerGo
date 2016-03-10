@@ -11,7 +11,7 @@ import UIKit
 
 class BoardContainmentTabView: TabView {
     
-    let homeButton   = IconTabViewButton(icon: UIImage.imageNamed("home", coloredWithColor: UIColor.whiteColor(), blendMode: .Multiply), subtitle: "Hjem")
+    let homeButton   = IconTabViewButton(icon: UIImage.imageNamed("home", coloredWithColor: UIColor.whiteColor(), blendMode: .Overlay), subtitle: "Hjem")
     let workButton   = IconTabViewButton(icon: UIImage.imageNamed("work", coloredWithColor: UIColor.whiteColor(), blendMode: .Multiply), subtitle: "Arbejde")
     
 //    let bottomSeparator = UIView().setUp {

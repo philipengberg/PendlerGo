@@ -77,10 +77,10 @@ class BoardDepartureCell: UITableViewCell, ReuseableView {
         realTimeLabel.x = timeLabel.x
         realTimeLabel.width = timeLabel.width
         realTimeLabel.height = 15
-        realTimeLabel.bottom = timeLabel.top + 4
+        realTimeLabel.bottom = timeLabel.top + 3
         
         delayedLabel.x = timeLabel.x
-        delayedLabel.y = timeLabel.bottom - 4
+        delayedLabel.y = timeLabel.bottom - 3
         delayedLabel.width = timeLabel.width
         delayedLabel.height = 15
         
@@ -131,11 +131,16 @@ class BoardDepartureCell: UITableViewCell, ReuseableView {
             
         // DELAYED
         } else if !departure.realTime.isEmpty && departure.time != departure.realTime {
-            delayedLabel.hidden = false
-            realTimeLabel.hidden = false
             
-            delayedLabel.text = "+\(abs(Int(departure.realDepartureTime.minutesFrom(departure.departureTime))))"
-            realTimeLabel.text = departure.realTime
+            let minutesDelayed = abs(Int(departure.realDepartureTime.minutesFrom(departure.departureTime)))
+            
+            delayedLabel.hidden = false
+            delayedLabel.text = "+\(minutesDelayed)"
+            
+            if minutesDelayed > 10 {
+                realTimeLabel.hidden = false
+                realTimeLabel.text = departure.realTime
+            }
         }
         
         // NEW TRACK
