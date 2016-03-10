@@ -17,7 +17,7 @@ class TabView : UIView {
     var activeToggleIndex: Int = 0
     
     private let activeMarker = UIView().setUp {
-        $0.backgroundColor = $0.tintColor
+        $0.backgroundColor = UIColor.whiteColor()
     }
     
     private var buttonWidth: Double {

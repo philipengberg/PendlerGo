@@ -13,7 +13,7 @@ import GoogleMobileAds
 class BoardContainmentView : UIView {
     
     let tabView = BoardContainmentTabView(numberOfTabs: 2, outerMargin: 15, innerMargin: 30).setUp {
-        $0.backgroundColor = UIColor(gray: 249)
+        $0.backgroundColor = Theme.color.mainColor
     }
     
     let adBannerView = GADBannerView().setUp {

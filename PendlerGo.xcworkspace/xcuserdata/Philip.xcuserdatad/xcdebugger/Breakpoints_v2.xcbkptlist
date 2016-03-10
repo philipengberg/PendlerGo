@@ -38,32 +38,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PendlerGo/Controllers/Boards/Board/BoardDepartureCell.swift"
-            timestampString = "477989315.598401"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
-            landmarkName = "configure(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PendlerGo/AppDelegate.swift"
-            timestampString = "478877443.40992"
+            filePath = "PendlerGo/Controllers/Boards/Containment/BoardContainmentViewController.swift"
+            timestampString = "479243207.532884"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
-            landmarkName = "application(_:performFetchWithCompletionHandler:)"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
+            landmarkName = "preferredStatusBarStyle()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

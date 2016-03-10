@@ -13,6 +13,7 @@ import Crashlytics
 import RxSwift
 import RxCocoa
 import DateTools
+import WatchdogInspector
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -26,7 +27,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         #if !(TARGET_IPHONE_SIMULATOR)
         Fabric.with([Crashlytics.self])
+        #else
+//            TWWatchdogInspector.start()
         #endif
+        
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
+        
+        UINavigationBar.appearance().backgroundColor = Theme.color.mainColor
+        UINavigationBar.appearance().barTintColor = Theme.color.mainColor
+        UINavigationBar.appearance().translucent = false
+        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        
+        UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: Theme.font.demiBold(size: .XtraLarge)!, NSForegroundColorAttributeName: UIColor.whiteColor()]
         
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         self.window?.backgroundColor = UIColor.whiteColor()
@@ -90,38 +102,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
         
-        PendlerGoDebugAPI.request(.Board(locationId: Settings.sharedSettings.homeLocation!.id)).mapJSON().mapToObject(DepartureBoard).map({ (board) -> [Departure] in
+        
+        
+        PendlerGoAPI.request(.Board(locationId: Settings.sharedSettings.homeLocation!.id)).mapJSON().mapToObject(DepartureBoard).map({ (board) -> [Departure] in
             return board.departures
         }).subscribeNext { (departures) -> Void in
             
-            var changes = Dictionary<String, String>()
-            
-            for departure in departures {
-                
-                guard departure.departureTime.hour() == 7 && departure.departureTime.minute() <= 45 && departure.departureTime.minute() >= 30 else { continue }
-                
-                if departure.cancelled {
-                    changes[departure.name] = "\(departure.name) kl. \(departure.time) er AFLYST"
-                    continue
-                }
-                
-                if departure.isDelayed {
-                    changes[departure.name] = "\(departure.name) kl. \(departure.time) er \(abs(Int(departure.realDepartureTime.minutesFrom(departure.departureTime)))) min forsinket"
-                }
-                
-                if let realTrack = departure.realTrack where departure.hasChangedTrack {
-                    if var delay = changes[departure.name] {
-                        delay += " og skiftet til spor \(realTrack)"
-                        changes[departure.name] = delay
-                    } else {
-                        changes[departure.name] = "\(departure.name) kl. \(departure.time) er ændret til Spor \(realTrack)"
-                    }
-                }
-            }
-            
-            if changes.count > 0 {
-                self.scheduleNotification(Array(changes.values).joinWithSeparator("\n"))
-            }
+            self.checkForAnomalies(departures)
             
             completionHandler(.NewData)
             
@@ -135,6 +122,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Settings.sharedSettings.initialize()
         
+    }
+    
+    func checkForAnomalies(departures: [Departure]) {
+        var changes = Dictionary<String, String>()
+        
+        for departure in departures {
+            
+            guard departure.departureTime.hour() == 7 && departure.departureTime.minute() <= 45 && departure.departureTime.minute() >= 30 else { continue }
+            
+            if departure.cancelled {
+                changes[departure.name] = "\(departure.name) kl. \(departure.time) er AFLYST"
+                continue
+            }
+            
+            if departure.isDelayed {
+                changes[departure.name] = "\(departure.name) kl. \(departure.time) er \(abs(Int(departure.realDepartureTime.minutesFrom(departure.departureTime)))) min forsinket"
+            }
+            
+            if let realTrack = departure.realTrack where departure.hasChangedTrack {
+                if var delay = changes[departure.name] {
+                    delay += " og skiftet til spor \(realTrack)"
+                    changes[departure.name] = delay
+                } else {
+                    changes[departure.name] = "\(departure.name) kl. \(departure.time) er ændret til Spor \(realTrack)"
+                }
+            }
+        }
+        
+        if changes.count > 0 {
+            self.scheduleNotification(Array(changes.values).joinWithSeparator("\n"))
+        }
     }
     
     func scheduleNotification(message: String) {

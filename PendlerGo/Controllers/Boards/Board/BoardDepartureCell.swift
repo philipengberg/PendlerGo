@@ -15,11 +15,19 @@ class BoardDepartureCell: UITableViewCell, ReuseableView {
     let timeLabel = UILabel().setUp {
         $0.font = Theme.font.demiBold(size: .Medium)
         $0.textColor = Theme.color.darkTextColor
+        $0.textAlignment = .Center
+    }
+    
+    let delayedLabel = UILabel().setUp {
+        $0.font = Theme.font.demiBold(size: .Small)
+        $0.textColor = UIColor.redColor()
+        $0.textAlignment = .Right
     }
     
     let realTimeLabel = UILabel().setUp {
         $0.font = Theme.font.demiBold(size: .Small)
         $0.textColor = UIColor.redColor()
+        $0.textAlignment = .Right
     }
     
     let typeLabel = UILabel().setUp {
@@ -49,7 +57,7 @@ class BoardDepartureCell: UITableViewCell, ReuseableView {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        addSubviews([timeLabel, realTimeLabel, /*typeLabel,*/ nameLabel, destinationLabel, trackLabel])
+        addSubviews([timeLabel, delayedLabel, realTimeLabel, /*typeLabel,*/ nameLabel, destinationLabel, trackLabel])
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -67,9 +75,14 @@ class BoardDepartureCell: UITableViewCell, ReuseableView {
         timeLabel.centerY = superview.centerY
         
         realTimeLabel.x = timeLabel.x
-        realTimeLabel.y = timeLabel.bottom - 3
         realTimeLabel.width = timeLabel.width
         realTimeLabel.height = 15
+        realTimeLabel.bottom = timeLabel.top + 4
+        
+        delayedLabel.x = timeLabel.x
+        delayedLabel.y = timeLabel.bottom - 4
+        delayedLabel.width = timeLabel.width
+        delayedLabel.height = 15
         
         typeLabel.x = timeLabel.right + 8
         typeLabel.width = 20
@@ -96,6 +109,7 @@ class BoardDepartureCell: UITableViewCell, ReuseableView {
         super.prepareForReuse()
         
         realTimeLabel.hidden = true
+        delayedLabel.hidden = true
         trackLabel.hidden = false
     }
     
@@ -106,9 +120,9 @@ class BoardDepartureCell: UITableViewCell, ReuseableView {
         
         // CANCELLED
         if departure.cancelled {
-            realTimeLabel.hidden = false
+            delayedLabel.hidden = false
             trackLabel.hidden = true
-            realTimeLabel.text = "Aflyst"
+            delayedLabel.text = "Aflyst"
             
             let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: departure.time)
             attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 1, range: NSMakeRange(0, attributeString.length))
@@ -117,8 +131,11 @@ class BoardDepartureCell: UITableViewCell, ReuseableView {
             
         // DELAYED
         } else if !departure.realTime.isEmpty && departure.time != departure.realTime {
+            delayedLabel.hidden = false
             realTimeLabel.hidden = false
-            realTimeLabel.text = "+\(abs(Int(departure.realDepartureTime.minutesFrom(departure.departureTime))))"
+            
+            delayedLabel.text = "+\(abs(Int(departure.realDepartureTime.minutesFrom(departure.departureTime))))"
+            realTimeLabel.text = departure.realTime
         }
         
         // NEW TRACK

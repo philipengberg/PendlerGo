@@ -17,7 +17,7 @@ class IconTabViewButton: UIButton {
     
     let subtitleLabel = UILabel(frame: .zero).setUp {
         $0.font = Theme.font.regular(size: .XtraSmall)
-        $0.textColor = Theme.color.darkTextColor
+        $0.textColor = UIColor.whiteColor()
         $0.textAlignment = .Center
     }
     

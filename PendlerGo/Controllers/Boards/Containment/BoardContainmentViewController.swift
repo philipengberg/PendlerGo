@@ -72,6 +72,7 @@ class BoardContainmentViewController : FinitePagedContainmentViewController {
             self?.presentSettings()
         }.addDisposableTo(bag)
         
+        
         _view.insertSubview(pagedScrollView, belowSubview: _view.tabView)
         
         _view.tabView.homeButton.rx_tap.subscribeNext   { [weak self] () -> Void in
@@ -90,6 +91,10 @@ class BoardContainmentViewController : FinitePagedContainmentViewController {
         _view.adBannerView.rootViewController = self
         _view.adBannerView.delegate = self
         _view.adBannerView.loadRequest(GADRequest())
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
     }
     
     override func viewWillAppear(animated: Bool) {
