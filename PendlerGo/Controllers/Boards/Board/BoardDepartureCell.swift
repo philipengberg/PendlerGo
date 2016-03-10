@@ -58,6 +58,8 @@ class BoardDepartureCell: UITableViewCell, ReuseableView {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         addSubviews([timeLabel, delayedLabel, realTimeLabel, /*typeLabel,*/ nameLabel, destinationLabel, trackLabel])
+        
+        backgroundColor = Theme.color.backgroundColor
     }
 
     required init?(coder aDecoder: NSCoder) {

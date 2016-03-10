@@ -12,7 +12,10 @@ import SnapKit
 
 class BoardView : UIView {
     
-    let tableView = UITableView()
+    let tableView = UITableView().setUp {
+        $0.backgroundColor = Theme.color.backgroundColor
+    }
+    
     let refreshControl = UIRefreshControl()
     
     override init(frame: CGRect) {
@@ -26,6 +29,8 @@ class BoardView : UIView {
         tableViewController.tableView = tableView
         
         tableViewController.refreshControl = refreshControl
+        
+        backgroundColor = Theme.color.backgroundColor
     }
 
     required init?(coder aDecoder: NSCoder) {

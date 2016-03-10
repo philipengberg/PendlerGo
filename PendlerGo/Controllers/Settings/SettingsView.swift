@@ -27,7 +27,8 @@ class SettingsView: UIView {
     }
     
     let fakeNavBarCloseButton = LargeHitAreaButton(type: .System).setUp {
-        $0.setImage(UIImage(named: "close"), forState: .Normal)
+        $0.setTitle("Færdig", forState: .Normal)
+        $0.titleLabel!.font = Theme.font.regular(size: .Large)
     }
     
     let containerView = UIView()
@@ -49,6 +50,7 @@ class SettingsView: UIView {
         $0.textColor = UIColor.whiteColor()
         $0.clearButtonMode = UITextFieldViewMode.WhileEditing
         $0.textAlignment = .Center
+        $0.attributedPlaceholder = NSAttributedString(string: "Station hjemme", attributes: [NSForegroundColorAttributeName: UIColor.whiteColor().colorWithAlphaComponent(0.5)])
     }
     
     let homeTextFieldUnderline = UIView().setUp {
@@ -64,6 +66,7 @@ class SettingsView: UIView {
         $0.textColor = UIColor.whiteColor()
         $0.clearButtonMode = UITextFieldViewMode.WhileEditing
         $0.textAlignment = .Center
+        $0.attributedPlaceholder = NSAttributedString(string: "Station arbejde", attributes: [NSForegroundColorAttributeName: UIColor.whiteColor().colorWithAlphaComponent(0.5)])
     }
     
     let workTextFieldUnderline = UIView().setUp {
@@ -131,9 +134,9 @@ class SettingsView: UIView {
         }
         
         fakeNavBarCloseButton.snp_updateConstraintsWithSuper { (make, superview) -> Void in
-            make.left.equalTo(15)
+            make.right.equalTo(-15)
             make.centerY.equalTo(fakeNavBarTitleLabel)
-            make.size.equalTo(15)
+//            make.size.equalTo(15)
         }
         
         

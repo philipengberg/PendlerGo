@@ -400,7 +400,7 @@
 						DevelopmentTeam = 3X36G2LREE;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -696,13 +696,14 @@
 			baseConfigurationReference = 350025E2158B77E3AFAE7091 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Philip Nielsen (T3P66BDGE4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Philip Nielsen (T3P66BDGE4)";
+				CURRENT_PROJECT_VERSION = 3;
 				INFOPLIST_FILE = PendlerGo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.simplesense.PendlerGo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "16a8b02e-649f-40f3-b6e9-f74c25f4df82";
 			};
 			name = Debug;
 		};
@@ -711,13 +712,14 @@
 			baseConfigurationReference = EBE98844CFB5F3C707834010 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Philip Nielsen (3X36G2LREE)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Philip Nielsen (3X36G2LREE)";
+				CURRENT_PROJECT_VERSION = 3;
 				INFOPLIST_FILE = PendlerGo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.simplesense.PendlerGo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "1bab7ac8-8487-47bb-b695-668620f70344";
 			};
 			name = Release;
 		};

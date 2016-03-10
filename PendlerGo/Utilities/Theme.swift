@@ -14,6 +14,7 @@ struct Theme {
     struct color {
         
         static var mainColor:                   UIColor { return UIColor(red: 245, green: 166, blue: 35) }
+        static var backgroundColor:             UIColor { return UIColor(gray: 251) }
         
         static var darkTextColor:               UIColor { return UIColor(gray: 97) }
         static var textColor:                   UIColor { return UIColor(gray: 170) }

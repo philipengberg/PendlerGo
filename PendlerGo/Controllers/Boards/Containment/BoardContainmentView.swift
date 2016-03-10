@@ -29,6 +29,8 @@ class BoardContainmentView : UIView {
         addSubviews([tabView, adBannerView])
         
         setNeedsUpdateConstraints()
+        
+        backgroundColor = Theme.color.backgroundColor
     }
     
     required init?(coder aDecoder: NSCoder) {

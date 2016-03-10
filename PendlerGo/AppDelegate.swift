@@ -52,10 +52,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GGLContext.sharedInstance().configureWithError(&configureError)
         assert(configureError == nil, "Error configuring Google services: \(configureError)")
         
-        UIApplication.sharedApplication().setMinimumBackgroundFetchInterval(
-            UIApplicationBackgroundFetchIntervalMinimum)
-        
-        UIApplication.sharedApplication().registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Sound], categories: nil))
+//        UIApplication.sharedApplication().setMinimumBackgroundFetchInterval( UIApplicationBackgroundFetchIntervalMinimum)
+//        UIApplication.sharedApplication().registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Sound], categories: nil))
         
         return true
     }
