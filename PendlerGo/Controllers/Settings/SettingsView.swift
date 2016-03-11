@@ -32,7 +32,6 @@ class SettingsView: UIView {
     }
     
     let containerView = UIView()
-    
     let searchResultsTableView = UITableView().setUp {
         $0.backgroundColor = UIColor.clearColor()
     }
@@ -48,9 +47,13 @@ class SettingsView: UIView {
     let homeTextField = UITextField().setUp {
         $0.font = Theme.font.medium(size: .XtraLarge)
         $0.textColor = UIColor.whiteColor()
-        $0.clearButtonMode = UITextFieldViewMode.WhileEditing
+        $0.clearButtonMode = .UnlessEditing
         $0.textAlignment = .Center
         $0.attributedPlaceholder = NSAttributedString(string: "Station hjemme", attributes: [NSForegroundColorAttributeName: UIColor.whiteColor().colorWithAlphaComponent(0.5)])
+    }
+    
+    let homeTextFieldMagnifier = UIImageView(image: UIImage(named: "search")).setUp {
+        $0.alpha = 0.5
     }
     
     let homeTextFieldUnderline = UIView().setUp {
@@ -64,9 +67,13 @@ class SettingsView: UIView {
     let workTextField = UITextField().setUp {
         $0.font = Theme.font.medium(size: .XtraLarge)
         $0.textColor = UIColor.whiteColor()
-        $0.clearButtonMode = UITextFieldViewMode.WhileEditing
+        $0.clearButtonMode = .UnlessEditing
         $0.textAlignment = .Center
         $0.attributedPlaceholder = NSAttributedString(string: "Station arbejde", attributes: [NSForegroundColorAttributeName: UIColor.whiteColor().colorWithAlphaComponent(0.5)])
+    }
+    
+    let workTextFieldMagnifier = UIImageView(image: UIImage(named: "search")).setUp {
+        $0.alpha = 0.5
     }
     
     let workTextFieldUnderline = UIView().setUp {
@@ -95,6 +102,13 @@ class SettingsView: UIView {
         fakeNavBar.addSubviews([fakeNavBarTitleLabel, fakeNavBarCloseButton])
         containerView.addSubviews([textFieldContainerView, searchResultsTableView])
         textFieldContainerView.addSubviews([homeImageView, homeTextField, homeTextFieldUnderline, workImageView, workTextField, workTextFieldUnderline, spacer1, spacer2, spacer3])
+        
+
+        homeTextField.rightView = homeTextFieldMagnifier
+        homeTextField.rightViewMode = .WhileEditing
+        
+        workTextField.rightView = workTextFieldMagnifier
+        workTextField.rightViewMode = .WhileEditing
         
         setNeedsUpdateConstraints()
     }
