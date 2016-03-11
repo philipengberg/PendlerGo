@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -17,16 +18,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon" translatesAutoresizingMaskIntoConstraints="NO" id="5lF-55-Dq4">
-                                <rect key="frame" x="180" y="185" width="240" height="230"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="3Q9-vS-CKE"/>
-                                    <constraint firstAttribute="height" constant="230" id="TsT-WF-Dpx"/>
-                                </constraints>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Splash" translatesAutoresizingMaskIntoConstraints="NO" id="5lF-55-Dq4">
+                                <rect key="frame" x="150" y="50" width="300" height="500"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.96773213148117065" green="0.65458774566650391" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="5lF-55-Dq4" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="0.5" id="GP6-lk-m4T"/>
                             <constraint firstItem="5lF-55-Dq4" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="J2C-ZY-HL4"/>
                             <constraint firstItem="5lF-55-Dq4" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="bdE-hW-gUy"/>
                         </constraints>
@@ -38,6 +36,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Icon" width="285" height="445"/>
+        <image name="Splash" width="500" height="500"/>
     </resources>
 </document>
