@@ -54,10 +54,17 @@ class BoardDepartureCell: UITableViewCell, ReuseableView {
         $0.textAlignment = .Right
     }
     
+    let messageLabel = UILabel().setUp {
+        $0.font = Theme.font.regular(size: .XtraSmall)
+        $0.textColor = Theme.color.darkTextColor
+        $0.hidden = true
+        $0.numberOfLines = 0
+    }
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        addSubviews([timeLabel, delayedLabel, realTimeLabel, /*typeLabel,*/ nameLabel, destinationLabel, trackLabel])
+        addSubviews([timeLabel, delayedLabel, realTimeLabel, /*typeLabel,*/ nameLabel, destinationLabel, trackLabel, messageLabel])
         
         backgroundColor = Theme.color.backgroundColor
     }
@@ -86,25 +93,25 @@ class BoardDepartureCell: UITableViewCell, ReuseableView {
         delayedLabel.width = timeLabel.width
         delayedLabel.height = 15
         
-        typeLabel.x = timeLabel.right + 8
-        typeLabel.width = 20
-        typeLabel.height = 20
-        typeLabel.centerY = superview.centerY
-        
         nameLabel.x = timeLabel.right + 8
         nameLabel.width = max(30, nameLabel.intrinsicContentSize().width + 10)
         nameLabel.height = 20
-        nameLabel.centerY = superview.centerY
+        nameLabel.top = 13.75
         
         trackLabel.height = 20
         trackLabel.width = trackLabel.intrinsicContentSize().width
         trackLabel.right = superview.right - 10
-        trackLabel.centerY = superview.centerY
+        trackLabel.centerY = nameLabel.centerY
         
         destinationLabel.left = nameLabel.right + 4
         destinationLabel.width = trackLabel.left - destinationLabel.left - 5
         destinationLabel.height = 20
-        destinationLabel.centerY = superview.centerY
+        destinationLabel.centerY = nameLabel.centerY
+        
+        messageLabel.left = nameLabel.left
+        messageLabel.height = 30
+        messageLabel.top = nameLabel.bottom + 3
+        messageLabel.width = trackLabel.right - messageLabel.left
     }
     
     override func prepareForReuse() {
@@ -113,6 +120,7 @@ class BoardDepartureCell: UITableViewCell, ReuseableView {
         realTimeLabel.hidden = true
         delayedLabel.hidden = true
         trackLabel.hidden = false
+        messageLabel.hidden = true
     }
     
     func configure(departure: Departure) {
@@ -158,6 +166,13 @@ class BoardDepartureCell: UITableViewCell, ReuseableView {
             trackLabel.text = "Spor " + departure.track
             trackLabel.textColor = Theme.color.darkTextColor
             trackLabel.font = Theme.font.regular(size: .Small)
+        }
+        
+        if departure.hasMessages {
+            PendlerGoDebugAPI.request(PendlerGoTarget.Detail(ref: "")).filterSuccessfulStatusCodes().mapJSON().mapToObject(JourneyDetail).subscribeNext({ (detail) -> Void in
+                self.messageLabel.hidden = false
+                self.messageLabel.text = "\(detail.message.header) \(detail.message.text)"
+            })
         }
         
         nameLabel.textColor = UIColor.whiteColor()

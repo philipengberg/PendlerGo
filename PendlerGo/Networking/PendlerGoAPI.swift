@@ -36,6 +36,7 @@ let PendlerGoDebugAPI = API(stubClosure: { target -> StubBehavior in
 enum PendlerGoTarget {
     case Board(locationId: String)
     case Location(query: String)
+    case Detail(ref: String)
 }
 
 extension PendlerGoTarget: TargetType {
@@ -60,6 +61,8 @@ extension PendlerGoTarget: TargetType {
             return "/departureBoard"
         case .Location(_):
             return "/location"
+        case .Detail(_):
+            return "/journeyDetail"
         }
         
     }
@@ -70,6 +73,8 @@ extension PendlerGoTarget: TargetType {
             return ["id":locationId, "format":"json", "useBus":false]
         case .Location(let query):
             return ["input":query, "format":"json"]
+        default:
+            return nil
         }
     }
     
@@ -77,6 +82,9 @@ extension PendlerGoTarget: TargetType {
         switch self {
         case .Board:
             let path = NSBundle.mainBundle().pathForResource("KBH", ofType: "json")
+            return NSData(contentsOfFile: path!)!
+        case .Detail(_):
+            let path = NSBundle.mainBundle().pathForResource("Detail", ofType: "json")
             return NSData(contentsOfFile: path!)!
         default:
             return NSData()
