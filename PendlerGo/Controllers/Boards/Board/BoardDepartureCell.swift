@@ -132,7 +132,7 @@ class BoardDepartureCell: UITableViewCell, ReuseableView {
             timeLabel.attributedText = attributeString
             
         // DELAYED
-        } else if !departure.realTime.isEmpty && departure.time != departure.realTime {
+        } else if departure.isDelayed {
             
             let minutesDelayed = abs(Int(departure.realDepartureTime.minutesFrom(departure.departureTime)))
             
@@ -146,16 +146,18 @@ class BoardDepartureCell: UITableViewCell, ReuseableView {
         }
         
         // NEW TRACK
-        if let realTrack = departure.realTrack where  realTrack != departure.track {
+        if let realTrack = departure.realTrack where departure.hasChangedTrack {
             trackLabel.text = "Spor " + realTrack
            
             // S-trains are weird
             if !departure.track.isEmpty {
                 trackLabel.textColor = UIColor.redColor()
+                trackLabel.font = Theme.font.medium(size: .Small)
             }
         } else {
             trackLabel.text = "Spor " + departure.track
             trackLabel.textColor = Theme.color.darkTextColor
+            trackLabel.font = Theme.font.regular(size: .Small)
         }
         
         nameLabel.textColor = UIColor.whiteColor()
