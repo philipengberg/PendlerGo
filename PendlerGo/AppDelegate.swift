@@ -55,6 +55,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        UIApplication.sharedApplication().setMinimumBackgroundFetchInterval( UIApplicationBackgroundFetchIntervalMinimum)
 //        UIApplication.sharedApplication().registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Sound], categories: nil))
         
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.size.width, height: 20))
+        view.backgroundColor = UIColor.blueColor().colorWithAlphaComponent(0.05)
+        self.window!.rootViewController!.view.addSubview(view)
+        
         return true
     }
     
