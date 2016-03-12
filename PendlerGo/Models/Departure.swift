@@ -75,6 +75,18 @@ extension Departure {
             return NSDateFormatter.timeFormatter().dateFromString(self.realTime)!
         }
     }
+    
+    var isDelayed: Bool {
+        get {
+            return !self.realTime.isEmpty && self.time != self.realTime
+        }
+    }
+    
+    var hasChangedTrack: Bool {
+        get {
+            return self.realTrack != self.track
+        }
+    }
 }
 
 extension Departure : JSONAble {

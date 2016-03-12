@@ -11,12 +11,17 @@ import UIKit
 
 class BoardContainmentTabView: TabView {
     
-    let homeButton   = IconTabViewButton(icon: UIImage.imageNamed("home", coloredWithColor: UIColor(red: 0, green: 122, blue: 255), blendMode: .Multiply), subtitle: "Hjem")
-    let workButton   = IconTabViewButton(icon: UIImage.imageNamed("work", coloredWithColor: UIColor(red: 0, green: 122, blue: 255), blendMode: .Multiply), subtitle: "Arbejde")
+    let homeButton   = IconTabViewButton(icon: UIImage.imageNamed("home", coloredWithColor: UIColor.whiteColor(), blendMode: .Overlay), subtitle: "Hjem")
+    let workButton   = IconTabViewButton(icon: UIImage.imageNamed("work", coloredWithColor: UIColor.whiteColor(), blendMode: .Multiply), subtitle: "Arbejde")
+    
+//    let bottomSeparator = UIView().setUp {
+//        $0.backgroundColor = Theme.color.mainColor
+//    }
     
     override init(numberOfTabs: Int, outerMargin: Double, innerMargin: Double) {
         super.init(numberOfTabs: numberOfTabs, outerMargin: outerMargin, innerMargin: innerMargin)
         
+//        addSubview(bottomSeparator)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -34,5 +39,15 @@ class BoardContainmentTabView: TabView {
         fatalError("There was an inconsistency in the setup of \(self)")
         
     }
+    
+//    override func updateConstraints() {
+//        
+//        bottomSeparator.snp_updateConstraintsWithSuper { (make, superview) -> Void in
+//            make.left.bottom.right.equalTo(superview)
+//            make.height.equalTo(0.5)
+//        }
+//        
+//        super.updateConstraints()
+//    }
     
 }

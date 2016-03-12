@@ -13,7 +13,7 @@ import GoogleMobileAds
 class BoardContainmentView : UIView {
     
     let tabView = BoardContainmentTabView(numberOfTabs: 2, outerMargin: 15, innerMargin: 30).setUp {
-        $0.backgroundColor = UIColor(gray: 249)
+        $0.backgroundColor = Theme.color.mainColor
     }
     
     let adBannerView = GADBannerView().setUp {
@@ -21,12 +21,16 @@ class BoardContainmentView : UIView {
         $0.adSize = kGADAdSizeSmartBannerPortrait
     }
     
+    var showAdBanner: Bool = false
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         addSubviews([tabView, adBannerView])
         
         setNeedsUpdateConstraints()
+        
+        backgroundColor = Theme.color.backgroundColor
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -42,10 +46,14 @@ class BoardContainmentView : UIView {
         }
         
         
-        adBannerView.snp_updateConstraintsWithSuper { (make, superview) -> Void in
-            make.bottom.equalTo(superview)
+        adBannerView.snp_remakeConstraintsWithSuper { (make, superview) -> Void in
             make.width.equalTo(superview)
             make.height.equalTo(50)
+            if showAdBanner {
+                make.bottom.equalTo(superview)
+            } else {
+                make.top.equalTo(superview.snp_bottom)
+            }
         }
         
         super.updateConstraints()

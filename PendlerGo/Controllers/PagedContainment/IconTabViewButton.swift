@@ -16,8 +16,8 @@ class IconTabViewButton: UIButton {
     }
     
     let subtitleLabel = UILabel(frame: .zero).setUp {
-        $0.font = Theme.font.regular(size: .XtraSmall)
-        $0.textColor = Theme.color.darkTextColor
+        $0.font = Theme.font.regular(size: .Small)
+        $0.textColor = UIColor.whiteColor()
         $0.textAlignment = .Center
     }
     
@@ -44,7 +44,7 @@ class IconTabViewButton: UIButton {
         
         subtitleLabel.snp_updateConstraintsWithSuper { (make, superview) -> Void in
             make.centerX.equalTo(superview)
-            make.top.equalTo(iconImageView.snp_bottom).offset(5)
+            make.top.equalTo(iconImageView.snp_bottom).offset(4)
         }
         
         super.updateConstraints()

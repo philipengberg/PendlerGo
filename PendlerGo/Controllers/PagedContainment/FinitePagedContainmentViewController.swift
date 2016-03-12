@@ -58,13 +58,6 @@ class FinitePagedContainmentViewController: UIViewController, UIScrollViewDelega
         
         view.addSubview(pagedScrollView)
         
-        pagedScrollView.snp_updateConstraintsWithSuper { (make, superview) -> Void in
-            make.left.equalTo(superview);
-            make.right.equalTo(superview);
-            make.top.equalTo(superview).offset(pagedScrollViewTopOffset)
-            make.bottom.equalTo(superview).offset(-pagedScrollViewBottomOffset)
-        }
-        
         for (index, viewController) in pagedViewControllers.enumerate() {
             addChildViewController(viewController)
             
@@ -84,6 +77,18 @@ class FinitePagedContainmentViewController: UIViewController, UIScrollViewDelega
         }
         
         pagedScrollView.delegate = self
+    }
+    
+    override func updateViewConstraints() {
+        
+        pagedScrollView.snp_updateConstraintsWithSuper { (make, superview) -> Void in
+            make.left.equalTo(superview);
+            make.right.equalTo(superview);
+            make.top.equalTo(superview).offset(pagedScrollViewTopOffset)
+            make.bottom.equalTo(superview).offset(-pagedScrollViewBottomOffset)
+        }
+        
+        super.updateViewConstraints()
     }
     
     override func viewDidAppear(animated: Bool) {

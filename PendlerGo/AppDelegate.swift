@@ -10,11 +10,16 @@ import UIKit
 import Google
 import Fabric
 import Crashlytics
+import RxSwift
+import RxCocoa
+import DateTools
+import WatchdogInspector
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    let bag = DisposeBag()
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -22,7 +27,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         #if !(TARGET_IPHONE_SIMULATOR)
         Fabric.with([Crashlytics.self])
+        #else
+//            TWWatchdogInspector.start()
         #endif
+        
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
+        
+        UINavigationBar.appearance().backgroundColor = Theme.color.mainColor
+        UINavigationBar.appearance().barTintColor = Theme.color.mainColor
+        UINavigationBar.appearance().translucent = false
+        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        
+        UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: Theme.font.demiBold(size: .XtraLarge)!, NSForegroundColorAttributeName: UIColor.whiteColor()]
         
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         self.window?.backgroundColor = UIColor.whiteColor()
@@ -36,7 +52,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GGLContext.sharedInstance().configureWithError(&configureError)
         assert(configureError == nil, "Error configuring Google services: \(configureError)")
         
+//        UIApplication.sharedApplication().setMinimumBackgroundFetchInterval( UIApplicationBackgroundFetchIntervalMinimum)
+//        UIApplication.sharedApplication().registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Sound], categories: nil))
+        
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.size.width, height: 20))
+        view.backgroundColor = UIColor.blueColor().colorWithAlphaComponent(0.05)
+        self.window!.rootViewController!.view.addSubview(view)
+        
         return true
+    }
+    
+    func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
+        
+        
+//        UIApplication.sharedApplication().cancelAllLocalNotifications()
+//        let notification = UILocalNotification()
+//        notification.alertBody = "Tjek om dit tog er forsinket"
+//        notification.fireDate = NSDate(year: 2016, month: 2, day: 26, hour: 21, minute: 1, second: 0)
+//        notification.soundName = UILocalNotificationDefaultSoundName
+//        notification.applicationIconBadgeNumber = 5
+////        notification.repeatInterval = .Minute
+//        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+//        
+        for lol in UIApplication.sharedApplication().scheduledLocalNotifications! {
+            print(lol)
+        }
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -56,13 +96,74 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(application: UIApplication) {
         
         Settings.sharedSettings.initialize()
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+        
+        
+        
+        PendlerGoAPI.request(.Board(locationId: Settings.sharedSettings.homeLocation!.id)).mapJSON().mapToObject(DepartureBoard).map({ (board) -> [Departure] in
+            return board.departures
+        }).subscribeNext { (departures) -> Void in
+            
+            self.checkForAnomalies(departures)
+            
+            completionHandler(.NewData)
+            
+        }.addDisposableTo(bag)
+        
+//        Settings.sharedSettings.homeLocationVariable.asObservable().take(1).subscribeNext({ (_) -> Void in
+//            
+//            
+//            completionHandler(.NewData)
+//        }).addDisposableTo(bag)
+        
+        Settings.sharedSettings.initialize()
+        
+    }
+    
+    func checkForAnomalies(departures: [Departure]) {
+        var changes = Dictionary<String, String>()
+        
+        for departure in departures {
+            
+            guard departure.departureTime.hour() == 7 && departure.departureTime.minute() <= 45 && departure.departureTime.minute() >= 30 else { continue }
+            
+            if departure.cancelled {
+                changes[departure.name] = "\(departure.name) kl. \(departure.time) er AFLYST"
+                continue
+            }
+            
+            if departure.isDelayed {
+                changes[departure.name] = "\(departure.name) kl. \(departure.time) er \(abs(Int(departure.realDepartureTime.minutesFrom(departure.departureTime)))) min forsinket"
+            }
+            
+            if let realTrack = departure.realTrack where departure.hasChangedTrack {
+                if var delay = changes[departure.name] {
+                    delay += " og skiftet til spor \(realTrack)"
+                    changes[departure.name] = delay
+                } else {
+                    changes[departure.name] = "\(departure.name) kl. \(departure.time) er ændret til Spor \(realTrack)"
+                }
+            }
+        }
+        
+        if changes.count > 0 {
+            self.scheduleNotification(Array(changes.values).joinWithSeparator("\n"))
+        }
+    }
+    
+    func scheduleNotification(message: String) {
+        UIApplication.sharedApplication().cancelAllLocalNotifications()
+        let notification = UILocalNotification()
+        notification.alertBody = message
+        notification.fireDate = NSDate()
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+    }
 
 }
 

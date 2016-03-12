@@ -22,16 +22,21 @@ class SettingsView: UIView {
     
     let fakeNavBar = UIView()
     let fakeNavBarTitleLabel = UILabel().setUp {
-        $0.font = Theme.font.regular(size: .XtraLarge)
+        $0.font = Theme.font.regular(size: .XtraXtraLarge)
         $0.textColor = UIColor.whiteColor()
     }
     
     let fakeNavBarCloseButton = LargeHitAreaButton(type: .System).setUp {
-        $0.setImage(UIImage(named: "close"), forState: .Normal)
+        $0.setTitle("OK", forState: .Normal)
+        $0.titleLabel!.font = Theme.font.regular(size: .Large)
+    }
+    
+    let fakeNavBarFeedbackButton = LargeHitAreaButton(type: .System).setUp {
+        $0.setTitle("Hjælp", forState: .Normal)
+        $0.titleLabel!.font = Theme.font.regular(size: .Large)
     }
     
     let containerView = UIView()
-    
     let searchResultsTableView = UITableView().setUp {
         $0.backgroundColor = UIColor.clearColor()
     }
@@ -47,8 +52,13 @@ class SettingsView: UIView {
     let homeTextField = UITextField().setUp {
         $0.font = Theme.font.medium(size: .XtraLarge)
         $0.textColor = UIColor.whiteColor()
-        $0.clearButtonMode = UITextFieldViewMode.WhileEditing
+        $0.clearButtonMode = .UnlessEditing
         $0.textAlignment = .Center
+        $0.attributedPlaceholder = NSAttributedString(string: "Station hjemme", attributes: [NSForegroundColorAttributeName: UIColor.whiteColor().colorWithAlphaComponent(0.5)])
+    }
+    
+    let homeTextFieldMagnifier = UIImageView(image: UIImage(named: "search")).setUp {
+        $0.alpha = 0.5
     }
     
     let homeTextFieldUnderline = UIView().setUp {
@@ -62,8 +72,13 @@ class SettingsView: UIView {
     let workTextField = UITextField().setUp {
         $0.font = Theme.font.medium(size: .XtraLarge)
         $0.textColor = UIColor.whiteColor()
-        $0.clearButtonMode = UITextFieldViewMode.WhileEditing
+        $0.clearButtonMode = .UnlessEditing
         $0.textAlignment = .Center
+        $0.attributedPlaceholder = NSAttributedString(string: "Station arbejde", attributes: [NSForegroundColorAttributeName: UIColor.whiteColor().colorWithAlphaComponent(0.5)])
+    }
+    
+    let workTextFieldMagnifier = UIImageView(image: UIImage(named: "search")).setUp {
+        $0.alpha = 0.5
     }
     
     let workTextFieldUnderline = UIView().setUp {
@@ -89,9 +104,16 @@ class SettingsView: UIView {
         
         visualEffectView.contentView.addSubviews([vibrancyView])
         vibrancyView.contentView.addSubviews([fakeNavBar, containerView])
-        fakeNavBar.addSubviews([fakeNavBarTitleLabel, fakeNavBarCloseButton])
+        fakeNavBar.addSubviews([fakeNavBarTitleLabel, fakeNavBarFeedbackButton, fakeNavBarCloseButton])
         containerView.addSubviews([textFieldContainerView, searchResultsTableView])
         textFieldContainerView.addSubviews([homeImageView, homeTextField, homeTextFieldUnderline, workImageView, workTextField, workTextFieldUnderline, spacer1, spacer2, spacer3])
+        
+
+        homeTextField.rightView = homeTextFieldMagnifier
+        homeTextField.rightViewMode = .WhileEditing
+        
+        workTextField.rightView = workTextFieldMagnifier
+        workTextField.rightViewMode = .WhileEditing
         
         setNeedsUpdateConstraints()
     }
@@ -131,9 +153,13 @@ class SettingsView: UIView {
         }
         
         fakeNavBarCloseButton.snp_updateConstraintsWithSuper { (make, superview) -> Void in
+            make.right.equalTo(-15)
+            make.baseline.equalTo(fakeNavBarTitleLabel)
+        }
+        
+        fakeNavBarFeedbackButton.snp_updateConstraintsWithSuper { (make, superview) -> Void in
+            make.baseline.equalTo(fakeNavBarTitleLabel)
             make.left.equalTo(15)
-            make.centerY.equalTo(fakeNavBarTitleLabel)
-            make.size.equalTo(15)
         }
         
         

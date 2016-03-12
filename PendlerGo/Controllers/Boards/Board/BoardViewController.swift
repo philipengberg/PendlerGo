@@ -33,6 +33,7 @@ class BoardViewController : UIViewController, ScrollableViewController {
         
         _view.tableView.registerCell(BoardDepartureCell.self)
         _view.tableView.dataSource = self
+        _view.tableView.delegate = self
         _view.tableView.allowsSelection = false
         
         _view.refreshControl.rx_controlEvent(.ValueChanged).subscribeNext { [weak self] in
@@ -52,8 +53,12 @@ class BoardViewController : UIViewController, ScrollableViewController {
         view = _view
     }
     
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
+    
     func scrollToTop() {
-        
+        _view.tableView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: true)
     }
     
     func isScrolledToTop() -> Bool {
@@ -62,7 +67,7 @@ class BoardViewController : UIViewController, ScrollableViewController {
     
 }
 
-extension BoardViewController : UITableViewDataSource {
+extension BoardViewController : UITableViewDataSource, UITableViewDelegate {
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -75,6 +80,10 @@ extension BoardViewController : UITableViewDataSource {
         let cell = tableView.dequeueCell(BoardDepartureCell.self, indexPath: indexPath)
         cell.configure(viewModel.departures.value[indexPath.row])
         return cell
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 48
     }
 }
 

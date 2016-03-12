@@ -3,89 +3,25 @@
     "DepartureBoard":{
         "noNamespaceSchemaLocation":"http://xmlopen.rejseplanen.dk/xml/rest/hafasRestDepartureBoard.xsd",
         "Departure":[{
-                     "name":"IC 108",
+                     "name":"IC 826",
                      "type":"IC",
                      "stop":"Sorø St.",
-                     "time":"07:09",
-                     "date":"23.02.16",
-                     "messages":"0",
-                     "cancelled":"true",
-                     "state":"CANCELLATION",
-                     "track":"2",
-                     "finalStop":"København H",
-                     "direction":"København H",
-                     "JourneyDetailRef":{
-                     "ref":"http://xmlopen.rejseplanen.dk/bin/rest.exe/journeyDetail?ref=35052%2F50544%2F185138%2F80885%2F86%3Fdate%3D23.02.16%26format%3Djson%26"
-                     }
-                     },{
-                     "name":"Re 4323",
-                     "type":"REG",
-                     "stop":"Sorø St.",
-                     "time":"07:16",
+                     "time":"07:30",
                      "date":"23.02.16",
                      "messages":"0",
                      "track":"1",
-                     "rtTrack":"1",
-                     "finalStop":"Slagelse St.",
-                     "direction":"Slagelse St.",
-                     "JourneyDetailRef":{
-                     "ref":"http://xmlopen.rejseplanen.dk/bin/rest.exe/journeyDetail?ref=259944%2F98652%2F967768%2F397236%2F86%3Fdate%3D23.02.16%26format%3Djson%26"
-                     }
-                     },{
-                     "name":"IC 825",
-                     "type":"IC",
-                     "stop":"Sorø St.",
-                     "time":"07:20",
-                     "date":"23.02.16",
-                     "messages":"0",
-                     "track":"1",
-                     "rtTrack":"1",
+                     "rtTrack":"2",
                      "finalStop":"Esbjerg St.",
                      "direction":"Esbjerg St.",
                      "JourneyDetailRef":{
                      "ref":"http://xmlopen.rejseplanen.dk/bin/rest.exe/journeyDetail?ref=849729%2F294190%2F469844%2F48322%2F86%3Fdate%3D23.02.16%26format%3Djson%26"
                      }
                      },{
-                     "name":"Bus 422",
-                     "type":"BUS",
-                     "stop":"Sorø St. (Stationspladsen)",
-                     "time":"07:27",
-                     "date":"23.02.16",
-                     "messages":"0",
-                     "finalStop":"Katrinelyst (Storkens Kvarter)",
-                     "direction":"Katrinelyst Storkens Kvarter",
-                     "JourneyDetailRef":{
-                     "ref":"http://xmlopen.rejseplanen.dk/bin/rest.exe/journeyDetail?ref=994191%2F344210%2F125214%2F268791%2F86%3Fdate%3D23.02.16%26format%3Djson%26"
-                     }
-                     },{
-                     "name":"Bus 421",
-                     "type":"BUS",
-                     "stop":"Sorø St. (Stationspladsen)",
-                     "time":"07:31",
-                     "date":"23.02.16",
-                     "messages":"0",
-                     "finalStop":"Smedeparken",
-                     "direction":"Smedeparken",
-                     "JourneyDetailRef":{
-                     "ref":"http://xmlopen.rejseplanen.dk/bin/rest.exe/journeyDetail?ref=439293%2F171222%2F745666%2F226403%2F86%3Fdate%3D23.02.16%26format%3Djson%26"
-                     }
-                     },{
-                     "name":"Bus 425",
-                     "type":"BUS",
-                     "stop":"Sorø St. (Stationspladsen)",
-                     "time":"07:33",
-                     "date":"23.02.16",
-                     "messages":"0",
-                     "finalStop":"Stenlille St. (Stationsvej)",
-                     "direction":"Stenlille St.",
-                     "JourneyDetailRef":{
-                     "ref":"http://xmlopen.rejseplanen.dk/bin/rest.exe/journeyDetail?ref=334221%2F136211%2F593396%2F185291%2F86%3Fdate%3D23.02.16%26format%3Djson%26"
-                     }
-                     },{
                      "name":"IC 812",
                      "type":"IC",
                      "stop":"Sorø St.",
                      "time":"07:39",
+                     "rtTime":"07:42",
                      "date":"23.02.16",
                      "messages":"0",
                      "track":"2",
@@ -101,9 +37,10 @@
                      "stop":"Sorø St.",
                      "time":"07:43",
                      "date":"23.02.16",
-                     "messages":"0",
+                     "messages":"1",
                      "track":"2",
                      "rtTrack":"2",
+                     "rtTime":"07:59",
                      "finalStop":"Østerport St.",
                      "direction":"Østerport St.",
                      "JourneyDetailRef":{
@@ -124,144 +61,132 @@
                      "ref":"http://xmlopen.rejseplanen.dk/bin/rest.exe/journeyDetail?ref=307236%2F141310%2F253374%2F24275%2F86%3Fdate%3D23.02.16%26format%3Djson%26"
                      }
                      },{
-                     "name":"Bus 615",
-                     "type":"BUS",
-                     "stop":"Sorø St. (Stationspladsen)",
-                     "time":"07:53",
-                     "date":"23.02.16",
-                     "messages":"0",
-                     "finalStop":"Sorø Byterminal",
-                     "direction":"Sorø Byterminal",
-                     "JourneyDetailRef":{
-                     "ref":"http://xmlopen.rejseplanen.dk/bin/rest.exe/journeyDetail?ref=358659%2F142042%2F448688%2F104791%2F86%3Fdate%3D23.02.16%26format%3Djson%26"
-                     }
-                     },{
-                     "name":"Bus 421",
-                     "type":"BUS",
-                     "stop":"Sorø St. (Stationspladsen)",
-                     "time":"07:57",
-                     "date":"23.02.16",
-                     "messages":"0",
-                     "finalStop":"Katrinelyst (Storkens Kvarter)",
-                     "direction":"Katrinelyst Storkens Kvarter",
-                     "JourneyDetailRef":{
-                     "ref":"http://xmlopen.rejseplanen.dk/bin/rest.exe/journeyDetail?ref=49401%2F41253%2F432758%2F199912%2F86%3Fdate%3D23.02.16%26format%3Djson%26"
-                     }
-                     },{
-                     "name":"Bus 422",
-                     "type":"BUS",
-                     "stop":"Sorø St. (Stationspladsen)",
-                     "time":"08:01",
-                     "date":"23.02.16",
-                     "messages":"0",
-                     "finalStop":"Smedeparken",
-                     "direction":"Smedeparken",
-                     "JourneyDetailRef":{
-                     "ref":"http://xmlopen.rejseplanen.dk/bin/rest.exe/journeyDetail?ref=187626%2F75358%2F452018%2F163467%2F86%3Fdate%3D23.02.16%26format%3Djson%26"
-                     }
-                     },{
                      "name":"IC 112",
                      "type":"IC",
                      "stop":"Sorø St.",
                      "time":"08:09",
-                     "date":"23.02.16",
+                     "date":"11.03.16",
                      "messages":"0",
                      "track":"2",
                      "rtTrack":"2",
                      "finalStop":"København H",
                      "direction":"København H",
                      "JourneyDetailRef":{
-                     "ref":"http://xmlopen.rejseplanen.dk/bin/rest.exe/journeyDetail?ref=428331%2F181633%2F733258%2F223852%2F86%3Fdate%3D23.02.16%26format%3Djson%26"
-                     }
-                     },{
-                     "name":"Bus 615",
-                     "type":"BUS",
-                     "stop":"Sorø St. (Stationspladsen)",
-                     "time":"08:11",
-                     "date":"23.02.16",
-                     "messages":"0",
-                     "finalStop":"Bisserup Strand (Skafterupvej)",
-                     "direction":"Bisserup Terminal via Fuglebjerg",
-                     "JourneyDetailRef":{
-                     "ref":"http://xmlopen.rejseplanen.dk/bin/rest.exe/journeyDetail?ref=635871%2F234460%2F235314%2F94300%2F86%3Fdate%3D23.02.16%26format%3Djson%26"
-                     }
-                     },{
-                     "name":"Bus 487",
-                     "type":"BUS",
-                     "stop":"Sorø St. (Stationspladsen)",
-                     "time":"08:13",
-                     "date":"23.02.16",
-                     "messages":"0",
-                     "finalStop":"Juliesmindevej (Kalundborgvej)",
-                     "direction":"Juliesmindevej",
-                     "JourneyDetailRef":{
-                     "ref":"http://xmlopen.rejseplanen.dk/bin/rest.exe/journeyDetail?ref=389571%2F154769%2F761338%2F250812%2F86%3Fdate%3D23.02.16%26format%3Djson%26"
+                     "ref":"http://xmlopen.rejseplanen.dk/bin/rest.exe/journeyDetail?ref=763656%2F287863%2F618684%2F54790%2F86%3Fdate%3D11.03.16%26format%3Djson%26"
                      }
                      },{
                      "name":"Re 4327",
                      "type":"REG",
                      "stop":"Sorø St.",
                      "time":"08:16",
-                     "date":"23.02.16",
+                     "date":"11.03.16",
                      "messages":"0",
                      "track":"1",
                      "rtTrack":"1",
+                     "cancelled":"true",
+                     "state":"CANCELLATION",
                      "finalStop":"Slagelse St.",
                      "direction":"Slagelse St.",
                      "JourneyDetailRef":{
-                     "ref":"http://xmlopen.rejseplanen.dk/bin/rest.exe/journeyDetail?ref=471477%2F169163%2F953376%2F319530%2F86%3Fdate%3D23.02.16%26format%3Djson%26"
+                     "ref":"http://xmlopen.rejseplanen.dk/bin/rest.exe/journeyDetail?ref=673968%2F233342%2F278070%2F85622%2F86%3Fdate%3D11.03.16%26format%3Djson%26"
                      }
                      },{
                      "name":"IC 829",
                      "type":"IC",
                      "stop":"Sorø St.",
                      "time":"08:20",
-                     "date":"23.02.16",
+                     "date":"11.03.16",
                      "messages":"0",
                      "track":"1",
                      "rtTrack":"1",
                      "finalStop":"Esbjerg St.",
                      "direction":"Esbjerg St.",
                      "JourneyDetailRef":{
-                     "ref":"http://xmlopen.rejseplanen.dk/bin/rest.exe/journeyDetail?ref=914733%2F315848%2F849828%2F120003%2F86%3Fdate%3D23.02.16%26format%3Djson%26"
-                     }
-                     },{
-                     "name":"Bus 422",
-                     "type":"BUS",
-                     "stop":"Sorø St. (Stationspladsen)",
-                     "time":"08:27",
-                     "date":"23.02.16",
-                     "messages":"0",
-                     "finalStop":"Katrinelyst (Storkens Kvarter)",
-                     "direction":"Katrinelyst Storkens Kvarter",
-                     "JourneyDetailRef":{
-                     "ref":"http://xmlopen.rejseplanen.dk/bin/rest.exe/journeyDetail?ref=914994%2F317811%2F538926%2F35537%2F86%3Fdate%3D23.02.16%26format%3Djson%26"
-                     }
-                     },{
-                     "name":"Bus 421",
-                     "type":"BUS",
-                     "stop":"Sorø St. (Stationspladsen)",
-                     "time":"08:31",
-                     "date":"23.02.16",
-                     "messages":"0",
-                     "finalStop":"Smedeparken",
-                     "direction":"Smedeparken",
-                     "JourneyDetailRef":{
-                     "ref":"http://xmlopen.rejseplanen.dk/bin/rest.exe/journeyDetail?ref=476874%2F183750%2F302276%2F7820%2F86%3Fdate%3D23.02.16%26format%3Djson%26"
+                     "ref":"http://xmlopen.rejseplanen.dk/bin/rest.exe/journeyDetail?ref=512136%2F178670%2F164114%2F88655%2F86%3Fdate%3D11.03.16%26format%3Djson%26"
                      }
                      },{
                      "name":"IC 816",
                      "type":"IC",
                      "stop":"Sorø St.",
                      "time":"08:39",
-                     "date":"23.02.16",
+                     "date":"11.03.16",
                      "messages":"0",
                      "track":"2",
                      "rtTrack":"2",
                      "finalStop":"Østerport St.",
                      "direction":"Østerport St.",
                      "JourneyDetailRef":{
-                     "ref":"http://xmlopen.rejseplanen.dk/bin/rest.exe/journeyDetail?ref=32337%2F21877%2F281476%2F129959%2F86%3Fdate%3D23.02.16%26format%3Djson%26"
+                     "ref":"http://xmlopen.rejseplanen.dk/bin/rest.exe/journeyDetail?ref=635463%2F219310%2F551398%2F63878%2F86%3Fdate%3D11.03.16%26format%3Djson%26"
+                     }
+                     },{
+                     "name":"Re 4316",
+                     "type":"REG",
+                     "stop":"Sorø St.",
+                     "time":"08:43",
+                     "date":"11.03.16",
+                     "messages":"0",
+                     "track":"2",
+                     "rtTrack":"2",
+                     "finalStop":"Østerport St.",
+                     "direction":"Østerport St.",
+                     "JourneyDetailRef":{
+                     "ref":"http://xmlopen.rejseplanen.dk/bin/rest.exe/journeyDetail?ref=323310%2F116446%2F198248%2F8647%2F86%3Fdate%3D11.03.16%26format%3Djson%26"
+                     }
+                     },{
+                     "name":"IC 129",
+                     "type":"IC",
+                     "stop":"Sorø St.",
+                     "time":"08:50",
+                     "date":"11.03.16",
+                     "messages":"0",
+                     "track":"1",
+                     "rtTrack":"1",
+                     "finalStop":"Aarhus H",
+                     "direction":"Aalborg St.",
+                     "JourneyDetailRef":{
+                     "ref":"http://xmlopen.rejseplanen.dk/bin/rest.exe/journeyDetail?ref=784284%2F294815%2F818688%2F147916%2F86%3Fdate%3D11.03.16%26format%3Djson%26"
+                     }
+                     },{
+                     "name":"IC 116",
+                     "type":"IC",
+                     "stop":"Sorø St.",
+                     "time":"09:09",
+                     "date":"11.03.16",
+                     "messages":"0",
+                     "track":"2",
+                     "rtTrack":"2",
+                     "finalStop":"København H",
+                     "direction":"København H",
+                     "JourneyDetailRef":{
+                     "ref":"http://xmlopen.rejseplanen.dk/bin/rest.exe/journeyDetail?ref=965193%2F355022%2F558468%2F42497%2F86%3Fdate%3D11.03.16%26format%3Djson%26"
+                     }
+                     },{
+                     "name":"Re 4331",
+                     "type":"REG",
+                     "stop":"Sorø St.",
+                     "time":"09:16",
+                     "date":"11.03.16",
+                     "messages":"0",
+                     "track":"1",
+                     "rtTrack":"1",
+                     "finalStop":"Slagelse St.",
+                     "direction":"Slagelse St.",
+                     "JourneyDetailRef":{
+                     "ref":"http://xmlopen.rejseplanen.dk/bin/rest.exe/journeyDetail?ref=456192%2F160748%2F457218%2F76545%2F86%3Fdate%3D11.03.16%26format%3Djson%26"
+                     }
+                     },{
+                     "name":"IC 833",
+                     "type":"IC",
+                     "stop":"Sorø St.",
+                     "time":"09:20",
+                     "date":"11.03.16",
+                     "messages":"0",
+                     "track":"1",
+                     "rtTrack":"1",
+                     "finalStop":"Esbjerg St.",
+                     "direction":"Esbjerg St.",
+                     "JourneyDetailRef":{
+                     "ref":"http://xmlopen.rejseplanen.dk/bin/rest.exe/journeyDetail?ref=276750%2F100213%2F366744%2F91122%2F86%3Fdate%3D11.03.16%26format%3Djson%26"
                      }
                      }]
     }
