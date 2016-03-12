@@ -12,6 +12,8 @@ import RxSwift
 import RxCocoa
 import Action
 import Google
+import MessageUI
+import GBDeviceInfo
 
 class SettingsViewController: UIViewController {
     
@@ -36,10 +38,29 @@ class SettingsViewController: UIViewController {
         
         _view.fakeNavBarTitleLabel.text = "Indstillinger"
         
-//        _view.homeTextField.text = Settings.sharedSettings.homeLocation?.name
-//        _view.workTextField.text = Settings.sharedSettings.workLocation?.name
-        
         _view.fakeNavBarCloseButton.rx_action = doneAction
+        
+        _view.fakeNavBarFeedbackButton.hidden = !MFMailComposeViewController.canSendMail()
+        _view.fakeNavBarFeedbackButton.rx_tap.subscribeNext { [weak self] () -> Void in
+            
+            guard let s = self else { return }
+            
+            let mailComposerVC = MFMailComposeViewController()
+            mailComposerVC.navigationBar.tintColor = UIColor.whiteColor()
+            mailComposerVC.mailComposeDelegate = s
+            mailComposerVC.setToRecipients(["admin@philipengberg.dk"])
+            mailComposerVC.setSubject("PendlerGo feedback")
+            mailComposerVC.setMessageBody("Hej PendlerGo,</br></br>Jeg har følgende problemer eller foreslag til PendlerGo: <ul><li></ul>" +
+                "<br/>Detaljer:<ul>" +
+                "<li>\(GBDeviceInfo.deviceInfo().modelString)</li>" +
+                "<li>iOS \(GBDeviceInfo.deviceInfo().osVersion.major).\(GBDeviceInfo.deviceInfo().osVersion.minor).\(GBDeviceInfo.deviceInfo().osVersion.patch)</li>" +
+                "<li>PendlerGo \(NSBundle.mainBundle().infoDictionary?["CFBundleShortVersionString"] as! String) (\(NSBundle.mainBundle().infoDictionary?[kCFBundleVersionKey as String] as! String))</li>" +
+                "</ul>" +
+                "", isHTML: true)
+            
+            s.presentViewController(mailComposerVC, animated: true, completion: nil)
+            
+        }.addDisposableTo(bag)
         
         _view.homeTextField.rx_text.throttle(0.2, scheduler: MainScheduler.instance).bindTo(viewModel.query).addDisposableTo(bag)
         _view.workTextField.rx_text.throttle(0.2, scheduler: MainScheduler.instance).bindTo(viewModel.query).addDisposableTo(bag)
@@ -153,4 +174,34 @@ extension SettingsViewController : UITableViewDataSource, UITableViewDelegate {
         
         tableView.reloadData()
     }
+}
+
+extension MFMailComposeViewController {
+    public override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
+    
+    public override func childViewControllerForStatusBarStyle() -> UIViewController? {
+        return nil
+    }
+}
+
+extension SettingsViewController : MFMailComposeViewControllerDelegate {
+ 
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+        switch result.rawValue {
+        case MFMailComposeResultCancelled.rawValue:
+            print("Mail cancelled")
+        case MFMailComposeResultSaved.rawValue:
+            print("Mail saved")
+        case MFMailComposeResultSent.rawValue:
+            print("Mail sent")
+        case MFMailComposeResultFailed.rawValue:
+            print("Mail sent failure: \(error!.localizedDescription)")
+        default:
+            break
+        }
+        controller.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
 }

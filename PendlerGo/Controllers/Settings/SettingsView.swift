@@ -22,12 +22,17 @@ class SettingsView: UIView {
     
     let fakeNavBar = UIView()
     let fakeNavBarTitleLabel = UILabel().setUp {
-        $0.font = Theme.font.regular(size: .XtraLarge)
+        $0.font = Theme.font.regular(size: .XtraXtraLarge)
         $0.textColor = UIColor.whiteColor()
     }
     
     let fakeNavBarCloseButton = LargeHitAreaButton(type: .System).setUp {
-        $0.setTitle("Færdig", forState: .Normal)
+        $0.setTitle("OK", forState: .Normal)
+        $0.titleLabel!.font = Theme.font.regular(size: .Large)
+    }
+    
+    let fakeNavBarFeedbackButton = LargeHitAreaButton(type: .System).setUp {
+        $0.setTitle("Hjælp", forState: .Normal)
         $0.titleLabel!.font = Theme.font.regular(size: .Large)
     }
     
@@ -99,7 +104,7 @@ class SettingsView: UIView {
         
         visualEffectView.contentView.addSubviews([vibrancyView])
         vibrancyView.contentView.addSubviews([fakeNavBar, containerView])
-        fakeNavBar.addSubviews([fakeNavBarTitleLabel, fakeNavBarCloseButton])
+        fakeNavBar.addSubviews([fakeNavBarTitleLabel, fakeNavBarFeedbackButton, fakeNavBarCloseButton])
         containerView.addSubviews([textFieldContainerView, searchResultsTableView])
         textFieldContainerView.addSubviews([homeImageView, homeTextField, homeTextFieldUnderline, workImageView, workTextField, workTextFieldUnderline, spacer1, spacer2, spacer3])
         
@@ -149,8 +154,12 @@ class SettingsView: UIView {
         
         fakeNavBarCloseButton.snp_updateConstraintsWithSuper { (make, superview) -> Void in
             make.right.equalTo(-15)
-            make.centerY.equalTo(fakeNavBarTitleLabel)
-//            make.size.equalTo(15)
+            make.baseline.equalTo(fakeNavBarTitleLabel)
+        }
+        
+        fakeNavBarFeedbackButton.snp_updateConstraintsWithSuper { (make, superview) -> Void in
+            make.baseline.equalTo(fakeNavBarTitleLabel)
+            make.left.equalTo(15)
         }
         
         

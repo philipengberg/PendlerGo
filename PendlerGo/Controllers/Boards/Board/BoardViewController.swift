@@ -53,8 +53,12 @@ class BoardViewController : UIViewController, ScrollableViewController {
         view = _view
     }
     
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
+    
     func scrollToTop() {
-        
+        _view.tableView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: true)
     }
     
     func isScrolledToTop() -> Bool {

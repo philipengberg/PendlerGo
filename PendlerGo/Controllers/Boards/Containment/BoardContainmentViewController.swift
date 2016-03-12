@@ -97,6 +97,10 @@ class BoardContainmentViewController : FinitePagedContainmentViewController {
         return .LightContent
     }
     
+    override func childViewControllerForStatusBarStyle() -> UIViewController? {
+        return nil
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -194,5 +198,11 @@ extension BoardContainmentViewController : GADBannerViewDelegate {
         UIView.animateWithDuration(0.5, delay: 1, usingSpringWithDamping: 0.9, initialSpringVelocity: 20, options: UIViewAnimationOptions.BeginFromCurrentState, animations: { () -> Void in
             self._view.layoutIfNeeded()
         }, completion: nil)
+    }
+}
+
+extension UINavigationController {
+    public override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
     }
 }
