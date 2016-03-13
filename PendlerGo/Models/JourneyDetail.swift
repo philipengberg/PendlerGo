@@ -21,7 +21,12 @@ extension JourneyDetail : JSONAble {
         
         let detail = json["JourneyDetail"].dictionaryValue
         let list = detail["MessageList"]?.dictionaryValue
+        let messages = list!["Message"]!.arrayValue
         
-        return JourneyDetail(message: Message.fromJSON(list!["Message"]!.dictionaryObject!)!)
+        if messages.count > 0 {
+            return JourneyDetail(message: Message.fromJSON(messages.last!.dictionaryObject!)!)
+        } else {
+            return JourneyDetail(message: Message.fromJSON(list!["Message"]!.dictionaryObject!)!)
+        }
     }
 }

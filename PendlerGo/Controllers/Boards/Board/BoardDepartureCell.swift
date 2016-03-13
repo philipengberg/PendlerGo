@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import DateTools
+import RxSwift
 
 class BoardDepartureCell: UITableViewCell, ReuseableView {
     
@@ -61,6 +62,8 @@ class BoardDepartureCell: UITableViewCell, ReuseableView {
         $0.numberOfLines = 0
     }
     
+    let bag = DisposeBag()
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -81,7 +84,7 @@ class BoardDepartureCell: UITableViewCell, ReuseableView {
         timeLabel.x = 15
         timeLabel.width = 40
         timeLabel.height = 20
-        timeLabel.centerY = superview.centerY
+        timeLabel.top = 13.75
         
         realTimeLabel.x = timeLabel.x
         realTimeLabel.width = timeLabel.width
@@ -96,7 +99,7 @@ class BoardDepartureCell: UITableViewCell, ReuseableView {
         nameLabel.x = timeLabel.right + 8
         nameLabel.width = max(30, nameLabel.intrinsicContentSize().width + 10)
         nameLabel.height = 20
-        nameLabel.top = 13.75
+        nameLabel.centerY = timeLabel.centerY
         
         trackLabel.height = 20
         trackLabel.width = trackLabel.intrinsicContentSize().width
@@ -108,9 +111,9 @@ class BoardDepartureCell: UITableViewCell, ReuseableView {
         destinationLabel.height = 20
         destinationLabel.centerY = nameLabel.centerY
         
-        messageLabel.left = nameLabel.left
+        messageLabel.left = timeLabel.left
         messageLabel.height = 30
-        messageLabel.top = nameLabel.bottom + 3
+        messageLabel.top = nameLabel.bottom + 15
         messageLabel.width = trackLabel.right - messageLabel.left
     }
     
@@ -169,10 +172,10 @@ class BoardDepartureCell: UITableViewCell, ReuseableView {
         }
         
         if departure.hasMessages {
-            PendlerGoDebugAPI.request(PendlerGoTarget.Detail(ref: "")).filterSuccessfulStatusCodes().mapJSON().mapToObject(JourneyDetail).subscribeNext({ (detail) -> Void in
+            PendlerGoAPI.request(PendlerGoTarget.Detail(ref: departure.detailPath)).filterSuccessfulStatusCodes().mapJSON().mapToObject(JourneyDetail).subscribeNext({ (detail) -> Void in
                 self.messageLabel.hidden = false
                 self.messageLabel.text = "\(detail.message.header) \(detail.message.text)"
-            })
+            }).addDisposableTo(bag)
         }
         
         nameLabel.textColor = UIColor.whiteColor()

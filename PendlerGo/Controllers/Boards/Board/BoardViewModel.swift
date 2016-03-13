@@ -39,7 +39,7 @@ struct BoardViewModel {
     
     func update() {
         if let locationId = self.locationId {
-            PendlerGoDebugAPI.request(.Board(locationId: locationId)).mapJSON().mapToObject(DepartureBoard).map({ (board) -> [Departure] in
+            PendlerGoAPI.request(.Board(locationId: locationId)).mapJSON().mapToObject(DepartureBoard).map({ (board) -> [Departure] in
                 return board.departures
             }).bindTo(departures).addDisposableTo(bag)
         }

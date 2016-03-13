@@ -84,7 +84,7 @@ extension BoardViewController : UITableViewDataSource, UITableViewDelegate {
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         let departure = viewModel.departures.value[indexPath.row]
-        return departure.hasMessages ? 70 : 48
+        return departure.hasMessages ? 85 : 48
     }
 }
 

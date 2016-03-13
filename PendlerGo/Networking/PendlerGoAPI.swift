@@ -73,6 +73,8 @@ extension PendlerGoTarget: TargetType {
             return ["id":locationId, "format":"json", "useBus":false]
         case .Location(let query):
             return ["input":query, "format":"json"]
+        case .Detail(let ref):
+            return ["ref": ref]
         default:
             return nil
         }
