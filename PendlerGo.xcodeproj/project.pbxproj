@@ -18,7 +18,6 @@
 		D45140331C77B62D00627184 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45140301C77B62D00627184 /* TabView.swift */; };
 		D48546601C761BED0011E149 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D485465F1C761BED0011E149 /* AppDelegate.swift */; };
 		D48546671C761BED0011E149 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D48546661C761BED0011E149 /* Assets.xcassets */; };
-		D485466A1C761BED0011E149 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D48546681C761BED0011E149 /* LaunchScreen.storyboard */; };
 		D48546751C761BED0011E149 /* PendlerGoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48546741C761BED0011E149 /* PendlerGoTests.swift */; };
 		D48546801C761BED0011E149 /* PendlerGoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D485467F1C761BED0011E149 /* PendlerGoUITests.swift */; };
 		D4A92F891C76642C00834380 /* KBH.json in Resources */ = {isa = PBXBuildFile; fileRef = D4A92F881C76642C00834380 /* KBH.json */; };
@@ -84,7 +83,6 @@
 		D485465C1C761BED0011E149 /* PendlerGo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PendlerGo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D485465F1C761BED0011E149 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D48546661C761BED0011E149 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		D48546691C761BED0011E149 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D485466B1C761BED0011E149 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D48546701C761BED0011E149 /* PendlerGoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PendlerGoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D48546741C761BED0011E149 /* PendlerGoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendlerGoTests.swift; sourceTree = "<group>"; };
@@ -210,7 +208,6 @@
 				D4EFDC501C761F2000370479 /* Models */,
 				D4EFDC4D1C761D0500370479 /* Networking */,
 				D48546661C761BED0011E149 /* Assets.xcassets */,
-				D48546681C761BED0011E149 /* LaunchScreen.storyboard */,
 				D437562F1C78FBD20005730D /* GoogleService-Info.plist */,
 				D485466B1C761BED0011E149 /* Info.plist */,
 				D4A92F881C76642C00834380 /* KBH.json */,
@@ -449,7 +446,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4A92F891C76642C00834380 /* KBH.json in Resources */,
-				D485466A1C761BED0011E149 /* LaunchScreen.storyboard in Resources */,
 				D48546671C761BED0011E149 /* Assets.xcassets in Resources */,
 				D43756301C78FBD20005730D /* GoogleService-Info.plist in Resources */,
 				D40117CC1C92AFED009E5CEB /* Detail.json in Resources */,
@@ -607,17 +603,6 @@
 		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		D48546681C761BED0011E149 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D48546691C761BED0011E149 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		D48546821C761BED0011E149 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -708,9 +693,10 @@
 			baseConfigurationReference = 350025E2158B77E3AFAE7091 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Philip Nielsen (T3P66BDGE4)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Philip Nielsen (T3P66BDGE4)";
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 9;
 				INFOPLIST_FILE = PendlerGo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.simplesense.PendlerGo;
@@ -724,9 +710,10 @@
 			baseConfigurationReference = EBE98844CFB5F3C707834010 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Philip Nielsen (3X36G2LREE)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Philip Nielsen (3X36G2LREE)";
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 9;
 				INFOPLIST_FILE = PendlerGo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.simplesense.PendlerGo;

@@ -71,6 +71,7 @@ struct Theme {
         case Medium = 14
         case Large = 16
         case XtraLarge = 18
+        case XtraXtraLarge = 20
         case Big = 24
         case Huge = 50
     }
