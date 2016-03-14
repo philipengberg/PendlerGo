@@ -10,7 +10,7 @@ import Foundation
 import SwiftyJSON
 
 struct JourneyDetail {
-    let message: Message
+    let messages: [Message]
 }
 
 extension JourneyDetail : JSONAble {
@@ -24,9 +24,26 @@ extension JourneyDetail : JSONAble {
         let messages = list!["Message"]!.arrayValue
         
         if messages.count > 0 {
-            return JourneyDetail(message: Message.fromJSON(messages.last!.dictionaryObject!)!)
+            return JourneyDetail(messages: messages.flatMap({ (JSON) -> Message? in
+                return Message.fromJSON(JSON.dictionaryObject!)
+            }))
         } else {
-            return JourneyDetail(message: Message.fromJSON(list!["Message"]!.dictionaryObject!)!)
+            return JourneyDetail(messages: [Message.fromJSON(list!["Message"]!.dictionaryObject!)!])
+        }
+    }
+}
+
+extension JourneyDetail {
+    var allMessages: String {
+        get {
+            var string = ""
+            for (index, message) in self.messages.enumerate() {
+                string += "\(message.header)\(message.header.hasSuffix(".") ? "" : ".") \(message.text)\(message.text.hasSuffix(".") ? "" : ".")"
+                if index < messages.count - 1 {
+                    string += "\n"
+                }
+            }
+            return string
         }
     }
 }

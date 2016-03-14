@@ -76,6 +76,20 @@ class BoardDepartureCell: UITableViewCell, ReuseableView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    static func height(departure: Departure, journeyDetail: JourneyDetail?) -> CGFloat {
+        var height: CGFloat = 13.75 + 20 - 3 + 15 + 2
+        
+        if let message = journeyDetail?.allMessages where departure.hasMessages {
+            height += Theme.font.regular(size: .XtraSmall)!.sizeOfString(message, constrainedToWidth: Double(UIScreen.mainScreen().bounds.width - CGFloat(2 * 15))).height
+            
+            if departure.isDelayed {
+                height += 7
+            }
+        }
+        
+        return height
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -112,9 +126,10 @@ class BoardDepartureCell: UITableViewCell, ReuseableView {
         destinationLabel.centerY = nameLabel.centerY
         
         messageLabel.left = timeLabel.left
-        messageLabel.height = 30
-        messageLabel.top = nameLabel.bottom + 15
         messageLabel.width = trackLabel.right - messageLabel.left
+//        messageLabel.height = messageLabel.intrinsicContentSize().height
+        messageLabel.top = delayedLabel.hidden ? nameLabel.bottom + 5 : delayedLabel.bottom
+        messageLabel.sizeToFit()
     }
     
     override func prepareForReuse() {
@@ -126,7 +141,7 @@ class BoardDepartureCell: UITableViewCell, ReuseableView {
         messageLabel.hidden = true
     }
     
-    func configure(departure: Departure) {
+    func configure(departure: Departure, journeyDetail: JourneyDetail?) {
         timeLabel.text = departure.time
         nameLabel.text = departure.name
         destinationLabel.text = "👉 \(departure.finalStop)"
@@ -171,11 +186,10 @@ class BoardDepartureCell: UITableViewCell, ReuseableView {
             trackLabel.font = Theme.font.regular(size: .Small)
         }
         
-        if departure.hasMessages {
-            PendlerGoAPI.request(PendlerGoTarget.Detail(ref: departure.detailPath)).filterSuccessfulStatusCodes().mapJSON().mapToObject(JourneyDetail).subscribeNext({ (detail) -> Void in
-                self.messageLabel.hidden = false
-                self.messageLabel.text = "\(detail.message.header) \(detail.message.text)"
-            }).addDisposableTo(bag)
+        
+        if let detail = journeyDetail where departure.hasMessages {
+            self.messageLabel.hidden = false
+            self.messageLabel.text = detail.allMessages
         }
         
         nameLabel.textColor = UIColor.whiteColor()

@@ -75,8 +75,8 @@ extension PendlerGoTarget: TargetType {
             return ["input":query, "format":"json"]
         case .Detail(let ref):
             return ["ref": ref]
-        default:
-            return nil
+//        default:
+//            return nil
         }
     }
     

@@ -27,6 +27,7 @@
 		D4B7F6641C76F71300B6762D /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B7F6631C76F71300B6762D /* Location.swift */; };
 		D4B7F6661C76F7BA00B6762D /* LocationResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B7F6651C76F7BA00B6762D /* LocationResults.swift */; };
 		D4B7F6681C76FDA800B6762D /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B7F6671C76FDA800B6762D /* LocationCell.swift */; };
+		D4CF6C9F1C96A24000E7334E /* UIFont+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CF6C9E1C96A24000E7334E /* UIFont+Size.swift */; };
 		D4E4B3591C7774EE00D4DC66 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E4B3581C7774EE00D4DC66 /* Settings.swift */; };
 		D4E72F581C7896AE00C3369D /* BoardDepartureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E72F501C7896AE00C3369D /* BoardDepartureCell.swift */; };
 		D4E72F591C7896AE00C3369D /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E72F511C7896AE00C3369D /* BoardView.swift */; };
@@ -97,6 +98,7 @@
 		D4B7F6631C76F71300B6762D /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		D4B7F6651C76F7BA00B6762D /* LocationResults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationResults.swift; sourceTree = "<group>"; };
 		D4B7F6671C76FDA800B6762D /* LocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
+		D4CF6C9E1C96A24000E7334E /* UIFont+Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Size.swift"; sourceTree = "<group>"; };
 		D4E4B3581C7774EE00D4DC66 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		D4E72F501C7896AE00C3369D /* BoardDepartureCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardDepartureCell.swift; sourceTree = "<group>"; };
 		D4E72F511C7896AE00C3369D /* BoardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
@@ -328,6 +330,7 @@
 				D4E75FB21C764D16005AC9DA /* JSON+Date.swift */,
 				D4E75FB41C764E6A005AC9DA /* UIView+PendlerGo.swift */,
 				D42E31D51C77BB7F003C98A2 /* UIImage+Utilities.swift */,
+				D4CF6C9E1C96A24000E7334E /* UIFont+Size.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -565,6 +568,7 @@
 				D4E75FB71C765212005AC9DA /* Theme.swift in Sources */,
 				D4E72F5E1C7896AE00C3369D /* BoardContainmentViewController.swift in Sources */,
 				D42E31D61C77BB7F003C98A2 /* UIImage+Utilities.swift in Sources */,
+				D4CF6C9F1C96A24000E7334E /* UIFont+Size.swift in Sources */,
 				D45140321C77B62D00627184 /* IconTabViewButton.swift in Sources */,
 				D4B7F65E1C76F0B400B6762D /* SettingsViewController.swift in Sources */,
 				D4B7F6601C76F0CD00B6762D /* SettingsView.swift in Sources */,
