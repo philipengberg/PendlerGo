@@ -153,14 +153,12 @@ class BoardContainmentViewController : FinitePagedContainmentViewController {
         let movePercentage = contentOffsetX / (totalWidth - scrollView.frame.size.width);
         _view.tabView.setActiveMarkerScrollPercentage(Double(movePercentage))
         
-        //        let currentIndex = currentPageIndex
-        //        [self.mainView.toggleView setActiveToggle:(unsigned int) currentIndex];
-        
+        let currentIndex = currentPageIndex
         // Handle scrolls to top enabling
-        //        for (int i = 0; i < self.pagedViewControllers.count; i++) {
-        //            FIBPhotosWaterfallViewController *controller = (FIBPhotosWaterfallViewController *)self.pagedViewControllers[i];
-        //            controller.collectionView.scrollsToTop = i == currentIndex;
-        //        }
+        for (index, controller) in self.pagedViewControllers.enumerate() {
+            guard let con = controller as? BoardViewController else { continue }
+            con._view.tableView.scrollsToTop = index == currentIndex
+        }
     }
     
     func findHairlineImageViewUnder(view: UIView) -> UIImageView? {

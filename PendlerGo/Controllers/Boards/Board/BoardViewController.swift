@@ -66,7 +66,7 @@ class BoardViewController : UIViewController, ScrollableViewController {
     }
     
     func isScrolledToTop() -> Bool {
-        return false
+        return _view.tableView.contentOffset.y > 0
     }
     
 }
