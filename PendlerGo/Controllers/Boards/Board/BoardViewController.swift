@@ -47,6 +47,10 @@ class BoardViewController : UIViewController, ScrollableViewController {
             self?._view.tableView.reloadData()
         }.addDisposableTo(bag)
         
+        viewModel.details.asObservable().subscribeNext { [weak self] (_) -> Void in
+            self?._view.tableView.reloadData()
+        }.addDisposableTo(bag)
+        
     }
     
     override func loadView() {
@@ -78,12 +82,21 @@ extension BoardViewController : UITableViewDataSource, UITableViewDelegate {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueCell(BoardDepartureCell.self, indexPath: indexPath)
-        cell.configure(viewModel.departures.value[indexPath.row])
+        if viewModel.details.value.count > indexPath.row {
+            cell.configure(viewModel.departures.value[indexPath.row], journeyDetail: viewModel.details.value[indexPath.row])
+        } else {
+            cell.configure(viewModel.departures.value[indexPath.row], journeyDetail: nil)
+        }
         return cell
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 48
+        
+        if viewModel.details.value.count > indexPath.row {
+            return BoardDepartureCell.height(viewModel.departures.value[indexPath.row], journeyDetail: viewModel.details.value[indexPath.row])
+        } else {
+            return BoardDepartureCell.height(viewModel.departures.value[indexPath.row], journeyDetail: nil)
+        }
     }
 }
 

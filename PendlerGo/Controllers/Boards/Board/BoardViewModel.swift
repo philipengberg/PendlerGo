@@ -15,6 +15,7 @@ struct BoardViewModel {
     let bag = DisposeBag()
     
     let departures = Variable<[Departure]>([])
+    let details = Variable<[JourneyDetail]>([])
     
     private let locationType: Settings.LocationType
     
@@ -38,9 +39,27 @@ struct BoardViewModel {
     }
     
     func update() {
+        
+        
         if let locationId = self.locationId {
             PendlerGoAPI.request(.Board(locationId: locationId)).mapJSON().mapToObject(DepartureBoard).map({ (board) -> [Departure] in
+                
+                var requests: [Observable<JourneyDetail>] = []
+                
+                for departure in board.departures {
+                    if departure.hasMessages {
+                        requests.append(PendlerGoAPI.request(PendlerGoTarget.Detail(ref: departure.detailPath)).filterSuccessfulStatusCodes().mapJSON().mapToObject(JourneyDetail))
+                    } else {
+                        requests.append(Observable.just(JourneyDetail(messages: [Message(header: "", text: "")])))
+                    }
+                }
+                
+                requests.combineLatest({ (details) -> [JourneyDetail] in
+                    return details
+                }).bindTo(self.details).addDisposableTo(self.bag)
+                
                 return board.departures
+                
             }).bindTo(departures).addDisposableTo(bag)
         }
     }

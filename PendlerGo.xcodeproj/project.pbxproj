@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D40117CC1C92AFED009E5CEB /* Detail.json in Resources */ = {isa = PBXBuildFile; fileRef = D40117CB1C92AFED009E5CEB /* Detail.json */; };
+		D40117CE1C92B10E009E5CEB /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40117CD1C92B10E009E5CEB /* Message.swift */; };
+		D40117D01C92B185009E5CEB /* JourneyDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40117CF1C92B185009E5CEB /* JourneyDetail.swift */; };
 		D42E31D61C77BB7F003C98A2 /* UIImage+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42E31D51C77BB7F003C98A2 /* UIImage+Utilities.swift */; };
 		D42E31D81C77BCAB003C98A2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D42E31D71C77BCAB003C98A2 /* CoreGraphics.framework */; };
 		D43756301C78FBD20005730D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D437562F1C78FBD20005730D /* GoogleService-Info.plist */; };
@@ -24,6 +27,7 @@
 		D4B7F6641C76F71300B6762D /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B7F6631C76F71300B6762D /* Location.swift */; };
 		D4B7F6661C76F7BA00B6762D /* LocationResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B7F6651C76F7BA00B6762D /* LocationResults.swift */; };
 		D4B7F6681C76FDA800B6762D /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B7F6671C76FDA800B6762D /* LocationCell.swift */; };
+		D4CF6C9F1C96A24000E7334E /* UIFont+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CF6C9E1C96A24000E7334E /* UIFont+Size.swift */; };
 		D4E4B3591C7774EE00D4DC66 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E4B3581C7774EE00D4DC66 /* Settings.swift */; };
 		D4E72F581C7896AE00C3369D /* BoardDepartureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E72F501C7896AE00C3369D /* BoardDepartureCell.swift */; };
 		D4E72F591C7896AE00C3369D /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E72F511C7896AE00C3369D /* BoardView.swift */; };
@@ -68,6 +72,9 @@
 /* Begin PBXFileReference section */
 		350025E2158B77E3AFAE7091 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		9E622AB873B4A24576375853 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D40117CB1C92AFED009E5CEB /* Detail.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Detail.json; sourceTree = "<group>"; };
+		D40117CD1C92B10E009E5CEB /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		D40117CF1C92B185009E5CEB /* JourneyDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JourneyDetail.swift; sourceTree = "<group>"; };
 		D42E31D51C77BB7F003C98A2 /* UIImage+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Utilities.swift"; sourceTree = "<group>"; };
 		D42E31D71C77BCAB003C98A2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		D437562F1C78FBD20005730D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -91,6 +98,7 @@
 		D4B7F6631C76F71300B6762D /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		D4B7F6651C76F7BA00B6762D /* LocationResults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationResults.swift; sourceTree = "<group>"; };
 		D4B7F6671C76FDA800B6762D /* LocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
+		D4CF6C9E1C96A24000E7334E /* UIFont+Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Size.swift"; sourceTree = "<group>"; };
 		D4E4B3581C7774EE00D4DC66 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		D4E72F501C7896AE00C3369D /* BoardDepartureCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardDepartureCell.swift; sourceTree = "<group>"; };
 		D4E72F511C7896AE00C3369D /* BoardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
@@ -205,6 +213,7 @@
 				D437562F1C78FBD20005730D /* GoogleService-Info.plist */,
 				D485466B1C761BED0011E149 /* Info.plist */,
 				D4A92F881C76642C00834380 /* KBH.json */,
+				D40117CB1C92AFED009E5CEB /* Detail.json */,
 			);
 			path = PendlerGo;
 			sourceTree = "<group>";
@@ -291,6 +300,8 @@
 			children = (
 				D4EFDC511C761F3300370479 /* DepartureBoard.swift */,
 				D4EFDC531C761F3B00370479 /* Departure.swift */,
+				D40117CF1C92B185009E5CEB /* JourneyDetail.swift */,
+				D40117CD1C92B10E009E5CEB /* Message.swift */,
 				D4EFDC551C761FC200370479 /* ModelExtensions.swift */,
 				D4B7F6631C76F71300B6762D /* Location.swift */,
 				D4B7F6651C76F7BA00B6762D /* LocationResults.swift */,
@@ -319,6 +330,7 @@
 				D4E75FB21C764D16005AC9DA /* JSON+Date.swift */,
 				D4E75FB41C764E6A005AC9DA /* UIView+PendlerGo.swift */,
 				D42E31D51C77BB7F003C98A2 /* UIImage+Utilities.swift */,
+				D4CF6C9E1C96A24000E7334E /* UIFont+Size.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -439,6 +451,7 @@
 				D4A92F891C76642C00834380 /* KBH.json in Resources */,
 				D48546671C761BED0011E149 /* Assets.xcassets in Resources */,
 				D43756301C78FBD20005730D /* GoogleService-Info.plist in Resources */,
+				D40117CC1C92AFED009E5CEB /* Detail.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -531,12 +544,14 @@
 				D4EFDC621C763E2700370479 /* Setup.swift in Sources */,
 				D4E72F5D1C7896AE00C3369D /* BoardContainmentView.swift in Sources */,
 				D4EFDC641C763EB000370479 /* ReuseableView.swift in Sources */,
+				D40117CE1C92B10E009E5CEB /* Message.swift in Sources */,
 				D4E72F581C7896AE00C3369D /* BoardDepartureCell.swift in Sources */,
 				D4E75FB51C764E6A005AC9DA /* UIView+PendlerGo.swift in Sources */,
 				D4EFDC521C761F3300370479 /* DepartureBoard.swift in Sources */,
 				D4E72F5C1C7896AE00C3369D /* BoardContainmentTabView.swift in Sources */,
 				D4E75FAF1C7641DA005AC9DA /* SnapKit+Superview.swift in Sources */,
 				D4EFDC671C763EF900370479 /* UITableView+ReusableView.swift in Sources */,
+				D40117D01C92B185009E5CEB /* JourneyDetail.swift in Sources */,
 				D45140311C77B62D00627184 /* FinitePagedContainmentViewController.swift in Sources */,
 				D4EFDC541C761F3B00370479 /* Departure.swift in Sources */,
 				D4B7F6681C76FDA800B6762D /* LocationCell.swift in Sources */,
@@ -553,6 +568,7 @@
 				D4E75FB71C765212005AC9DA /* Theme.swift in Sources */,
 				D4E72F5E1C7896AE00C3369D /* BoardContainmentViewController.swift in Sources */,
 				D42E31D61C77BB7F003C98A2 /* UIImage+Utilities.swift in Sources */,
+				D4CF6C9F1C96A24000E7334E /* UIFont+Size.swift in Sources */,
 				D45140321C77B62D00627184 /* IconTabViewButton.swift in Sources */,
 				D4B7F65E1C76F0B400B6762D /* SettingsViewController.swift in Sources */,
 				D4B7F6601C76F0CD00B6762D /* SettingsView.swift in Sources */,

@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import DateTools
+import RxSwift
 
 class BoardDepartureCell: UITableViewCell, ReuseableView {
     
@@ -54,16 +55,39 @@ class BoardDepartureCell: UITableViewCell, ReuseableView {
         $0.textAlignment = .Right
     }
     
+    let messageLabel = UILabel().setUp {
+        $0.font = Theme.font.regular(size: .XtraSmall)
+        $0.textColor = Theme.color.darkTextColor
+        $0.hidden = true
+        $0.numberOfLines = 0
+    }
+    
+    let bag = DisposeBag()
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        addSubviews([timeLabel, delayedLabel, realTimeLabel, /*typeLabel,*/ nameLabel, destinationLabel, trackLabel])
+        addSubviews([timeLabel, delayedLabel, realTimeLabel, /*typeLabel,*/ nameLabel, destinationLabel, trackLabel, messageLabel])
         
         backgroundColor = Theme.color.backgroundColor
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    static func height(departure: Departure, journeyDetail: JourneyDetail?) -> CGFloat {
+        var height: CGFloat = 13.75 + 20 - 3 + 15 + 2
+        
+        if let message = journeyDetail?.allMessages where departure.hasMessages {
+            height += Theme.font.regular(size: .XtraSmall)!.sizeOfString(message, constrainedToWidth: Double(UIScreen.mainScreen().bounds.width - CGFloat(2 * 15))).height
+            
+            if departure.isDelayed {
+                height += 7
+            }
+        }
+        
+        return height
     }
     
     override func layoutSubviews() {
@@ -74,7 +98,7 @@ class BoardDepartureCell: UITableViewCell, ReuseableView {
         timeLabel.x = 15
         timeLabel.width = 40
         timeLabel.height = 20
-        timeLabel.centerY = superview.centerY
+        timeLabel.top = 13.75
         
         realTimeLabel.x = timeLabel.x
         realTimeLabel.width = timeLabel.width
@@ -86,25 +110,26 @@ class BoardDepartureCell: UITableViewCell, ReuseableView {
         delayedLabel.width = timeLabel.width
         delayedLabel.height = 15
         
-        typeLabel.x = timeLabel.right + 8
-        typeLabel.width = 20
-        typeLabel.height = 20
-        typeLabel.centerY = superview.centerY
-        
         nameLabel.x = timeLabel.right + 8
         nameLabel.width = max(30, nameLabel.intrinsicContentSize().width + 10)
         nameLabel.height = 20
-        nameLabel.centerY = superview.centerY
+        nameLabel.centerY = timeLabel.centerY
         
         trackLabel.height = 20
         trackLabel.width = trackLabel.intrinsicContentSize().width
         trackLabel.right = superview.right - 10
-        trackLabel.centerY = superview.centerY
+        trackLabel.centerY = nameLabel.centerY
         
         destinationLabel.left = nameLabel.right + 4
         destinationLabel.width = trackLabel.left - destinationLabel.left - 5
         destinationLabel.height = 20
-        destinationLabel.centerY = superview.centerY
+        destinationLabel.centerY = nameLabel.centerY
+        
+        messageLabel.left = timeLabel.left
+        messageLabel.width = trackLabel.right - messageLabel.left
+//        messageLabel.height = messageLabel.intrinsicContentSize().height
+        messageLabel.top = delayedLabel.hidden ? nameLabel.bottom + 5 : delayedLabel.bottom
+        messageLabel.sizeToFit()
     }
     
     override func prepareForReuse() {
@@ -113,9 +138,10 @@ class BoardDepartureCell: UITableViewCell, ReuseableView {
         realTimeLabel.hidden = true
         delayedLabel.hidden = true
         trackLabel.hidden = false
+        messageLabel.hidden = true
     }
     
-    func configure(departure: Departure) {
+    func configure(departure: Departure, journeyDetail: JourneyDetail?) {
         timeLabel.text = departure.time
         nameLabel.text = departure.name
         destinationLabel.text = "👉 \(departure.finalStop)"
@@ -158,6 +184,12 @@ class BoardDepartureCell: UITableViewCell, ReuseableView {
             trackLabel.text = "Spor " + departure.track
             trackLabel.textColor = Theme.color.darkTextColor
             trackLabel.font = Theme.font.regular(size: .Small)
+        }
+        
+        
+        if let detail = journeyDetail where departure.hasMessages {
+            self.messageLabel.hidden = false
+            self.messageLabel.text = detail.allMessages
         }
         
         nameLabel.textColor = UIColor.whiteColor()
