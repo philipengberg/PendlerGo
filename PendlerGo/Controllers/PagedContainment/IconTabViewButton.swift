@@ -43,7 +43,7 @@ class IconTabViewButton: UIButton {
         }
         
         subtitleLabel.snp_updateConstraintsWithSuper { (make, superview) -> Void in
-            make.centerX.equalTo(superview)
+            make.left.right.equalTo(superview)
             make.top.equalTo(iconImageView.snp_bottom).offset(4)
         }
         
