@@ -1,0 +1,400 @@
+
+{
+    "JourneyDetail":{
+        "noNamespaceSchemaLocation":"http://xmlopen.rejseplanen.dk/xml/rest/hafasRestJourneyDetail.xsd",
+        "Stop":[{
+                "name":"Esbjerg St.",
+                "x":"8458193",
+                "y":"55467920",
+                "routeIdx":"0",
+                "depTime":"06:27",
+                "depDate":"11.03.16",
+                "track":"2",
+                "$":""
+                },{
+                "name":"Tjæreborg St.",
+                "x":"8579368",
+                "y":"55466392",
+                "routeIdx":"1",
+                "track":"1",
+                "$":""
+                },{
+                "name":"Bramming St.",
+                "x":"8706799",
+                "y":"55464774",
+                "routeIdx":"2",
+                "arrTime":"06:37",
+                "arrDate":"11.03.16",
+                "depTime":"06:38",
+                "depDate":"11.03.16",
+                "track":"2",
+                "$":""
+                },{
+                "name":"Gørding St.",
+                "x":"8800727",
+                "y":"55469700",
+                "routeIdx":"3",
+                "track":"2",
+                "$":""
+                },{
+                "name":"Holsted St.",
+                "x":"8914459",
+                "y":"55484928",
+                "routeIdx":"4",
+                "track":"1",
+                "$":""
+                },{
+                "name":"Brørup St.",
+                "x":"9016136",
+                "y":"55482798",
+                "routeIdx":"5",
+                "track":"2",
+                "$":""
+                },{
+                "name":"Vejen St.",
+                "x":"9136187",
+                "y":"55475939",
+                "routeIdx":"6",
+                "arrTime":"06:51",
+                "arrDate":"11.03.16",
+                "depTime":"06:52",
+                "depDate":"11.03.16",
+                "track":"2",
+                "$":""
+                },{
+                "name":"Lunderskov St.",
+                "x":"9303377",
+                "y":"55479975",
+                "routeIdx":"7",
+                "arrTime":"06:59",
+                "arrDate":"11.03.16",
+                "depTime":"07:00",
+                "depDate":"11.03.16",
+                "track":"3",
+                "$":""
+                },{
+                "name":"Kolding St.",
+                "x":"9481094",
+                "y":"55490834",
+                "routeIdx":"8",
+                "arrTime":"07:07",
+                "arrDate":"11.03.16",
+                "depTime":"07:08",
+                "depDate":"11.03.16",
+                "track":"2",
+                "$":""
+                },{
+                "name":"Taulov St.",
+                "x":"9615761",
+                "y":"55545120",
+                "routeIdx":"9",
+                "track":"3",
+                "$":""
+                },{
+                "name":"Middelfart St.",
+                "x":"9734041",
+                "y":"55501981",
+                "routeIdx":"10",
+                "arrTime":"07:21",
+                "arrDate":"11.03.16",
+                "depTime":"07:22",
+                "depDate":"11.03.16",
+                "track":"4",
+                "$":""
+                },{
+                "name":"Kauslunde St.",
+                "x":"9811097",
+                "y":"55475939",
+                "routeIdx":"11",
+                "track":"2",
+                "$":""
+                },{
+                "name":"Nørre Aaby St.",
+                "x":"9869877",
+                "y":"55460244",
+                "routeIdx":"12",
+                "track":"1",
+                "$":""
+                },{
+                "name":"Ejby St.",
+                "x":"9929745",
+                "y":"55428593",
+                "routeIdx":"13",
+                "track":"1",
+                "$":""
+                },{
+                "name":"Gelsted St.",
+                "x":"9974251",
+                "y":"55396061",
+                "routeIdx":"14",
+                "track":"1",
+                "$":""
+                },{
+                "name":"Aarup St.",
+                "x":"10051226",
+                "y":"55382945",
+                "routeIdx":"15",
+                "track":"1",
+                "$":""
+                },{
+                "name":"Bred St.",
+                "x":"10105610",
+                "y":"55373111",
+                "routeIdx":"16",
+                "track":"1",
+                "$":""
+                },{
+                "name":"Skalbjerg St.",
+                "x":"10141333",
+                "y":"55366190",
+                "routeIdx":"17",
+                "track":"1",
+                "$":""
+                },{
+                "name":"Tommerup St.",
+                "x":"10182531",
+                "y":"55349371",
+                "routeIdx":"18",
+                "track":"2",
+                "$":""
+                },{
+                "name":"Holmstrup St.",
+                "x":"10272153",
+                "y":"55362064",
+                "routeIdx":"19",
+                "track":"1",
+                "$":""
+                },{
+                "name":"Odense St.",
+                "x":"10386739",
+                "y":"55401778",
+                "routeIdx":"20",
+                "arrTime":"07:46",
+                "arrDate":"11.03.16",
+                "depTime":"07:54",
+                "depDate":"11.03.16",
+                "track":"3",
+                "$":""
+                },{
+                "name":"Langeskov St.",
+                "x":"10591936",
+                "y":"55360868",
+                "routeIdx":"21",
+                "track":"1",
+                "$":""
+                },{
+                "name":"Nyborg St.",
+                "x":"10802580",
+                "y":"55313890",
+                "routeIdx":"22",
+                "arrTime":"08:07",
+                "arrDate":"11.03.16",
+                "depTime":"08:08",
+                "depDate":"11.03.16",
+                "track":"2",
+                "$":""
+                },{
+                "name":"Korsør St.",
+                "x":"11135334",
+                "y":"55356886",
+                "routeIdx":"23",
+                "arrTime":"08:20",
+                "arrDate":"11.03.16",
+                "rtArrDate":"11.03.16",
+                "depTime":"08:21",
+                "depDate":"11.03.16",
+                "rtDepDate":"11.03.16",
+                "track":"2",
+                "$":""
+                },{
+                "name":"Slagelse St.",
+                "x":"11348998",
+                "y":"55407306",
+                "routeIdx":"24",
+                "arrTime":"08:29",
+                "arrDate":"11.03.16",
+                "rtArrDate":"11.03.16",
+                "depTime":"08:31",
+                "depDate":"11.03.16",
+                "rtDepDate":"11.03.16",
+                "track":"2",
+                "$":""
+                },{
+                "name":"Sorø St.",
+                "x":"11569243",
+                "y":"55419343",
+                "routeIdx":"25",
+                "arrTime":"08:38",
+                "arrDate":"11.03.16",
+                "rtArrDate":"11.03.16",
+                "depTime":"08:39",
+                "depDate":"11.03.16",
+                "rtDepDate":"11.03.16",
+                "track":"2",
+                "$":""
+                },{
+                "name":"Ringsted St.",
+                "x":"11786377",
+                "y":"55438391",
+                "routeIdx":"26",
+                "arrTime":"08:47",
+                "arrDate":"11.03.16",
+                "rtArrDate":"11.03.16",
+                "depTime":"08:48",
+                "depDate":"11.03.16",
+                "rtDepDate":"11.03.16",
+                "track":"2",
+                "$":""
+                },{
+                "name":"Borup St.",
+                "x":"11972517",
+                "y":"55494618",
+                "routeIdx":"27",
+                "track":"1",
+                "$":""
+                },{
+                "name":"Viby Sjælland St.",
+                "x":"12024493",
+                "y":"55549605",
+                "routeIdx":"28",
+                "track":"1",
+                "$":""
+                },{
+                "name":"Roskilde St.",
+                "x":"12088550",
+                "y":"55639093",
+                "routeIdx":"29",
+                "arrTime":"09:02",
+                "arrDate":"11.03.16",
+                "rtArrDate":"11.03.16",
+                "depTime":"09:04",
+                "depDate":"11.03.16",
+                "rtDepDate":"11.03.16",
+                "track":"4",
+                "$":""
+                },{
+                "name":"Trekroner St.",
+                "x":"12132282",
+                "y":"55647929",
+                "routeIdx":"30",
+                "track":"2",
+                "$":""
+                },{
+                "name":"Hedehusene St.",
+                "x":"12197310",
+                "y":"55648990",
+                "routeIdx":"31",
+                "track":"2",
+                "$":""
+                },{
+                "name":"Høje Taastrup St.",
+                "x":"12269323",
+                "y":"55648792",
+                "routeIdx":"32",
+                "arrTime":"09:10",
+                "arrDate":"11.03.16",
+                "rtArrDate":"11.03.16",
+                "depTime":"09:11",
+                "depDate":"11.03.16",
+                "rtDepDate":"11.03.16",
+                "track":"2",
+                "$":""
+                },{
+                "name":"Glostrup St.",
+                "x":"12397824",
+                "y":"55663148",
+                "routeIdx":"33",
+                "track":"1",
+                "$":""
+                },{
+                "name":"Valby St.",
+                "x":"12514450",
+                "y":"55663993",
+                "routeIdx":"34",
+                "arrTime":"09:20",
+                "arrDate":"11.03.16",
+                "rtArrDate":"11.03.16",
+                "depTime":"09:21",
+                "depDate":"11.03.16",
+                "rtDepDate":"11.03.16",
+                "track":"1",
+                "$":""
+                },{
+                "name":"København H",
+                "x":"12565562",
+                "y":"55673063",
+                "routeIdx":"35",
+                "arrTime":"09:26",
+                "arrDate":"11.03.16",
+                "rtArrDate":"11.03.16",
+                "depTime":"09:29",
+                "depDate":"11.03.16",
+                "rtDepDate":"11.03.16",
+                "track":"3",
+                "$":""
+                },{
+                "name":"Nørreport St.",
+                "x":"12571306",
+                "y":"55683050",
+                "routeIdx":"36",
+                "arrTime":"09:31",
+                "arrDate":"11.03.16",
+                "rtArrDate":"11.03.16",
+                "rtArrTime":"09:40",
+                "depTime":"09:32",
+                "depDate":"11.03.16",
+                "rtDepDate":"11.03.16",
+                "rtDepTime":"09:41",
+                "track":"1",
+                "$":""
+                },{
+                "name":"Østerport St.",
+                "x":"12587784",
+                "y":"55692498",
+                "routeIdx":"37",
+                "arrTime":"09:36",
+                "arrDate":"11.03.16",
+                "rtArrDate":"11.03.16",
+                "rtArrTime":"09:44",
+                "track":"1",
+                "$":""
+                }],
+        "JourneyName":{
+            "name":"IC 816",
+            "routeIdxFrom":"0",
+            "routeIdxTo":"37"
+        },
+        "JourneyType":{
+            "type":"IC",
+            "routeIdxFrom":"0",
+            "routeIdxTo":"37"
+        },
+        "Note":[{
+                "text":"Retning: Østerport St.",
+                "routeIdxFrom":"0",
+                "routeIdxTo":"37"
+                },{
+                "text":"kører:11. mar - 4. maj 2016 ma - fr; ikke 21. - 28. mar 2016, 22. apr",
+                "routeIdxFrom":"0",
+                "routeIdxTo":"37"
+                },{
+                "text":"Reservering anbefales",
+                "routeIdxFrom":"0",
+                "routeIdxTo":"37"
+                },{
+                "text":"Mulighed for internet",
+                "routeIdxFrom":"0",
+                "routeIdxTo":"37"
+                }],
+        "MessageList":{
+            "Message":{
+                "Header":{
+                    "$":"\nDer er længere rejsetid fra Odense St. mod Høje Taastrup St.\n"
+                },
+                "Text":{
+                    "$":"\nDet skyldes fejl på en skinne ved Sorø St.\n"
+                }
+            }
+        }
+    }
+}

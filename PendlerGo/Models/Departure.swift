@@ -22,6 +22,9 @@ struct Departure {
     let finalStop: String
     let direction: String
     let cancelled: Bool
+    let messages: Int
+    let detailRef: String
+    let detail: JourneyDetail?
 }
 
 extension Departure {
@@ -87,6 +90,18 @@ extension Departure {
             return self.realTrack != self.track
         }
     }
+    
+    var hasMessages: Bool {
+        get {
+            return self.messages > 0
+        }
+    }
+    
+    var detailPath: String {
+        get {
+            return self.detailRef.substringFromIndex(self.detailRef.rangeOfString("=")!.startIndex.advancedBy(1)).stringByRemovingPercentEncoding!
+        }
+    }
 }
 
 extension Departure : JSONAble {
@@ -107,6 +122,9 @@ extension Departure : JSONAble {
             realTrack: json["rtTrack"].string,
             finalStop: json["finalStop"].stringValue,
             direction: json["direction"].stringValue,
-            cancelled: json["cancelled"].boolValue)
+            cancelled: json["cancelled"].boolValue,
+            messages: json["messages"].intValue,
+            detailRef: (json["JourneyDetailRef"].dictionaryValue)["ref"]!.stringValue,
+            detail: nil)
     }
 }

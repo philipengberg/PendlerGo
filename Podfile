@@ -15,9 +15,9 @@ pod 'Crashlytics', '3.7.0'
 
 pod 'SnapKit', '0.19.1'
 
-pod 'RxSwift', '2.1.0'
-pod 'RxCocoa', '2.1.0'
-pod 'Action', '1.2.0'
+pod 'RxSwift', '2.2.0'
+pod 'RxCocoa', '2.2.0'
+pod 'Action', '1.2.1'
 
 pod 'DateTools', '1.7.0'
 
