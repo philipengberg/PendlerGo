@@ -82,7 +82,7 @@ class BoardDepartureCell: UITableViewCell, ReuseableView {
         if let message = journeyDetail?.allMessages where departure.hasMessages {
             height += Theme.font.regular(size: .XtraSmall)!.sizeOfString(message, constrainedToWidth: Double(UIScreen.mainScreen().bounds.width - CGFloat(2 * 15))).height
             
-            if departure.isDelayed {
+            if departure.isDelayed || departure.cancelled {
                 height += 7
             }
         }
