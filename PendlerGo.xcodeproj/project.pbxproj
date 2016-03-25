@@ -13,6 +13,7 @@
 		D42E31D61C77BB7F003C98A2 /* UIImage+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42E31D51C77BB7F003C98A2 /* UIImage+Utilities.swift */; };
 		D42E31D81C77BCAB003C98A2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D42E31D71C77BCAB003C98A2 /* CoreGraphics.framework */; };
 		D43756301C78FBD20005730D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D437562F1C78FBD20005730D /* GoogleService-Info.plist */; };
+		D4453E951CA565F10053AA79 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4453E941CA565F10053AA79 /* CoreLocation.framework */; };
 		D45140311C77B62D00627184 /* FinitePagedContainmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D451402E1C77B62D00627184 /* FinitePagedContainmentViewController.swift */; };
 		D45140321C77B62D00627184 /* IconTabViewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D451402F1C77B62D00627184 /* IconTabViewButton.swift */; };
 		D45140331C77B62D00627184 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45140301C77B62D00627184 /* TabView.swift */; };
@@ -78,6 +79,7 @@
 		D42E31D51C77BB7F003C98A2 /* UIImage+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Utilities.swift"; sourceTree = "<group>"; };
 		D42E31D71C77BCAB003C98A2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		D437562F1C78FBD20005730D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D4453E941CA565F10053AA79 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		D451402E1C77B62D00627184 /* FinitePagedContainmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinitePagedContainmentViewController.swift; sourceTree = "<group>"; };
 		D451402F1C77B62D00627184 /* IconTabViewButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconTabViewButton.swift; sourceTree = "<group>"; };
 		D45140301C77B62D00627184 /* TabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4453E951CA565F10053AA79 /* CoreLocation.framework in Frameworks */,
 				D42E31D81C77BCAB003C98A2 /* CoreGraphics.framework in Frameworks */,
 				E8DA5FE58C31D50B81D7A61C /* Pods.framework in Frameworks */,
 			);
@@ -153,6 +156,7 @@
 		5C7E74AD1C7DC92D64A48318 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D4453E941CA565F10053AA79 /* CoreLocation.framework */,
 				D42E31D71C77BCAB003C98A2 /* CoreGraphics.framework */,
 				9E622AB873B4A24576375853 /* Pods.framework */,
 			);
