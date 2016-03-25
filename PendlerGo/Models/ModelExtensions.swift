@@ -13,7 +13,7 @@ import SwiftyJSON
 typealias JSONDict = [String : AnyObject]
 
 protocol JSONAble {
-    typealias T
+    associatedtype T
     static func fromJSON(_ : JSONDict) -> Self?
 }
 

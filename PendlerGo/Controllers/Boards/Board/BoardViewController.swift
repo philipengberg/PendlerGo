@@ -45,6 +45,7 @@ class BoardViewController : UIViewController, ScrollableViewController {
         viewModel.departures.asObservable().subscribeNext { [weak self] (_) -> Void in
             self?._view.refreshControl.endRefreshing()
             self?._view.tableView.reloadData()
+            self?._view.tableView .scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: true)
         }.addDisposableTo(bag)
         
         viewModel.details.asObservable().subscribeNext { [weak self] (_) -> Void in
