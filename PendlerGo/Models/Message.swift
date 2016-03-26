@@ -21,7 +21,7 @@ extension Message : JSONAble {
         let json = JSON(dict)
         
         return Message(
-            header: json["Header"].dictionaryValue["$"]!.stringValue.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()),
-            text: json["Text"].dictionaryValue["$"]!.stringValue.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()))
+            header: String(htmlEncodedString: json["Header"].dictionaryValue["$"]!.stringValue.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())),
+            text:  String(htmlEncodedString: json["Text"].dictionaryValue["$"]!.stringValue.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())))
     }
 }
