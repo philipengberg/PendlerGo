@@ -16,6 +16,7 @@
 		D45140311C77B62D00627184 /* FinitePagedContainmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D451402E1C77B62D00627184 /* FinitePagedContainmentViewController.swift */; };
 		D45140321C77B62D00627184 /* IconTabViewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D451402F1C77B62D00627184 /* IconTabViewButton.swift */; };
 		D45140331C77B62D00627184 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45140301C77B62D00627184 /* TabView.swift */; };
+		D463D2141CA7257100C23CBD /* String+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D463D2131CA7257100C23CBD /* String+Utilities.swift */; };
 		D48546601C761BED0011E149 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D485465F1C761BED0011E149 /* AppDelegate.swift */; };
 		D48546671C761BED0011E149 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D48546661C761BED0011E149 /* Assets.xcassets */; };
 		D48546751C761BED0011E149 /* PendlerGoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48546741C761BED0011E149 /* PendlerGoTests.swift */; };
@@ -81,6 +82,7 @@
 		D451402E1C77B62D00627184 /* FinitePagedContainmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinitePagedContainmentViewController.swift; sourceTree = "<group>"; };
 		D451402F1C77B62D00627184 /* IconTabViewButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconTabViewButton.swift; sourceTree = "<group>"; };
 		D45140301C77B62D00627184 /* TabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
+		D463D2131CA7257100C23CBD /* String+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Utilities.swift"; sourceTree = "<group>"; };
 		D485465C1C761BED0011E149 /* PendlerGo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PendlerGo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D485465F1C761BED0011E149 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D48546661C761BED0011E149 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -331,6 +333,7 @@
 				D4E75FB41C764E6A005AC9DA /* UIView+PendlerGo.swift */,
 				D42E31D51C77BB7F003C98A2 /* UIImage+Utilities.swift */,
 				D4CF6C9E1C96A24000E7334E /* UIFont+Size.swift */,
+				D463D2131CA7257100C23CBD /* String+Utilities.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -545,6 +548,7 @@
 				D4E72F5D1C7896AE00C3369D /* BoardContainmentView.swift in Sources */,
 				D4EFDC641C763EB000370479 /* ReuseableView.swift in Sources */,
 				D40117CE1C92B10E009E5CEB /* Message.swift in Sources */,
+				D463D2141CA7257100C23CBD /* String+Utilities.swift in Sources */,
 				D4E72F581C7896AE00C3369D /* BoardDepartureCell.swift in Sources */,
 				D4E75FB51C764E6A005AC9DA /* UIView+PendlerGo.swift in Sources */,
 				D4EFDC521C761F3300370479 /* DepartureBoard.swift in Sources */,
@@ -700,7 +704,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Philip Nielsen (T3P66BDGE4)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Philip Nielsen (T3P66BDGE4)";
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				INFOPLIST_FILE = PendlerGo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.simplesense.PendlerGo;
@@ -717,7 +721,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Philip Nielsen (3X36G2LREE)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Philip Nielsen (3X36G2LREE)";
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				INFOPLIST_FILE = PendlerGo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.simplesense.PendlerGo;
