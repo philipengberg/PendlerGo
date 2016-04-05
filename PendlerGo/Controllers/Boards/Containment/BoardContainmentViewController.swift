@@ -12,12 +12,15 @@ import RxSwift
 import RxCocoa
 import GoogleMobileAds
 import Google
+import CoreLocation
 
 class BoardContainmentViewController : FinitePagedContainmentViewController {
     
     private let _view = BoardContainmentView()
 //    private let viewModel: LeagueContainmentViewModel
     private let bag = DisposeBag()
+    
+    private let locationManager = CLLocationManager()
     
     lazy var homeBoardViewController: BoardViewController = {
         return BoardViewController(locationType: .Home)
@@ -48,6 +51,8 @@ class BoardContainmentViewController : FinitePagedContainmentViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        findNearestStation()
+        
         self.title = "PendlerGo"
         
         setHairLineImageViewHidden(true)
@@ -55,7 +60,6 @@ class BoardContainmentViewController : FinitePagedContainmentViewController {
         self.edgesForExtendedLayout = .None
         self.extendedLayoutIncludesOpaqueBars = false
         self.automaticallyAdjustsScrollViewInsets = false
-        
         
         Settings.sharedSettings.homeLocationVariable.asObservable().map({ (location) -> String in
             return location?.name ?? ""
@@ -84,13 +88,15 @@ class BoardContainmentViewController : FinitePagedContainmentViewController {
         }.addDisposableTo(bag)
         
         
-        let adRequest = GADRequest()
-        #if DEBUG
-        adRequest.testDevices = ["kGADSimulatorID", "4c67d9c602e1157d68e93c106413b5f8"]
-        #endif
         _view.adBannerView.rootViewController = self
         _view.adBannerView.delegate = self
-        _view.adBannerView.loadRequest(GADRequest())
+        _view.adBannerView.loadRequest(genreateAdRequest())
+        
+        
+        NSNotificationCenter.defaultCenter().rx_notification(UIApplicationDidBecomeActiveNotification).subscribeNext { [weak self] (_) in
+            guard let s = self else { return }
+            s.findNearestStation()
+        }.addDisposableTo(bag)
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -161,6 +167,14 @@ class BoardContainmentViewController : FinitePagedContainmentViewController {
         }
     }
     
+    func genreateAdRequest() -> GADRequest {
+        let adRequest = GADRequest()
+        #if DEBUG
+            adRequest.testDevices = [kGADSimulatorID, "4c67d9c602e1157d68e93c106413b5f8"]
+        #endif
+        return adRequest
+    }
+    
     func findHairlineImageViewUnder(view: UIView) -> UIImageView? {
         if view is UIImageView && view.bounds.size.height <= 1.0 {
             return view as? UIImageView;
@@ -197,6 +211,48 @@ extension BoardContainmentViewController : GADBannerViewDelegate {
             self._view.layoutIfNeeded()
         }, completion: nil)
     }
+}
+
+extension BoardContainmentViewController : CLLocationManagerDelegate {
+    
+    func findNearestStation() {
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
+        locationManager.delegate = self
+        locationManager.startUpdatingLocation()
+    }
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.last else { return }
+        
+        manager.stopUpdatingLocation()
+        
+        // Make ads more relevant
+        let adRequest = genreateAdRequest()
+        adRequest.setLocationWithLatitude(CGFloat(location.coordinate.latitude), longitude: CGFloat(location.coordinate.longitude), accuracy: CGFloat(location.horizontalAccuracy))
+        _view.adBannerView.loadRequest(adRequest)
+        
+        guard
+            let home = Settings.sharedSettings.homeLocation,
+            let work = Settings.sharedSettings.workLocation else { return }
+        
+        let homeCoordinate = CLLocationCoordinate2D(latitude: Double(home.yCoordinate)! / 1000000, longitude: Double(home.xCoordinate)! / 1000000)
+        let workCoordinate = CLLocationCoordinate2D(latitude: Double(work.yCoordinate)! / 1000000, longitude: Double(work.xCoordinate)! / 1000000)
+        
+        let homeDistance = CLLocation(coordinate: homeCoordinate, altitude: 1, horizontalAccuracy: 1, verticalAccuracy: -1, timestamp: NSDate()).distanceFromLocation(location)
+        let workDistance = CLLocation(coordinate: workCoordinate, altitude: 1, horizontalAccuracy: 1, verticalAccuracy: -1, timestamp: NSDate()).distanceFromLocation(location)
+        
+        let diffPercentage = (max(homeDistance, workDistance) - min(homeDistance, workDistance)) / max(homeDistance, workDistance)
+        
+        guard diffPercentage > 0.1 else { return }
+        
+        if homeDistance < workDistance {
+            setTabIndex(0)
+        } else {
+            setTabIndex(1)
+        }
+    }
+    
 }
 
 extension UINavigationController {
