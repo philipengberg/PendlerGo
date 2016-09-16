@@ -13,7 +13,6 @@ import Crashlytics
 import RxSwift
 import RxCocoa
 import DateTools
-import WatchdogInspector
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

@@ -12,6 +12,7 @@ import RxSwift
 import RxCocoa
 import Action
 import Google
+import GGLAnalytics
 import MessageUI
 import GBDeviceInfo
 

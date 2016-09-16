@@ -80,6 +80,10 @@ extension PendlerGoTarget: TargetType {
         }
     }
     
+    var multipartBody: [MultipartFormData]? {
+        return nil
+    }
+    
     var sampleData : NSData {
         switch self {
         case .Board:
