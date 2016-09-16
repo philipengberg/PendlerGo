@@ -20,7 +20,7 @@ let PendlerGoAPI = API (
         var endpoint = MoyaProvider.DefaultEndpointMapping(target)
         return endpoint
     },
-    plugins: [NetworkActivityPlugin(networkActivityClosure: { (change) -> () in
+    plugins: [Logger(), NetworkActivityPlugin(networkActivityClosure: { (change) -> () in
         switch change {
         case .Began: UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         case .Ended: UIApplication.sharedApplication().networkActivityIndicatorVisible = false
@@ -33,8 +33,28 @@ let PendlerGoDebugAPI = API(stubClosure: { target -> StubBehavior in
     }
 )
 
+private class Logger : PluginType {
+    
+    private func willSendRequest(request: RequestType, target: TargetType) {
+        
+    }
+    
+    private func didReceiveResponse(result: Result<Moya.Response, Moya.Error>, target: TargetType) {
+        switch result {
+            
+        case .Success(let response):
+            if let params = target.parameters {
+                print("\(response.statusCode): \(target.method) - \(target.path) (\(params))")
+            } else {
+                print("\(response.statusCode): \(target.method) - \(target.path)")
+            }
+        default: break
+        }
+    }
+}
+
 enum PendlerGoTarget {
-    case Board(locationId: String)
+    case Board(locationId: String, offset: Int)
     case Location(query: String)
     case Detail(ref: String)
 }
@@ -69,8 +89,8 @@ extension PendlerGoTarget: TargetType {
     
     var parameters : [String: AnyObject]? {
         switch self {
-        case .Board(let locationId):
-            return ["id":locationId, "format":"json", "useBus":false]
+        case .Board(let locationId, let offset):
+            return ["id":locationId, "format":"json", "useBus":false, "offsetTime": offset]
         case .Location(let query):
             return ["input":query, "format":"json"]
         case .Detail(let ref):

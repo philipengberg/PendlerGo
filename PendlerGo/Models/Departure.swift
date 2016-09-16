@@ -8,6 +8,7 @@
 
 import Foundation
 import SwiftyJSON
+import DateTools
 
 struct Departure {
     let name: String
@@ -42,6 +43,17 @@ extension Departure {
         case Ferry = "F"
         case Metro = "M"
         case Unknown
+        
+        var isTrain : Bool {
+            switch self {
+            case .IC, .Lyn, .Regional, .OtherTrain: return true
+            default: return false;
+            }
+        }
+        
+        var isSTraing : Bool {
+            return self == .STrain
+        }
     }
     
     var type : Type {
@@ -73,6 +85,13 @@ extension Departure {
         }
     }
     
+    var combinedDepartureDateTime: NSDate {
+        get {
+            let time = NSDateFormatter.timeFormatter().dateFromString(self.time)!
+            return combineDateWithTime(self.date, time: time)
+        }
+    }
+    
     var realDepartureTime: NSDate {
         get {
             return NSDateFormatter.timeFormatter().dateFromString(self.realTime)!
@@ -101,6 +120,23 @@ extension Departure {
         get {
             return self.detailRef.substringFromIndex(self.detailRef.rangeOfString("=")!.startIndex.advancedBy(1)).stringByRemovingPercentEncoding!
         }
+    }
+    
+    private func combineDateWithTime(date: NSDate, time: NSDate) -> NSDate {
+        let calendar = NSCalendar.currentCalendar()
+        
+        let dateComponents = calendar.components([.Year, .Month, .Day], fromDate: date)
+        let timeComponents = calendar.components([.Hour, .Minute, .Second], fromDate: time)
+        
+        let mergedComponments = NSDateComponents()
+        mergedComponments.year = dateComponents.year
+        mergedComponments.month = dateComponents.month
+        mergedComponments.day = dateComponents.day
+        mergedComponments.hour = timeComponents.hour
+        mergedComponments.minute = timeComponents.minute
+        mergedComponments.second = timeComponents.second
+        
+        return calendar.dateFromComponents(mergedComponments) ?? date
     }
 }
 

@@ -105,15 +105,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         
-        PendlerGoAPI.request(.Board(locationId: Settings.sharedSettings.homeLocation!.id)).mapJSON().mapToObject(DepartureBoard).map({ (board) -> [Departure] in
-            return board.departures
-        }).subscribeNext { (departures) -> Void in
-            
-            self.checkForAnomalies(departures)
-            
-            completionHandler(.NewData)
-            
-        }.addDisposableTo(bag)
+//        PendlerGoAPI.request(.Board(locationId: Settings.sharedSettings.homeLocation!.id)).mapJSON().mapToObject(DepartureBoard).map({ (board) -> [Departure] in
+//            return board.departures
+//        }).subscribeNext { (departures) -> Void in
+//            
+//            self.checkForAnomalies(departures)
+//            
+//            completionHandler(.NewData)
+//            
+//        }.addDisposableTo(bag)
         
 //        Settings.sharedSettings.homeLocationVariable.asObservable().take(1).subscribeNext({ (_) -> Void in
 //            
