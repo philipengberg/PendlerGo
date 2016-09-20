@@ -94,7 +94,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(application: UIApplication) {
         
-        Settings.sharedSettings.initialize()
+        Settings.initialize()
     }
 
     func applicationWillTerminate(application: UIApplication) {
@@ -121,7 +121,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            completionHandler(.NewData)
 //        }).addDisposableTo(bag)
         
-        Settings.sharedSettings.initialize()
+        Settings.initialize()
         
     }
     

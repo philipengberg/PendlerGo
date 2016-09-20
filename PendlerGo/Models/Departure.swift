@@ -43,22 +43,37 @@ extension Departure {
         case Ferry = "F"
         case Metro = "M"
         case Unknown
-        
-        var isTrain : Bool {
-            switch self {
-            case .IC, .Lyn, .Regional, .OtherTrain: return true
-            default: return false;
-            }
-        }
-        
-        var isSTraing : Bool {
-            return self == .STrain
-        }
     }
     
     var type : Type {
         get {
             return Type(rawValue: self.typeString) ?? .Unknown
+        }
+    }
+    
+    enum TransportationType {
+        case Train
+        case STrain
+        case Metro
+        case Bus
+        case Ferry
+        case Unknown
+    }
+    
+    var transportationType : TransportationType {
+        switch self.type {
+        case .IC, .Lyn, .Regional, .OtherTrain:
+            return .Train
+        case .STrain:
+            return .STrain
+        case .Bus, .ExpressBus, .NightBus, .TeleBuse:
+            return .Bus
+        case .Ferry:
+            return .Ferry
+        case .Metro:
+            return .Metro
+        default:
+            return .Unknown
         }
     }
     

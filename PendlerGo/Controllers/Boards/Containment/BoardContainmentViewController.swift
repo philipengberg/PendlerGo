@@ -17,7 +17,6 @@ import CoreLocation
 class BoardContainmentViewController : FinitePagedContainmentViewController {
     
     private let _view = BoardContainmentView()
-//    private let viewModel: LeagueContainmentViewModel
     private let bag = DisposeBag()
     
     private let locationManager = CLLocationManager()
@@ -61,13 +60,14 @@ class BoardContainmentViewController : FinitePagedContainmentViewController {
         self.extendedLayoutIncludesOpaqueBars = false
         self.automaticallyAdjustsScrollViewInsets = false
         
-        Settings.sharedSettings.homeLocationVariable.asObservable().map({ (location) -> String in
+        Settings.homeLocationVariable.asObservable().map({ (location) -> String in
             return location?.name ?? ""
         }).bindTo(_view.tabView.homeButton.subtitleLabel.rx_text).addDisposableTo(bag)
         
-        Settings.sharedSettings.workLocationVariable.asObservable().map({ (location) -> String in
+        Settings.workLocationVariable.asObservable().map({ (location) -> String in
             return location?.name ?? ""
         }).bindTo(_view.tabView.workButton.subtitleLabel.rx_text).addDisposableTo(bag)
+        
         
         
         let settings = UIBarButtonItem(image: UIImage(named: "settings"), style: .Plain, target: nil, action: nil)
@@ -77,7 +77,52 @@ class BoardContainmentViewController : FinitePagedContainmentViewController {
         }.addDisposableTo(bag)
         
         
-        _view.insertSubview(pagedScrollView, belowSubview: _view.tabView)
+        
+        
+        let filters = UIBarButtonItem(image: UIImage(named: "filter"), style: .Plain, target: nil, action: nil)
+        self.navigationItem.rightBarButtonItem = filters
+        
+        _view.filterView.tapGesture.rx_event.subscribeNext { [weak self] (_) -> Void in
+            self?.toggleFilterView()
+        }.addDisposableTo(bag)
+        
+        filters.rx_tap.subscribeNext { [weak self] (_) -> Void in
+            self?.toggleFilterView()
+        }.addDisposableTo(bag)
+        
+        
+        _view.filterView.trainsButton.rx_tap.subscribeNext   { _ -> Void in
+            Settings.includeTrains = !Settings.includeTrains
+        }.addDisposableTo(bag)
+        
+        _view.filterView.sTrainsButton.rx_tap.subscribeNext   { _ -> Void in
+            Settings.includeSTrains = !Settings.includeSTrains
+        }.addDisposableTo(bag)
+        
+        _view.filterView.metroButton.rx_tap.subscribeNext   { _ -> Void in
+            Settings.includeMetro = !Settings.includeMetro
+        }.addDisposableTo(bag)
+        
+        
+        Settings.includeTrainsVariable.asObservable().subscribeNext { [weak self] (include) in
+            self?._view.filterView.trainsButton.selected = include
+        }.addDisposableTo(bag)
+        
+        Settings.includeSTrainsVariable.asObservable().subscribeNext { [weak self] (include) in
+            self?._view.filterView.sTrainsButton.selected = include
+        }.addDisposableTo(bag)
+        
+        Settings.includeMetroVariable.asObservable().subscribeNext { [weak self] (include) in
+            self?._view.filterView.metroButton.selected = include
+        }.addDisposableTo(bag)
+        
+        
+        
+        
+        _view.insertSubview(pagedScrollView, belowSubview: _view.filterView)
+        
+        
+        
         
         _view.tabView.homeButton.rx_tap.subscribeNext   { [weak self] () -> Void in
             self?.setTabIndex(0)
@@ -86,6 +131,8 @@ class BoardContainmentViewController : FinitePagedContainmentViewController {
         _view.tabView.workButton.rx_tap.subscribeNext   { [weak self] () -> Void in
             self?.setTabIndex(1)
         }.addDisposableTo(bag)
+        
+        
         
         
         _view.adBannerView.rootViewController = self
@@ -120,13 +167,26 @@ class BoardContainmentViewController : FinitePagedContainmentViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        if Settings.sharedSettings.homeLocation == nil && Settings.sharedSettings.workLocation == nil {
+        if Settings.homeLocation == nil && Settings.workLocation == nil {
             self.presentSettings()
         }
     }
     
     override func loadView() {
         view = _view
+    }
+    
+    func toggleFilterView() {
+        _view.showFilter = !_view.showFilter
+        _view.setNeedsUpdateConstraints()
+        
+        UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 20, options: UIViewAnimationOptions.BeginFromCurrentState, animations: { () -> Void in
+            self._view.layoutIfNeeded()
+            self._view.tabView.layer.shadowColor = self._view.showFilter ? UIColor.blackColor().CGColor : nil
+            self._view.tabView.layer.shadowOffset = CGSize(width: 0, height: self._view.showFilter ? 1 : 0)
+            self._view.tabView.layer.shadowOpacity = self._view.showFilter ? 0.1 : 0
+            self._view.tabView.layer.shadowRadius = 3.0
+        }, completion: nil)
     }
     
     func presentSettings() {
@@ -233,8 +293,8 @@ extension BoardContainmentViewController : CLLocationManagerDelegate {
         _view.adBannerView.loadRequest(adRequest)
         
         guard
-            let home = Settings.sharedSettings.homeLocation,
-            let work = Settings.sharedSettings.workLocation else { return }
+            let home = Settings.homeLocation,
+            let work = Settings.workLocation else { return }
         
         let homeCoordinate = CLLocationCoordinate2D(latitude: Double(home.yCoordinate)! / 1000000, longitude: Double(home.xCoordinate)! / 1000000)
         let workCoordinate = CLLocationCoordinate2D(latitude: Double(work.yCoordinate)! / 1000000, longitude: Double(work.xCoordinate)! / 1000000)

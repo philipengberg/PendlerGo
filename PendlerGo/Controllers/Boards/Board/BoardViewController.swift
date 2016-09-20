@@ -32,9 +32,9 @@ class BoardViewController : UIViewController, ScrollableViewController {
         super.viewDidLoad()
         
         _view.tableView.registerCell(BoardDepartureCell.self)
+        _view.tableView.registerCell(LoadMoreCell.self)
         _view.tableView.dataSource = self
         _view.tableView.delegate = self
-        _view.tableView.allowsSelection = false
         
         _view.refreshControl.rx_controlEvent(.ValueChanged).subscribeNext { [weak self] in
             if let _ = self?._view.refreshControl.refreshing {
@@ -42,14 +42,45 @@ class BoardViewController : UIViewController, ScrollableViewController {
             }
         }.addDisposableTo(bag)
         
-        viewModel.departures.asObservable().subscribeNext { [weak self] (_) -> Void in
+        viewModel.departures.asObservable().subscribeNext { [weak self] (departures) -> Void in
+            guard let s = self else { return }
+            
+            let currentCount = s._view.tableView.numberOfRowsInSection(0) - 1
+            let newCount = departures.count
+            let diff = newCount - currentCount
+            
+            if currentCount > 0 && diff > 0 {
+                
+                var newIndexPaths: [NSIndexPath] = []
+                for index in currentCount...(newCount - 1) {
+                    newIndexPaths.append(NSIndexPath(forRow: index, inSection: 0))
+                }
+                
+                s._view.tableView.beginUpdates()
+                s._view.tableView.insertRowsAtIndexPaths(newIndexPaths, withRowAnimation: .Fade)
+                s._view.tableView.endUpdates()
+                
+            } else {
+            
+                self?._view.tableView.reloadData()
+                self?._view.tableView .scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: true)
+            
+            }
+            
             self?._view.refreshControl.endRefreshing()
-            self?._view.tableView.reloadData()
-            self?._view.tableView .scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: true)
         }.addDisposableTo(bag)
         
-        viewModel.details.asObservable().subscribeNext { [weak self] (_) -> Void in
+        viewModel.details.asObservable().subscribeNext { [weak self] (details) -> Void in
             self?._view.tableView.reloadData()
+//            guard let s = self where details.count > 0 && details.count <= s.viewModel.departures.value.count else { return }
+//            var toReload: [NSIndexPath] = []
+//            for index in 0...details.count - 1 {
+//                if details[index].allMessages.characters.count > 0 {
+//                    toReload.append(NSIndexPath(forRow: index, inSection: 0))
+//                }
+//            }
+//            
+//            self?._view.tableView.reloadRowsAtIndexPaths(toReload, withRowAnimation: .Fade)
         }.addDisposableTo(bag)
         
     }
@@ -78,10 +109,16 @@ extension BoardViewController : UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.departures.value.count
+        let count = viewModel.departures.value.count
+        return count + (count > 0 ? 1 : 0)
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        if indexPath.row == viewModel.departures.value.count {
+            return tableView.dequeueCell(LoadMoreCell.self, indexPath: indexPath)
+        }
+        
         let cell = tableView.dequeueCell(BoardDepartureCell.self, indexPath: indexPath)
         if viewModel.details.value.count > indexPath.row {
             cell.configure(viewModel.departures.value[indexPath.row], journeyDetail: viewModel.details.value[indexPath.row])
@@ -92,11 +129,25 @@ extension BoardViewController : UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        
-        if viewModel.details.value.count > indexPath.row {
-            return BoardDepartureCell.height(viewModel.departures.value[indexPath.row], journeyDetail: viewModel.details.value[indexPath.row])
+        if indexPath.row == viewModel.departures.value.count {
+            return LoadMoreCell.height()
         } else {
-            return BoardDepartureCell.height(viewModel.departures.value[indexPath.row], journeyDetail: nil)
+            if viewModel.details.value.count > indexPath.row {
+                return BoardDepartureCell.height(viewModel.departures.value[indexPath.row], journeyDetail: viewModel.details.value[indexPath.row])
+            } else {
+                return BoardDepartureCell.height(viewModel.departures.value[indexPath.row], journeyDetail: nil)
+            }
+        }
+    }
+    
+    func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return indexPath.row == viewModel.departures.value.count
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.row == viewModel.departures.value.count {
+            viewModel.loadMore()
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
         }
     }
 }

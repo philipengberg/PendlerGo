@@ -21,12 +21,17 @@ class BoardContainmentView : UIView {
         $0.adSize = kGADAdSizeSmartBannerPortrait
     }
     
+    let filterView = BoardContainmentFilterView().setUp {
+        $0.backgroundColor = Theme.color.mainColor.colorWithAlphaComponent(1) //UIColor(red: 237, green: 159, blue: 33)
+    }
+    
+    var showFilter: Bool = false
     var showAdBanner: Bool = false
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        addSubviews([tabView, adBannerView])
+        addSubviews([adBannerView, filterView, tabView])
         
         setNeedsUpdateConstraints()
         
@@ -53,6 +58,17 @@ class BoardContainmentView : UIView {
                 make.bottom.equalTo(superview)
             } else {
                 make.top.equalTo(superview.snp_bottom)
+            }
+        }
+        
+        filterView.snp_remakeConstraintsWithSuper { (make, superview) in
+            make.width.equalTo(superview)
+            make.height.equalTo(60)
+            make.left.right.equalTo(superview)
+            if showFilter {
+                make.top.equalTo(tabView.snp_bottom).offset(-10)
+            } else {
+                make.bottom.equalTo(tabView.snp_bottom).offset(-5)
             }
         }
         

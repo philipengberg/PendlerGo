@@ -49,10 +49,10 @@ class LocationCell : UITableViewCell, ReuseableView {
     func configure(location: Location) {
         nameLabel.text = location.name
         
-        if let homeId = Settings.sharedSettings.homeLocation?.id where homeId.isEqual(location.id) {
+        if let homeId = Settings.homeLocation?.id where homeId.isEqual(location.id) {
             self.accessoryView = homeAccessoryImageView
             self.accessoryView?.size = CGSize(width: 15, height: 15)
-        } else if let workId = Settings.sharedSettings.workLocation?.id where workId.isEqual(location.id) {
+        } else if let workId = Settings.workLocation?.id where workId.isEqual(location.id) {
             self.accessoryView = workAccessoryImageView
             self.accessoryView?.size = CGSize(width: 15, height: 15)
         } else {

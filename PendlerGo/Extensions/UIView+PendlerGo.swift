@@ -38,4 +38,8 @@ extension UIView {
     var top:        CGFloat { get { return self.frame.origin.y }                          set { self.frame.origin.y = newValue } }
     var right:      CGFloat { get { return self.frame.origin.x + self.frame.size.width }  set { self.frame.origin.x = newValue - self.frame.size.width } }
     var bottom:     CGFloat { get { return self.frame.origin.y + self.frame.size.height } set { self.frame.origin.y = newValue - self.frame.size.height } }
+    
+    var boundsCenter:   CGPoint { get { return CGPoint(x: CGRectGetMidX(self.bounds), y: CGRectGetMidY(self.bounds)) } }
+    var boundsCenterX:  CGFloat { get { return CGRectGetMidX(self.bounds) } }
+    var boundsCenterY:  CGFloat { get { return CGRectGetMidY(self.bounds) } }
 }

@@ -44,9 +44,9 @@ private class Logger : PluginType {
             
         case .Success(let response):
             if let params = target.parameters {
-                print("\(response.statusCode): \(target.method) - \(target.path) (\(params))")
+//                print("\(response.statusCode): \(target.method) - \(target.path) (\(params))")
             } else {
-                print("\(response.statusCode): \(target.method) - \(target.path)")
+//                print("\(response.statusCode): \(target.method) - \(target.path)")
             }
         default: break
         }

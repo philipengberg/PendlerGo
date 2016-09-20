@@ -62,12 +62,14 @@ class BoardDepartureCell: UITableViewCell, ReuseableView {
         $0.numberOfLines = 0
     }
     
+    let messageSpinner = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+    
     let bag = DisposeBag()
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        addSubviews([timeLabel, delayedLabel, realTimeLabel, /*typeLabel,*/ nameLabel, destinationLabel, trackLabel, messageLabel])
+        addSubviews([timeLabel, delayedLabel, realTimeLabel, /*typeLabel,*/ nameLabel, destinationLabel, trackLabel, messageLabel, messageSpinner])
         
         backgroundColor = Theme.color.backgroundColor
     }
@@ -85,6 +87,8 @@ class BoardDepartureCell: UITableViewCell, ReuseableView {
             if departure.isDelayed || departure.cancelled {
                 height += 7
             }
+        } else if departure.hasMessages {
+            height += 25 // Spinner
         }
         
         return height
@@ -127,9 +131,11 @@ class BoardDepartureCell: UITableViewCell, ReuseableView {
         
         messageLabel.left = timeLabel.left
         messageLabel.width = trackLabel.right - messageLabel.left
-//        messageLabel.height = messageLabel.intrinsicContentSize().height
         messageLabel.top = delayedLabel.hidden ? nameLabel.bottom + 5 : delayedLabel.bottom
         messageLabel.sizeToFit()
+        
+        messageSpinner.left = messageLabel.left
+        messageSpinner.top = messageLabel.top
     }
     
     override func prepareForReuse() {
@@ -190,6 +196,9 @@ class BoardDepartureCell: UITableViewCell, ReuseableView {
         if let detail = journeyDetail where departure.hasMessages {
             self.messageLabel.hidden = false
             self.messageLabel.text = detail.allMessages
+            self.messageSpinner.stopAnimating()
+        } else if departure.hasMessages {
+            self.messageSpinner.startAnimating()
         }
         
         nameLabel.textColor = UIColor.whiteColor()

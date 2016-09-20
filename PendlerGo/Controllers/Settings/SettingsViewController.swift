@@ -67,11 +67,11 @@ class SettingsViewController: UIViewController {
         _view.workTextField.rx_text.throttle(0.2, scheduler: MainScheduler.instance).bindTo(viewModel.query).addDisposableTo(bag)
         
         
-        Settings.sharedSettings.homeLocationVariable.asObservable().map { (location) -> String in
+        Settings.homeLocationVariable.asObservable().map { (location) -> String in
             return location?.name ?? ""
         }.bindTo(_view.homeTextField.rx_text).addDisposableTo(bag)
         
-        Settings.sharedSettings.workLocationVariable.asObservable().map { (location) -> String in
+        Settings.workLocationVariable.asObservable().map { (location) -> String in
             return location?.name ?? ""
         }.bindTo(_view.workTextField.rx_text).addDisposableTo(bag)
         
@@ -126,9 +126,9 @@ class SettingsViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        if Settings.sharedSettings.homeLocation == nil {
+        if Settings.homeLocation == nil {
             _view.homeTextField.becomeFirstResponder()
-        } else if Settings.sharedSettings.workLocation == nil {
+        } else if Settings.workLocation == nil {
             _view.workTextField.becomeFirstResponder()
         }
     }
@@ -161,15 +161,15 @@ extension SettingsViewController : UITableViewDataSource, UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         if _view.homeTextField.isFirstResponder() {
-            Settings.sharedSettings.homeLocation = viewModel.locations.value[indexPath.row]
+            Settings.homeLocation = viewModel.locations.value[indexPath.row]
             _view.homeTextField.resignFirstResponder()
             
-            if Settings.sharedSettings.workLocation == nil {
+            if Settings.workLocation == nil {
                 _view.workTextField.becomeFirstResponder()
             }
             
         } else if _view.workTextField.isFirstResponder() {
-            Settings.sharedSettings.workLocation = viewModel.locations.value[indexPath.row]
+            Settings.workLocation = viewModel.locations.value[indexPath.row]
             _view.workTextField.resignFirstResponder()
         }
         
