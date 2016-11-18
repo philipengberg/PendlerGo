@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 import SwiftyJSON
 
-typealias JSONDict = [String : AnyObject]
+typealias JSONDict = [String : Any]
 
 protocol JSONAble {
     associatedtype T
@@ -19,7 +19,7 @@ protocol JSONAble {
 
 extension Observable {
     
-    func mapToObject <T : JSONAble> (type : T.Type) -> Observable<T> {
+    func mapToObject <T : JSONAble> (_ type : T.Type) -> Observable<T> {
         return flatMap{ response -> Observable <T> in
             if let json = response as? JSONDict {
                 if let result = type.fromJSON(json) {
@@ -30,7 +30,7 @@ extension Observable {
         }
     }
     
-    func mapToObjects <T : JSONAble> (type : T.Type) -> Observable<[T]> {
+    func mapToObjects <T : JSONAble> (_ type : T.Type) -> Observable<[T]> {
         return flatMap{ response -> Observable < [T]> in
             if let json = response as? [JSONDict] {
                     let results = json.flatMap({ (dict) -> T? in

@@ -19,7 +19,7 @@ struct Location {
 extension Location : JSONAble {
     typealias T = Location
     
-    static func fromJSON(dict : JSONDict) -> Location? {
+    static func fromJSON(_ dict : JSONDict) -> Location? {
         let json = JSON(dict)
         
         return Location(

@@ -10,12 +10,12 @@ import Foundation
 import UIKit
 
 extension UIFont {
-    func sizeOfString (string: String, constrainedToWidth width: Double) -> CGSize {
+    func sizeOfString (_ string: String, constrainedToWidth width: Double) -> CGSize {
         if string.isEmpty {
             return CGSize.zero
         }
-        return NSString(string: string).boundingRectWithSize(CGSize(width: width, height: DBL_MAX),
-            options: [.UsesLineFragmentOrigin, .UsesFontLeading],
+        return NSString(string: string).boundingRect(with: CGSize(width: width, height: DBL_MAX),
+            options: [.usesLineFragmentOrigin, .usesFontLeading],
             attributes: [NSFontAttributeName: self],
             context: nil).size
     }

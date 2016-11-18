@@ -39,15 +39,15 @@ class SettingsViewController: UIViewController {
         
         _view.fakeNavBarTitleLabel.text = "Indstillinger"
         
-        _view.fakeNavBarCloseButton.rx_action = doneAction
+        _view.fakeNavBarCloseButton.rx.action = doneAction
         
-        _view.fakeNavBarFeedbackButton.hidden = !MFMailComposeViewController.canSendMail()
-        _view.fakeNavBarFeedbackButton.rx_tap.subscribeNext { [weak self] () -> Void in
-            
+        _view.fakeNavBarFeedbackButton.isHidden = !MFMailComposeViewController.canSendMail()
+        _view.fakeNavBarFeedbackButton.rx.tap.subscribe(onNext: { [weak self] () -> Void in
+            Analytics.Events.trackHelpButtonTapped()
             guard let s = self else { return }
             
             let mailComposerVC = MFMailComposeViewController()
-            mailComposerVC.navigationBar.tintColor = UIColor.whiteColor()
+            mailComposerVC.navigationBar.tintColor = .white
             mailComposerVC.mailComposeDelegate = s
             mailComposerVC.setToRecipients(["admin@philipengberg.dk"])
             mailComposerVC.setSubject("PendlerGo feedback")
@@ -55,32 +55,32 @@ class SettingsViewController: UIViewController {
                 "<br/>Detaljer:<ul>" +
                 "<li>\(GBDeviceInfo.deviceInfo().modelString)</li>" +
                 "<li>iOS \(GBDeviceInfo.deviceInfo().osVersion.major).\(GBDeviceInfo.deviceInfo().osVersion.minor).\(GBDeviceInfo.deviceInfo().osVersion.patch)</li>" +
-                "<li>PendlerGo \(NSBundle.mainBundle().infoDictionary?["CFBundleShortVersionString"] as! String) (\(NSBundle.mainBundle().infoDictionary?[kCFBundleVersionKey as String] as! String))</li>" +
+                "<li>PendlerGo \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String) (\(Bundle.main.infoDictionary?[kCFBundleVersionKey as String] as! String))</li>" +
                 "</ul>" +
                 "", isHTML: true)
             
-            s.presentViewController(mailComposerVC, animated: true, completion: nil)
+            s.present(mailComposerVC, animated: true, completion: nil)
             
-        }.addDisposableTo(bag)
+        }).addDisposableTo(bag)
         
-        _view.homeTextField.rx_text.throttle(0.2, scheduler: MainScheduler.instance).bindTo(viewModel.query).addDisposableTo(bag)
-        _view.workTextField.rx_text.throttle(0.2, scheduler: MainScheduler.instance).bindTo(viewModel.query).addDisposableTo(bag)
+        _view.homeTextField.rx.text.orEmpty.throttle(0.2, scheduler: MainScheduler.instance).bindTo(viewModel.query).addDisposableTo(bag)
+        _view.workTextField.rx.text.orEmpty.throttle(0.2, scheduler: MainScheduler.instance).bindTo(viewModel.query).addDisposableTo(bag)
         
         
-        Settings.sharedSettings.homeLocationVariable.asObservable().map { (location) -> String in
+        Settings.homeLocationVariable.asObservable().map { (location) -> String in
             return location?.name ?? ""
-        }.bindTo(_view.homeTextField.rx_text).addDisposableTo(bag)
+        }.bindTo(_view.homeTextField.rx.text).addDisposableTo(bag)
         
-        Settings.sharedSettings.workLocationVariable.asObservable().map { (location) -> String in
+        Settings.workLocationVariable.asObservable().map { (location) -> String in
             return location?.name ?? ""
-        }.bindTo(_view.workTextField.rx_text).addDisposableTo(bag)
+        }.bindTo(_view.workTextField.rx.text).addDisposableTo(bag)
         
         
         _view.searchResultsTableView.registerCell(LocationCell.self)
         _view.searchResultsTableView.dataSource = self
         _view.searchResultsTableView.delegate = self
         
-        viewModel.locations.asObservable().subscribeNext { [weak self] (locations) -> Void in
+        viewModel.locations.asObservable().subscribe(onNext: { [weak self] (locations) -> Void in
 
             if locations.count > 0 {
                 self?._view.searchResultsTableView.reloadData()
@@ -91,85 +91,83 @@ class SettingsViewController: UIViewController {
                 })
             }
             
-        }.addDisposableTo(bag)
+        }).addDisposableTo(bag)
         
-        NSNotificationCenter.defaultCenter().rx_notification(UIKeyboardWillChangeFrameNotification).subscribeNext { [weak self] (notification) -> Void in
+        NotificationCenter.default.rx.notification(NSNotification.Name.UIKeyboardWillChangeFrame).subscribe(onNext: { [weak self] (notification) -> Void in
             guard
                 let s = self,
                 let info = notification.userInfo,
-                let value = info[UIKeyboardFrameEndUserInfoKey] else { return }
+                let value = info[UIKeyboardFrameEndUserInfoKey] as? NSValue else { return }
             
-            let rawFrame = value.CGRectValue
+            let rawFrame = value.cgRectValue
             
-            s._view.bottomInset = UIScreen.mainScreen().bounds.height - rawFrame.origin.y
+            s._view.bottomInset = UIScreen.main.bounds.height - rawFrame.origin.y
             s._view.setNeedsUpdateConstraints()
             
-            UIView.animateWithDuration(info[UIKeyboardAnimationDurationUserInfoKey] as! Double, delay: 0, options: UIViewAnimationOptions(rawValue: info[UIKeyboardAnimationCurveUserInfoKey] as! UInt), animations: {
+            UIView.animate(withDuration: info[UIKeyboardAnimationDurationUserInfoKey] as! Double, delay: 0, options: UIViewAnimationOptions(rawValue: info[UIKeyboardAnimationCurveUserInfoKey] as! UInt), animations: {
                 s._view.layoutIfNeeded()
             }, completion: { finished in
             })
             
-        }.addDisposableTo(bag)
+        }).addDisposableTo(bag)
         
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         let tracker = GAI.sharedInstance().defaultTracker
-        tracker.set(kGAIScreenName, value: "Settings")
-        
-        let builder = GAIDictionaryBuilder.createScreenView()
-        tracker.send(builder.build() as [NSObject : AnyObject])
+        tracker?.set(kGAIScreenName, value: "Settings")
+        tracker?.send(GAIDictionaryBuilder.createScreenView().build() as Dictionary<NSObject, AnyObject>)
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if Settings.sharedSettings.homeLocation == nil {
+        if Settings.homeLocation == nil {
             _view.homeTextField.becomeFirstResponder()
-        } else if Settings.sharedSettings.workLocation == nil {
+        } else if Settings.workLocation == nil {
             _view.workTextField.becomeFirstResponder()
         }
     }
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
     }
     
     deinit {
-        print("Deinit \(self.dynamicType)")
+        print("Deinit \(type(of: self))")
     }
     
 }
 
 extension SettingsViewController : UITableViewDataSource, UITableViewDelegate {
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.locations.value.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueCell(LocationCell.self, indexPath: indexPath)
         cell.configure(viewModel.locations.value[indexPath.row])
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if _view.homeTextField.isFirstResponder() {
-            Settings.sharedSettings.homeLocation = viewModel.locations.value[indexPath.row]
+        if _view.homeTextField.isFirstResponder {
+            Settings.homeLocation = viewModel.locations.value[indexPath.row]
             _view.homeTextField.resignFirstResponder()
             
-            if Settings.sharedSettings.workLocation == nil {
+            if Settings.workLocation == nil {
                 _view.workTextField.becomeFirstResponder()
             }
             
-        } else if _view.workTextField.isFirstResponder() {
-            Settings.sharedSettings.workLocation = viewModel.locations.value[indexPath.row]
+        } else if _view.workTextField.isFirstResponder {
+            Settings.workLocation = viewModel.locations.value[indexPath.row]
             _view.workTextField.resignFirstResponder()
         }
         
@@ -178,31 +176,31 @@ extension SettingsViewController : UITableViewDataSource, UITableViewDelegate {
 }
 
 extension MFMailComposeViewController {
-    public override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    open override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
     }
     
-    public override func childViewControllerForStatusBarStyle() -> UIViewController? {
+    open override var childViewControllerForStatusBarStyle : UIViewController? {
         return nil
     }
 }
 
 extension SettingsViewController : MFMailComposeViewControllerDelegate {
  
-    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         switch result.rawValue {
-        case MFMailComposeResultCancelled.rawValue:
+        case MFMailComposeResult.cancelled.rawValue:
             print("Mail cancelled")
-        case MFMailComposeResultSaved.rawValue:
+        case MFMailComposeResult.saved.rawValue:
             print("Mail saved")
-        case MFMailComposeResultSent.rawValue:
+        case MFMailComposeResult.sent.rawValue:
             print("Mail sent")
-        case MFMailComposeResultFailed.rawValue:
+        case MFMailComposeResult.failed.rawValue:
             print("Mail sent failure: \(error!.localizedDescription)")
         default:
             break
         }
-        controller.dismissViewControllerAnimated(true, completion: nil)
+        controller.dismiss(animated: true, completion: nil)
     }
     
 }

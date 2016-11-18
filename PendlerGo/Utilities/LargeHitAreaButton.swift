@@ -11,11 +11,11 @@ import UIKit
 
 class LargeHitAreaButton: UIButton {
     
-    override func hitTest(point: CGPoint, withEvent event: UIEvent?) -> UIView? {
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         let errorMargin: CGFloat = 15;
-        let largerFrame = CGRectMake(0 - errorMargin, 0 - errorMargin, self.frame.size.width + errorMargin * 2, self.frame.size.height + errorMargin * 2);
+        let largerFrame = CGRect(x: 0 - errorMargin, y: 0 - errorMargin, width: self.frame.size.width + errorMargin * 2, height: self.frame.size.height + errorMargin * 2);
         
-        if !self.hidden && CGRectContainsPoint(largerFrame, point) {
+        if !self.isHidden && largerFrame.contains(point) {
             return self;
         }
         

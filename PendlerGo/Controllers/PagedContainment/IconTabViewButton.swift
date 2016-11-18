@@ -12,13 +12,13 @@ import UIKit
 class IconTabViewButton: UIButton {
     
     let iconImageView = UIImageView().setUp {
-        $0.contentMode = .ScaleAspectFit
+        $0.contentMode = .scaleAspectFit
     }
     
     let subtitleLabel = UILabel(frame: .zero).setUp {
-        $0.font = Theme.font.regular(size: .Small)
-        $0.textColor = UIColor.whiteColor()
-        $0.textAlignment = .Center
+        $0.font = Theme.font.regular(size: .small)
+        $0.textColor = UIColor.white
+        $0.textAlignment = .center
     }
     
     init(icon: UIImage?, subtitle: String) {
@@ -36,23 +36,23 @@ class IconTabViewButton: UIButton {
     
     override func updateConstraints() {
         
-        iconImageView.snp_updateConstraintsWithSuper { (make, superview) -> Void in
+        iconImageView.snp.updateConstraints { make in
             make.size.equalTo(21)
-            make.centerX.equalTo(superview)
-            make.top.equalTo(superview)
+            make.centerX.equalToSuperview()
+            make.top.equalToSuperview()
         }
         
-        subtitleLabel.snp_updateConstraintsWithSuper { (make, superview) -> Void in
-            make.left.right.equalTo(superview)
-            make.top.equalTo(iconImageView.snp_bottom).offset(4)
+        subtitleLabel.snp.updateConstraints { make in
+            make.left.right.equalToSuperview()
+            make.top.equalTo(iconImageView.snp.bottom).offset(4)
         }
         
         super.updateConstraints()
     }
     
-    override var highlighted: Bool {
+    override var isHighlighted: Bool {
         didSet {
-            let alpha: CGFloat = highlighted ? 0.8 : 1.0
+            let alpha: CGFloat = isHighlighted ? 0.8 : 1.0
             
             iconImageView.alpha = alpha
             subtitleLabel.alpha = alpha

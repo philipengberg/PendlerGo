@@ -11,17 +11,17 @@ import UIKit
 
 class TabView : UIView {
     
-    private var buttons = [UIButton]()
-    private var outerMargin: Double
-    private var innerMargin: Double
+    fileprivate var buttons = [UIButton]()
+    fileprivate var outerMargin: Double
+    fileprivate var innerMargin: Double
     var activeToggleIndex: Int = 0
     
-    private let activeMarker = UIView().setUp {
-        $0.backgroundColor = UIColor.whiteColor()
+    fileprivate let activeMarker = UIView().setUp {
+        $0.backgroundColor = UIColor.white
     }
     
-    private var buttonWidth: Double {
-        return (Double(UIScreen.mainScreen().bounds.width) - outerMargin * 2 - innerMargin * Double(self.buttons.count - 1)) / Double(self.buttons.count)
+    fileprivate var buttonWidth: Double {
+        return (Double(UIScreen.main.bounds.width) - outerMargin * 2 - innerMargin * Double(self.buttons.count - 1)) / Double(self.buttons.count)
     }
     
     init(numberOfTabs: Int, outerMargin: Double, innerMargin: Double) {
@@ -50,18 +50,18 @@ class TabView : UIView {
             fatalError("Not yet implemented")
         }
         
-        for (index, button) in buttons.enumerate() {
-            button.snp_updateConstraintsWithSuper({ (make, superview) -> Void in
-                make.centerY.equalTo(superview)
+        for (index, button) in buttons.enumerated() {
+            button.snp.updateConstraints { make in
+                make.centerY.equalToSuperview()
                 make.width.equalTo(buttonWidth)
-                make.height.equalTo(superview)
+                make.height.equalToSuperview()
                 
                 if index == 0 {
-                    make.left.equalTo(superview).offset(outerMargin)
+                    make.left.equalToSuperview().offset(outerMargin)
                 } else {
-                    make.left.equalTo(buttons[index - 1].snp_right).offset(innerMargin)
+                    make.left.equalTo(buttons[index - 1].snp.right).offset(innerMargin)
                 }
-            })
+            }
         }
         
         super.updateConstraints()
@@ -74,7 +74,7 @@ class TabView : UIView {
         setActiveMarkerScrollPercentage(percentage)
     }
     
-    func setActiveMarkerScrollPercentage(scrollPercentage: Double) {
+    func setActiveMarkerScrollPercentage(_ scrollPercentage: Double) {
         let i = Double(buttons.count - 1)
         
         let totalScrollableWidth = i * buttonWidth + i * innerMargin
@@ -95,9 +95,9 @@ class TabView : UIView {
         self.activeMarker.frame = CGRect(x: markerX, y: Double(self.height) - markerHeight, width: max(buttonWidth - markerExcess, minMarkerWidth), height: markerHeight)
     }
     
-    func buttonAtIndex(index: Int) -> UIButton {
+    func buttonAtIndex(_ index: Int) -> UIButton {
         let button = UIButton()
-        button.titleLabel?.font = Theme.font.regular(size: .XtraSmall)
+        button.titleLabel?.font = Theme.font.regular(size: .xtraSmall)
         return button
     }
     

@@ -8,6 +8,7 @@
 
 import Foundation
 import SwiftyJSON
+import DateTools
 
 struct Departure {
     let name: String
@@ -15,8 +16,8 @@ struct Departure {
     let stop: String
     let time: String
     let realTime: String
-    let date: NSDate
-    let realDate: NSDate?
+    let date: Date
+    let realDate: Date?
     let track: String
     let realTrack: String?
     let finalStop: String
@@ -29,7 +30,7 @@ struct Departure {
 
 extension Departure {
     
-    enum Type : String {
+    enum DepartureType : String {
         case IC = "IC"
         case Lyn = "LYN"
         case Regional = "REG"
@@ -44,9 +45,35 @@ extension Departure {
         case Unknown
     }
     
-    var type : Type {
+    var type : DepartureType {
         get {
-            return Type(rawValue: self.typeString) ?? .Unknown
+            return DepartureType(rawValue: self.typeString) ?? .Unknown
+        }
+    }
+    
+    enum TransportationType {
+        case train
+        case sTrain
+        case metro
+        case bus
+        case ferry
+        case unknown
+    }
+    
+    var transportationType : TransportationType {
+        switch self.type {
+        case .IC, .Lyn, .Regional, .OtherTrain:
+            return .train
+        case .STrain:
+            return .sTrain
+        case .Bus, .ExpressBus, .NightBus, .TeleBuse:
+            return .bus
+        case .Ferry:
+            return .ferry
+        case .Metro:
+            return .metro
+        default:
+            return .unknown
         }
     }
     
@@ -67,15 +94,22 @@ extension Departure {
         }
     }
     
-    var departureTime: NSDate {
+    var departureTime: Date {
         get {
-            return NSDateFormatter.timeFormatter().dateFromString(self.time)!
+            return DateFormatter.timeFormatter().date(from: self.time)!
         }
     }
     
-    var realDepartureTime: NSDate {
+    var combinedDepartureDateTime: Date {
         get {
-            return NSDateFormatter.timeFormatter().dateFromString(self.realTime)!
+            let time = DateFormatter.timeFormatter().date(from: self.time)!
+            return combineDateWithTime(self.date, time: time)
+        }
+    }
+    
+    var realDepartureTime: Date {
+        get {
+            return DateFormatter.timeFormatter().date(from: self.realTime)!
         }
     }
     
@@ -99,15 +133,32 @@ extension Departure {
     
     var detailPath: String {
         get {
-            return self.detailRef.substringFromIndex(self.detailRef.rangeOfString("=")!.startIndex.advancedBy(1)).stringByRemovingPercentEncoding!
+            return self.detailRef.substring(from: self.detailRef.range(of: "=")!.lowerBound).removingPercentEncoding!
         }
+    }
+    
+    fileprivate func combineDateWithTime(_ date: Date, time: Date) -> Date {
+        let calendar = Calendar.current
+        
+        let dateComponents = (calendar as NSCalendar).components([.year, .month, .day], from: date)
+        let timeComponents = (calendar as NSCalendar).components([.hour, .minute, .second], from: time)
+        
+        var mergedComponments = DateComponents()
+        mergedComponments.year = dateComponents.year
+        mergedComponments.month = dateComponents.month
+        mergedComponments.day = dateComponents.day
+        mergedComponments.hour = timeComponents.hour
+        mergedComponments.minute = timeComponents.minute
+        mergedComponments.second = timeComponents.second
+        
+        return calendar.date(from: mergedComponments) ?? date
     }
 }
 
 extension Departure : JSONAble {
     typealias T = Departure
     
-    static func fromJSON(dict : JSONDict) -> Departure? {
+    static func fromJSON(_ dict : JSONDict) -> Departure? {
         let json = JSON(dict)
         
         return Departure(
@@ -116,8 +167,8 @@ extension Departure : JSONAble {
             stop: json["stop"].stringValue,
             time: json["time"].stringValue,
             realTime: json["rtTime"].stringValue,
-            date: json["date"].date!,
-            realDate: json["rtDate"].date,
+            date: json["date"].date! as Date,
+            realDate: json["rtDate"].date as Date?,
             track: json["track"].stringValue,
             realTrack: json["rtTrack"].string,
             finalStop: json["finalStop"].stringValue,

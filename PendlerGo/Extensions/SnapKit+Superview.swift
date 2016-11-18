@@ -11,29 +11,29 @@ import SnapKit
 
 extension UIView {
     
-    public func snp_makeConstraintsWithSuper(@noescape closure: (make: ConstraintMaker, superview: UIView) -> Void) -> Void {
+    public func snp_makeConstraintsWithSuper(_ closure: @escaping (_ make: ConstraintMaker, _ superview: UIView) -> Void) -> Void {
         
         if let s = superview {
-            self.snp_makeConstraints { (make) -> Void in
-                closure(make: make, superview: s)
+            self.snp.makeConstraints { (make) -> Void in
+                closure(make, s)
             }
         }
     }
     
-    public func snp_remakeConstraintsWithSuper(@noescape closure: (make: ConstraintMaker, superview: UIView) -> Void) -> Void {
+    public func snp_remakeConstraintsWithSuper(_ closure: @escaping (_ make: ConstraintMaker, _ superview: UIView) -> Void) -> Void {
         
         if let s = superview {
-            self.snp_remakeConstraints { (make) -> Void in
-                closure(make: make, superview: s)
+            self.snp.remakeConstraints { (make) -> Void in
+                closure(make, s)
             }
         }
     }
     
-    public func snp_updateConstraintsWithSuper(@noescape closure: (make: ConstraintMaker, superview: UIView) -> Void) -> Void {
+    public func snp_updateConstraintsWithSuper(_ closure: @escaping (_ make: ConstraintMaker, _ superview: UIView) -> Void) -> Void {
         
         if let s = superview {
-            self.snp_updateConstraints { (make) -> Void in
-                closure(make: make, superview: s)
+            self.snp.updateConstraints { (make) -> Void in
+                closure(make, s)
             }
         }
     }
