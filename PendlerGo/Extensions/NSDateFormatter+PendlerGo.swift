@@ -8,16 +8,16 @@
 
 import Foundation
 
-extension NSDateFormatter {
+extension DateFormatter {
     
-    static func timeFormatter() -> NSDateFormatter {
-        let formatter = NSDateFormatter()
+    static func timeFormatter() -> DateFormatter {
+        let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"
         return formatter
     }
     
-    static func dateFormatter() -> NSDateFormatter {
-        let formatter = NSDateFormatter()
+    static func dateFormatter() -> DateFormatter {
+        let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.yy"
         return formatter
     }

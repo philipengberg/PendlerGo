@@ -13,36 +13,45 @@ import RxCocoa
 struct Settings {
     
     enum LocationType : Int {
-        case Home
-        case Work
+        case home
+        case work
+        
+        var eventName: String {
+            switch self {
+            case .home:
+                return "Home"
+            case .work:
+                return "Work"
+            }
+        }
     }
     
-    private static let homeIdKey   = "homeId"
-    private static let homeNameKey = "homeName"
-    private static let homeXKey    = "homeX"
-    private static let homeYKey    = "homeY"
+    fileprivate static let homeIdKey   = "homeId"
+    fileprivate static let homeNameKey = "homeName"
+    fileprivate static let homeXKey    = "homeX"
+    fileprivate static let homeYKey    = "homeY"
     
-    private static let workIdKey   = "workd"
-    private static let workNameKey = "workName"
-    private static let workXKey    = "workX"
-    private static let workYKey    = "workY"
+    fileprivate static let workIdKey   = "workd"
+    fileprivate static let workNameKey = "workName"
+    fileprivate static let workXKey    = "workX"
+    fileprivate static let workYKey    = "workY"
     
-    private static let includeTrainsKey  = "includeTrains"
-    private static let includeSTrainsKey = "includeSTrains"
-    private static let includeMetroKey   = "includeMetro"
+    fileprivate static let includeTrainsKey  = "includeTrains"
+    fileprivate static let includeSTrainsKey = "includeSTrains"
+    fileprivate static let includeMetroKey   = "includeMetro"
     
     static func initialize() {
         
-        if NSUserDefaults.standardUserDefaults().valueForKey(Settings.includeTrainsKey) == nil {
-            NSUserDefaults.standardUserDefaults().setValue(true, forKey: Settings.includeTrainsKey)
+        if UserDefaults.standard.value(forKey: Settings.includeTrainsKey) == nil {
+            UserDefaults.standard.setValue(true, forKey: Settings.includeTrainsKey)
         }
         
-        if NSUserDefaults.standardUserDefaults().valueForKey(Settings.includeSTrainsKey) == nil {
-            NSUserDefaults.standardUserDefaults().setValue(true, forKey: Settings.includeSTrainsKey)
+        if UserDefaults.standard.value(forKey: Settings.includeSTrainsKey) == nil {
+            UserDefaults.standard.setValue(true, forKey: Settings.includeSTrainsKey)
         }
         
-        if NSUserDefaults.standardUserDefaults().valueForKey(Settings.includeMetroKey) == nil {
-            NSUserDefaults.standardUserDefaults().setValue(true, forKey: Settings.includeMetroKey)
+        if UserDefaults.standard.value(forKey: Settings.includeMetroKey) == nil {
+            UserDefaults.standard.setValue(true, forKey: Settings.includeMetroKey)
         }
         
         Settings.homeLocation = Settings.homeLocation
@@ -59,10 +68,10 @@ struct Settings {
     static var homeLocation: Location? {
         get {
             if
-                let id = NSUserDefaults.standardUserDefaults().stringForKey(Settings.homeIdKey),
-                let x = NSUserDefaults.standardUserDefaults().stringForKey(Settings.homeXKey),
-                let y = NSUserDefaults.standardUserDefaults().stringForKey(Settings.homeYKey),
-                let name =  NSUserDefaults.standardUserDefaults().stringForKey(Settings.homeNameKey) {
+                let id = UserDefaults.standard.string(forKey: Settings.homeIdKey),
+                let x = UserDefaults.standard.string(forKey: Settings.homeXKey),
+                let y = UserDefaults.standard.string(forKey: Settings.homeYKey),
+                let name =  UserDefaults.standard.string(forKey: Settings.homeNameKey) {
                     return Location(
                         name: name,
                         xCoordinate: x,
@@ -73,21 +82,21 @@ struct Settings {
         }
         set {
             homeLocationVariable.value = newValue
-            NSUserDefaults.standardUserDefaults().setValue(newValue?.id, forKey: Settings.homeIdKey)
-            NSUserDefaults.standardUserDefaults().setValue(newValue?.xCoordinate, forKey: Settings.homeXKey)
-            NSUserDefaults.standardUserDefaults().setValue(newValue?.yCoordinate, forKey: Settings.homeYKey)
-            NSUserDefaults.standardUserDefaults().setValue(newValue?.name, forKey: Settings.homeNameKey)
-            NSUserDefaults.standardUserDefaults().synchronize()
+            UserDefaults.standard.setValue(newValue?.id, forKey: Settings.homeIdKey)
+            UserDefaults.standard.setValue(newValue?.xCoordinate, forKey: Settings.homeXKey)
+            UserDefaults.standard.setValue(newValue?.yCoordinate, forKey: Settings.homeYKey)
+            UserDefaults.standard.setValue(newValue?.name, forKey: Settings.homeNameKey)
+            UserDefaults.standard.synchronize()
         }
     }
     
     static var workLocation: Location? {
         get {
             if
-                let id = NSUserDefaults.standardUserDefaults().stringForKey(Settings.workIdKey),
-                let x = NSUserDefaults.standardUserDefaults().stringForKey(Settings.workXKey),
-                let y = NSUserDefaults.standardUserDefaults().stringForKey(Settings.workYKey),
-                let name =  NSUserDefaults.standardUserDefaults().stringForKey(Settings.workNameKey) {
+                let id = UserDefaults.standard.string(forKey: Settings.workIdKey),
+                let x = UserDefaults.standard.string(forKey: Settings.workXKey),
+                let y = UserDefaults.standard.string(forKey: Settings.workYKey),
+                let name =  UserDefaults.standard.string(forKey: Settings.workNameKey) {
                     return Location(
                         name: name,
                         xCoordinate: x,
@@ -98,11 +107,11 @@ struct Settings {
         }
         set {
             workLocationVariable.value = newValue
-            NSUserDefaults.standardUserDefaults().setValue(newValue?.id, forKey: Settings.workIdKey)
-            NSUserDefaults.standardUserDefaults().setValue(newValue?.xCoordinate, forKey: Settings.workXKey)
-            NSUserDefaults.standardUserDefaults().setValue(newValue?.yCoordinate, forKey: Settings.workYKey)
-            NSUserDefaults.standardUserDefaults().setValue(newValue?.name, forKey: Settings.workNameKey)
-            NSUserDefaults.standardUserDefaults().synchronize()
+            UserDefaults.standard.setValue(newValue?.id, forKey: Settings.workIdKey)
+            UserDefaults.standard.setValue(newValue?.xCoordinate, forKey: Settings.workXKey)
+            UserDefaults.standard.setValue(newValue?.yCoordinate, forKey: Settings.workYKey)
+            UserDefaults.standard.setValue(newValue?.name, forKey: Settings.workNameKey)
+            UserDefaults.standard.synchronize()
         }
     }
     
@@ -113,33 +122,33 @@ struct Settings {
     
     static var includeTrains: Bool {
         get {
-            NSUserDefaults.standardUserDefaults().valueForKey(Settings.includeTrainsKey)
-            let val = NSUserDefaults.standardUserDefaults().boolForKey(Settings.includeTrainsKey)
+            UserDefaults.standard.value(forKey: Settings.includeTrainsKey)
+            let val = UserDefaults.standard.bool(forKey: Settings.includeTrainsKey)
             return val
         }
         set {
             includeTrainsVariable.value = newValue
-            NSUserDefaults.standardUserDefaults().setValue(newValue, forKey: Settings.includeTrainsKey)
+            UserDefaults.standard.setValue(newValue, forKey: Settings.includeTrainsKey)
         }
     }
     
     static var includeSTrains: Bool {
         get {
-            return NSUserDefaults.standardUserDefaults().boolForKey(Settings.includeSTrainsKey)
+            return UserDefaults.standard.bool(forKey: Settings.includeSTrainsKey)
         }
         set {
             includeSTrainsVariable.value = newValue
-            NSUserDefaults.standardUserDefaults().setValue(newValue, forKey: Settings.includeSTrainsKey)
+            UserDefaults.standard.setValue(newValue, forKey: Settings.includeSTrainsKey)
         }
     }
     
     static var includeMetro: Bool {
         get {
-            return NSUserDefaults.standardUserDefaults().boolForKey(Settings.includeMetroKey)
+            return UserDefaults.standard.bool(forKey: Settings.includeMetroKey)
         }
         set {
             includeMetroVariable.value = newValue
-            NSUserDefaults.standardUserDefaults().setValue(newValue, forKey: Settings.includeMetroKey)
+            UserDefaults.standard.setValue(newValue, forKey: Settings.includeMetroKey)
         }
     }
     

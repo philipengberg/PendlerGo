@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-struct SettingsViewModel {
+class SettingsViewModel {
     
     let bag = DisposeBag()
     
@@ -18,13 +18,13 @@ struct SettingsViewModel {
     let query = Variable<String>("")
     
     init() {
-        query.asObservable().subscribeNext { (query) -> Void in
+        query.asObservable().subscribe(onNext: { (query) in
             self.update()
-        }.addDisposableTo(bag)
+        }).addDisposableTo(bag)
     }
     
     func update() {
-        PendlerGoAPI.request(.Location(query: query.value)).mapJSON().mapToObject(LocationResults).map({ (locationResults) -> [Location] in
+        PendlerGoAPI.request(.location(query: query.value)).mapJSON().mapToObject(LocationResults.self).map({ (locationResults) -> [Location] in
             return locationResults.locations
         }).bindTo(locations).addDisposableTo(bag)
     }

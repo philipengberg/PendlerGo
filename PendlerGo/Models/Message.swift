@@ -17,11 +17,14 @@ struct Message {
 extension Message : JSONAble {
     typealias T = Message
     
-    static func fromJSON(dict : JSONDict) -> Message? {
+    static func fromJSON(_ dict : JSONDict) -> Message? {
         let json = JSON(dict)
         
+        let header = String(htmlEncodedString: json["Header"].dictionaryValue["$"]!.stringValue.trimmingCharacters(in: .whitespacesAndNewlines))
+        let text = String(htmlEncodedString: json["Text"].dictionaryValue["$"]!.stringValue.trimmingCharacters(in: .whitespacesAndNewlines))
+        
         return Message(
-            header: String(htmlEncodedString: json["Header"].dictionaryValue["$"]!.stringValue.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())),
-            text:  String(htmlEncodedString: json["Text"].dictionaryValue["$"]!.stringValue.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())))
+            header: header ?? "",
+            text: text ?? "")
     }
 }

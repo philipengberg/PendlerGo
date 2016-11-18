@@ -25,6 +25,7 @@
 		D48546751C761BED0011E149 /* PendlerGoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48546741C761BED0011E149 /* PendlerGoTests.swift */; };
 		D48546801C761BED0011E149 /* PendlerGoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D485467F1C761BED0011E149 /* PendlerGoUITests.swift */; };
 		D4A92F891C76642C00834380 /* KBH.json in Resources */ = {isa = PBXBuildFile; fileRef = D4A92F881C76642C00834380 /* KBH.json */; };
+		D4B3C61D1D92486D006907FC /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B3C61C1D92486D006907FC /* Analytics.swift */; };
 		D4B7F65E1C76F0B400B6762D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B7F65D1C76F0B400B6762D /* SettingsViewController.swift */; };
 		D4B7F6601C76F0CD00B6762D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B7F65F1C76F0CD00B6762D /* SettingsView.swift */; };
 		D4B7F6621C76F62F00B6762D /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B7F6611C76F62F00B6762D /* SettingsViewModel.swift */; };
@@ -102,6 +103,7 @@
 		D485467F1C761BED0011E149 /* PendlerGoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendlerGoUITests.swift; sourceTree = "<group>"; };
 		D48546811C761BED0011E149 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4A92F881C76642C00834380 /* KBH.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = KBH.json; sourceTree = "<group>"; };
+		D4B3C61C1D92486D006907FC /* Analytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		D4B7F65D1C76F0B400B6762D /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		D4B7F65F1C76F0CD00B6762D /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		D4B7F6611C76F62F00B6762D /* SettingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
@@ -331,6 +333,7 @@
 		D4EFDC601C763E1500370479 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				D4B3C61C1D92486D006907FC /* Analytics.swift */,
 				D4EFDC611C763E2700370479 /* Setup.swift */,
 				D4EFDC631C763EB000370479 /* ReuseableView.swift */,
 				D4E75FB61C765212005AC9DA /* Theme.swift */,
@@ -361,13 +364,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D48546841C761BED0011E149 /* Build configuration list for PBXNativeTarget "PendlerGo" */;
 			buildPhases = (
-				567EBC56C543ADC0A097A88F /* 📦 Check Pods Manifest.lock */,
+				567EBC56C543ADC0A097A88F /* [CP] Check Pods Manifest.lock */,
 				D48546581C761BED0011E149 /* Sources */,
 				D48546591C761BED0011E149 /* Frameworks */,
 				D485465A1C761BED0011E149 /* Resources */,
 				D4DEF5091C7B4633007738DC /* Crashlytics */,
-				EE44E786FFE393810E25DFE1 /* 📦 Embed Pods Frameworks */,
-				AAC40D125648FE78B4DDFFD7 /* 📦 Copy Pods Resources */,
+				EE44E786FFE393810E25DFE1 /* [CP] Embed Pods Frameworks */,
+				AAC40D125648FE78B4DDFFD7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -426,6 +429,7 @@
 					D485465B1C761BED0011E149 = {
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = 3X36G2LREE;
+						LastSwiftMigration = 0810;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 0;
@@ -434,10 +438,12 @@
 					};
 					D485466F1C761BED0011E149 = {
 						CreatedOnToolsVersion = 7.2.1;
+						LastSwiftMigration = 0810;
 						TestTargetID = D485465B1C761BED0011E149;
 					};
 					D485467A1C761BED0011E149 = {
 						CreatedOnToolsVersion = 7.2.1;
+						LastSwiftMigration = 0810;
 						TestTargetID = D485465B1C761BED0011E149;
 					};
 				};
@@ -491,29 +497,29 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		567EBC56C543ADC0A097A88F /* 📦 Check Pods Manifest.lock */ = {
+		567EBC56C543ADC0A097A88F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		AAC40D125648FE78B4DDFFD7 /* 📦 Copy Pods Resources */ = {
+		AAC40D125648FE78B4DDFFD7 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -535,14 +541,14 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\" 7e1cadfe7407e1504543c7edb88f9522ffda23af 84387811faf6fcd7efa625c03a7d5d0f968c820018b238dc142f4cb2748e52cc";
 		};
-		EE44E786FFE393810E25DFE1 /* 📦 Embed Pods Frameworks */ = {
+		EE44E786FFE393810E25DFE1 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -571,6 +577,7 @@
 				D4E72F5C1C7896AE00C3369D /* BoardContainmentTabView.swift in Sources */,
 				D4E75FAF1C7641DA005AC9DA /* SnapKit+Superview.swift in Sources */,
 				D4EFDC671C763EF900370479 /* UITableView+ReusableView.swift in Sources */,
+				D4B3C61D1D92486D006907FC /* Analytics.swift in Sources */,
 				D450AD6F1D8F1A0100864F73 /* BoardContainmentFilterView.swift in Sources */,
 				D40117D01C92B185009E5CEB /* JourneyDetail.swift in Sources */,
 				D45140311C77B62D00627184 /* FinitePagedContainmentViewController.swift in Sources */,
@@ -723,7 +730,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Philip Nielsen (T3P66BDGE4)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Philip Nielsen (T3P66BDGE4)";
-				CURRENT_PROJECT_VERSION = 21;
+				CURRENT_PROJECT_VERSION = 23;
 				INFOPLIST_FILE = PendlerGo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.simplesense.PendlerGo;
@@ -731,6 +738,7 @@
 				PROVISIONING_PROFILE = "16a8b02e-649f-40f3-b6e9-f74c25f4df82";
 				SWIFT_OBJC_BRIDGING_HEADER = "PendlerGo/PendlerGo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -743,13 +751,14 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Philip Nielsen (3X36G2LREE)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Philip Nielsen (3X36G2LREE)";
-				CURRENT_PROJECT_VERSION = 21;
+				CURRENT_PROJECT_VERSION = 23;
 				INFOPLIST_FILE = PendlerGo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.simplesense.PendlerGo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "1bab7ac8-8487-47bb-b695-668620f70344";
 				SWIFT_OBJC_BRIDGING_HEADER = "PendlerGo/PendlerGo-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -761,6 +770,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.simplesense.PendlerGoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PendlerGo.app/PendlerGo";
 			};
 			name = Debug;
@@ -773,6 +783,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.simplesense.PendlerGoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PendlerGo.app/PendlerGo";
 			};
 			name = Release;
@@ -784,6 +795,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.simplesense.PendlerGoUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = PendlerGo;
 				USES_XCTRUNNER = YES;
 			};
@@ -796,6 +808,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.simplesense.PendlerGoUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = PendlerGo;
 				USES_XCTRUNNER = YES;
 			};

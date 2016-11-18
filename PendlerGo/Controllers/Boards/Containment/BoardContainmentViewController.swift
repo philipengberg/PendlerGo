@@ -16,17 +16,17 @@ import CoreLocation
 
 class BoardContainmentViewController : FinitePagedContainmentViewController {
     
-    private let _view = BoardContainmentView()
-    private let bag = DisposeBag()
+    fileprivate let _view = BoardContainmentView()
+    fileprivate let bag = DisposeBag()
     
-    private let locationManager = CLLocationManager()
+    fileprivate let locationManager = CLLocationManager()
     
     lazy var homeBoardViewController: BoardViewController = {
-        return BoardViewController(locationType: .Home)
+        return BoardViewController(locationType: .home)
     }()
     
     lazy var workBoardViewController: BoardViewController = {
-        return BoardViewController(locationType: .Work)
+        return BoardViewController(locationType: .work)
     }()
     
     override var pagedScrollViewTopOffset: Float {
@@ -37,7 +37,7 @@ class BoardContainmentViewController : FinitePagedContainmentViewController {
         return Float(self._view.showAdBanner ? 50 : 0)
     }
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
         pagedViewControllers = [homeBoardViewController, workBoardViewController]
@@ -56,65 +56,70 @@ class BoardContainmentViewController : FinitePagedContainmentViewController {
         
         setHairLineImageViewHidden(true)
         
-        self.edgesForExtendedLayout = .None
+        self.edgesForExtendedLayout = UIRectEdge()
         self.extendedLayoutIncludesOpaqueBars = false
         self.automaticallyAdjustsScrollViewInsets = false
         
         Settings.homeLocationVariable.asObservable().map({ (location) -> String in
             return location?.name ?? ""
-        }).bindTo(_view.tabView.homeButton.subtitleLabel.rx_text).addDisposableTo(bag)
+        }).bindTo(_view.tabView.homeButton.subtitleLabel.rx.text).addDisposableTo(bag)
         
         Settings.workLocationVariable.asObservable().map({ (location) -> String in
             return location?.name ?? ""
-        }).bindTo(_view.tabView.workButton.subtitleLabel.rx_text).addDisposableTo(bag)
+        }).bindTo(_view.tabView.workButton.subtitleLabel.rx.text).addDisposableTo(bag)
         
         
         
-        let settings = UIBarButtonItem(image: UIImage(named: "settings"), style: .Plain, target: nil, action: nil)
+        let settings = UIBarButtonItem(image: UIImage(named: "settings"), style: .plain, target: nil, action: nil)
         self.navigationItem.leftBarButtonItem = settings
-        settings.rx_tap.subscribeNext { [weak self] (_) -> Void in
+        settings.rx.tap.subscribe(onNext: { [weak self] (_) -> Void in
             self?.presentSettings()
-        }.addDisposableTo(bag)
+            Analytics.Events.trackSettingsButtonTapped()
+        }).addDisposableTo(bag)
         
         
         
         
-        let filters = UIBarButtonItem(image: UIImage(named: "filter"), style: .Plain, target: nil, action: nil)
+        let filters = UIBarButtonItem(image: UIImage(named: "filter"), style: .plain, target: nil, action: nil)
         self.navigationItem.rightBarButtonItem = filters
         
-        _view.filterView.tapGesture.rx_event.subscribeNext { [weak self] (_) -> Void in
+        _view.filterView.tapGesture.rx.event.subscribe(onNext: { [weak self] (_) -> Void in
             self?.toggleFilterView()
-        }.addDisposableTo(bag)
+        }).addDisposableTo(bag)
         
-        filters.rx_tap.subscribeNext { [weak self] (_) -> Void in
+        filters.rx.tap.subscribe(onNext: { [weak self] (_) -> Void in
             self?.toggleFilterView()
-        }.addDisposableTo(bag)
+            Analytics.Events.trackFilterButtonTapped()
+        }).addDisposableTo(bag)
         
         
-        _view.filterView.trainsButton.rx_tap.subscribeNext   { _ -> Void in
+        _view.filterView.trainsButton.rx.tap.subscribe(onNext: { _ -> Void in
             Settings.includeTrains = !Settings.includeTrains
-        }.addDisposableTo(bag)
+            Analytics.Events.trackToggledIncludeTrains(to: Settings.includeTrains)
+        }).addDisposableTo(bag)
         
-        _view.filterView.sTrainsButton.rx_tap.subscribeNext   { _ -> Void in
+        _view.filterView.sTrainsButton.rx.tap.subscribe(onNext: { _ -> Void in
             Settings.includeSTrains = !Settings.includeSTrains
-        }.addDisposableTo(bag)
+            Analytics.Events.trackToggledIncludeSTrains(to: Settings.includeSTrains)
+        }).addDisposableTo(bag)
         
-        _view.filterView.metroButton.rx_tap.subscribeNext   { _ -> Void in
+        _view.filterView.metroButton.rx.tap.subscribe(onNext: { _ -> Void in
             Settings.includeMetro = !Settings.includeMetro
-        }.addDisposableTo(bag)
+            Analytics.Events.trackToggledIncludeMetro(to: Settings.includeMetro)
+        }).addDisposableTo(bag)
         
         
-        Settings.includeTrainsVariable.asObservable().subscribeNext { [weak self] (include) in
-            self?._view.filterView.trainsButton.selected = include
-        }.addDisposableTo(bag)
+        Settings.includeTrainsVariable.asObservable().subscribe(onNext: { [weak self] (include) in
+            self?._view.filterView.trainsButton.isSelected = include
+        }).addDisposableTo(bag)
         
-        Settings.includeSTrainsVariable.asObservable().subscribeNext { [weak self] (include) in
-            self?._view.filterView.sTrainsButton.selected = include
-        }.addDisposableTo(bag)
+        Settings.includeSTrainsVariable.asObservable().subscribe(onNext: { [weak self] (include) in
+            self?._view.filterView.sTrainsButton.isSelected = include
+        }).addDisposableTo(bag)
         
-        Settings.includeMetroVariable.asObservable().subscribeNext { [weak self] (include) in
-            self?._view.filterView.metroButton.selected = include
-        }.addDisposableTo(bag)
+        Settings.includeMetroVariable.asObservable().subscribe(onNext: { [weak self] (include) in
+            self?._view.filterView.metroButton.isSelected = include
+        }).addDisposableTo(bag)
         
         
         
@@ -124,47 +129,47 @@ class BoardContainmentViewController : FinitePagedContainmentViewController {
         
         
         
-        _view.tabView.homeButton.rx_tap.subscribeNext   { [weak self] () -> Void in
+        _view.tabView.homeButton.rx.tap.subscribe(onNext: { [weak self] () -> Void in
             self?.setTabIndex(0)
-        }.addDisposableTo(bag)
+            Analytics.Events.trackManuallySwitchedDepartureBoard(to: .home)
+        }).addDisposableTo(bag)
         
-        _view.tabView.workButton.rx_tap.subscribeNext   { [weak self] () -> Void in
+        _view.tabView.workButton.rx.tap.subscribe(onNext: { [weak self] () -> Void in
             self?.setTabIndex(1)
-        }.addDisposableTo(bag)
+            Analytics.Events.trackManuallySwitchedDepartureBoard(to: .work)
+        }).addDisposableTo(bag)
         
         
         
         
         _view.adBannerView.rootViewController = self
         _view.adBannerView.delegate = self
-        _view.adBannerView.loadRequest(genreateAdRequest())
+        _view.adBannerView.load(genreateAdRequest())
         
         
-        NSNotificationCenter.defaultCenter().rx_notification(UIApplicationDidBecomeActiveNotification).subscribeNext { [weak self] (_) in
+        NotificationCenter.default.rx.notification(NSNotification.Name.UIApplicationDidBecomeActive).subscribe(onNext: { [weak self] (_) in
             guard let s = self else { return }
             s.findNearestStation()
-        }.addDisposableTo(bag)
+        }).addDisposableTo(bag)
     }
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
     }
     
-    override func childViewControllerForStatusBarStyle() -> UIViewController? {
+    override var childViewControllerForStatusBarStyle : UIViewController? {
         return nil
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         let tracker = GAI.sharedInstance().defaultTracker
-        tracker.set(kGAIScreenName, value: "Board")
-        
-        let builder = GAIDictionaryBuilder.createScreenView()
-        tracker.send(builder.build() as [NSObject : AnyObject])
+        tracker?.set(kGAIScreenName, value: "Board")
+        tracker?.send(GAIDictionaryBuilder.createScreenView().build() as Dictionary<NSObject, AnyObject>)
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         if Settings.homeLocation == nil && Settings.workLocation == nil {
@@ -180,9 +185,9 @@ class BoardContainmentViewController : FinitePagedContainmentViewController {
         _view.showFilter = !_view.showFilter
         _view.setNeedsUpdateConstraints()
         
-        UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 20, options: UIViewAnimationOptions.BeginFromCurrentState, animations: { () -> Void in
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 20, options: UIViewAnimationOptions.beginFromCurrentState, animations: { () -> Void in
             self._view.layoutIfNeeded()
-            self._view.tabView.layer.shadowColor = self._view.showFilter ? UIColor.blackColor().CGColor : nil
+            self._view.tabView.layer.shadowColor = self._view.showFilter ? UIColor.black.cgColor : nil
             self._view.tabView.layer.shadowOffset = CGSize(width: 0, height: self._view.showFilter ? 1 : 0)
             self._view.tabView.layer.shadowOpacity = self._view.showFilter ? 0.1 : 0
             self._view.tabView.layer.shadowRadius = 3.0
@@ -192,15 +197,15 @@ class BoardContainmentViewController : FinitePagedContainmentViewController {
     func presentSettings() {
         let modal = SettingsViewController()
         
-        modal.doneAction.elements.subscribeNext { [weak self] (_) -> Void in
-            self?.dismissViewControllerAnimated(true, completion: nil)
-        }.addDisposableTo(bag)
+        modal.doneAction.elements.subscribe(onNext: { [weak self] (_) -> Void in
+            self?.dismiss(animated: true, completion: nil)
+        }).addDisposableTo(bag)
         
-        modal.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
-        self.presentViewController(modal, animated: true, completion: {})
+        modal.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        self.present(modal, animated: true, completion: {})
     }
     
-    func setTabIndex(index: Int) {
+    func setTabIndex(_ index: Int) {
         
         switch index {
         case 0: switchToPagedViewController(homeBoardViewController)
@@ -210,7 +215,7 @@ class BoardContainmentViewController : FinitePagedContainmentViewController {
         
     }
     
-    override func scrollViewDidScroll(scrollView: UIScrollView) {
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         super.scrollViewDidScroll(scrollView)
         
         let totalWidth = scrollView.contentSize.width;
@@ -221,7 +226,7 @@ class BoardContainmentViewController : FinitePagedContainmentViewController {
         
         let currentIndex = currentPageIndex
         // Handle scrolls to top enabling
-        for (index, controller) in self.pagedViewControllers.enumerate() {
+        for (index, controller) in self.pagedViewControllers.enumerated() {
             guard let con = controller as? BoardViewController else { continue }
             con._view.tableView.scrollsToTop = index == currentIndex
         }
@@ -235,7 +240,7 @@ class BoardContainmentViewController : FinitePagedContainmentViewController {
         return adRequest
     }
     
-    func findHairlineImageViewUnder(view: UIView) -> UIImageView? {
+    func findHairlineImageViewUnder(_ view: UIView) -> UIImageView? {
         if view is UIImageView && view.bounds.size.height <= 1.0 {
             return view as? UIImageView;
         }
@@ -248,26 +253,26 @@ class BoardContainmentViewController : FinitePagedContainmentViewController {
         return nil;
     }
     
-    func setHairLineImageViewHidden(hidden: Bool) {
-        findHairlineImageViewUnder(self.navigationController!.navigationBar)!.hidden = hidden;
+    func setHairLineImageViewHidden(_ hidden: Bool) {
+        findHairlineImageViewUnder(self.navigationController!.navigationBar)!.isHidden = hidden;
     }
 }
 
 extension BoardContainmentViewController : GADBannerViewDelegate {
-    func adViewDidReceiveAd(bannerView: GADBannerView!) {
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
         _view.showAdBanner = true
         _view.setNeedsUpdateConstraints()
         
-        UIView.animateWithDuration(0.5, delay: 1, usingSpringWithDamping: 0.9, initialSpringVelocity: 20, options: UIViewAnimationOptions.BeginFromCurrentState, animations: { () -> Void in
+        UIView.animate(withDuration: 0.5, delay: 1, usingSpringWithDamping: 0.9, initialSpringVelocity: 20, options: UIViewAnimationOptions.beginFromCurrentState, animations: { () -> Void in
             self._view.layoutIfNeeded()
         }, completion: nil)
     }
     
-    func adView(bannerView: GADBannerView!, didFailToReceiveAdWithError error: GADRequestError!) {
+    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
         _view.showAdBanner = false
         _view.setNeedsUpdateConstraints()
         
-        UIView.animateWithDuration(0.5, delay: 1, usingSpringWithDamping: 0.9, initialSpringVelocity: 20, options: UIViewAnimationOptions.BeginFromCurrentState, animations: { () -> Void in
+        UIView.animate(withDuration: 0.5, delay: 1, usingSpringWithDamping: 0.9, initialSpringVelocity: 20, options: UIViewAnimationOptions.beginFromCurrentState, animations: { () -> Void in
             self._view.layoutIfNeeded()
         }, completion: nil)
     }
@@ -282,7 +287,7 @@ extension BoardContainmentViewController : CLLocationManagerDelegate {
         locationManager.startUpdatingLocation()
     }
     
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }
         
         manager.stopUpdatingLocation()
@@ -290,7 +295,7 @@ extension BoardContainmentViewController : CLLocationManagerDelegate {
         // Make ads more relevant
         let adRequest = genreateAdRequest()
         adRequest.setLocationWithLatitude(CGFloat(location.coordinate.latitude), longitude: CGFloat(location.coordinate.longitude), accuracy: CGFloat(location.horizontalAccuracy))
-        _view.adBannerView.loadRequest(adRequest)
+        _view.adBannerView.load(adRequest)
         
         guard
             let home = Settings.homeLocation,
@@ -299,8 +304,8 @@ extension BoardContainmentViewController : CLLocationManagerDelegate {
         let homeCoordinate = CLLocationCoordinate2D(latitude: Double(home.yCoordinate)! / 1000000, longitude: Double(home.xCoordinate)! / 1000000)
         let workCoordinate = CLLocationCoordinate2D(latitude: Double(work.yCoordinate)! / 1000000, longitude: Double(work.xCoordinate)! / 1000000)
         
-        let homeDistance = CLLocation(coordinate: homeCoordinate, altitude: 1, horizontalAccuracy: 1, verticalAccuracy: -1, timestamp: NSDate()).distanceFromLocation(location)
-        let workDistance = CLLocation(coordinate: workCoordinate, altitude: 1, horizontalAccuracy: 1, verticalAccuracy: -1, timestamp: NSDate()).distanceFromLocation(location)
+        let homeDistance = CLLocation(coordinate: homeCoordinate, altitude: 1, horizontalAccuracy: 1, verticalAccuracy: -1, timestamp: Date()).distance(from: location)
+        let workDistance = CLLocation(coordinate: workCoordinate, altitude: 1, horizontalAccuracy: 1, verticalAccuracy: -1, timestamp: Date()).distance(from: location)
         
         let diffPercentage = (max(homeDistance, workDistance) - min(homeDistance, workDistance)) / max(homeDistance, workDistance)
         
@@ -308,15 +313,17 @@ extension BoardContainmentViewController : CLLocationManagerDelegate {
         
         if homeDistance < workDistance {
             setTabIndex(0)
+            Analytics.Events.trackAutomaticallySwitchedDepartureBoard(to: .home)
         } else {
             setTabIndex(1)
+            Analytics.Events.trackAutomaticallySwitchedDepartureBoard(to: .work)
         }
     }
     
 }
 
 extension UINavigationController {
-    public override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    open override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
     }
 }

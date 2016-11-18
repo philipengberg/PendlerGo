@@ -11,8 +11,8 @@ import UIKit
 
 class BoardContainmentTabView: TabView {
     
-    let homeButton   = IconTabViewButton(icon: UIImage.imageNamed("home", coloredWithColor: UIColor.whiteColor(), blendMode: .Overlay), subtitle: "Hjem")
-    let workButton   = IconTabViewButton(icon: UIImage.imageNamed("work", coloredWithColor: UIColor.whiteColor(), blendMode: .Multiply), subtitle: "Arbejde")
+    let homeButton   = IconTabViewButton(icon: UIImage.imageNamed("home", coloredWithColor: UIColor.white, blendMode: .overlay), subtitle: "Hjem")
+    let workButton   = IconTabViewButton(icon: UIImage.imageNamed("work", coloredWithColor: UIColor.white, blendMode: .multiply), subtitle: "Arbejde")
     
     override init(numberOfTabs: Int, outerMargin: Double, innerMargin: Double) {
         super.init(numberOfTabs: numberOfTabs, outerMargin: outerMargin, innerMargin: innerMargin)
@@ -23,7 +23,7 @@ class BoardContainmentTabView: TabView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func buttonAtIndex(index: Int) -> UIButton {
+    override func buttonAtIndex(_ index: Int) -> UIButton {
             
             switch index {
             case 0:   return homeButton

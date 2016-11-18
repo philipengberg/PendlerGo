@@ -17,36 +17,36 @@ typealias API = RxMoyaProvider<PendlerGoTarget>
 
 let PendlerGoAPI = API (
     endpointClosure : { (target: PendlerGoTarget) -> Endpoint<PendlerGoTarget> in
-        var endpoint = MoyaProvider.DefaultEndpointMapping(target)
+        var endpoint = MoyaProvider.defaultEndpointMapping(target)
         return endpoint
     },
     plugins: [Logger(), NetworkActivityPlugin(networkActivityClosure: { (change) -> () in
         switch change {
-        case .Began: UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-        case .Ended: UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+        case .began: UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        case .ended: UIApplication.shared.isNetworkActivityIndicatorVisible = false
         }
     })]
 )
 
 let PendlerGoDebugAPI = API(stubClosure: { target -> StubBehavior in
-    return StubBehavior.Delayed(seconds: 0.5)
+    return StubBehavior.delayed(seconds: 0.5)
     }
 )
 
 private class Logger : PluginType {
     
-    private func willSendRequest(request: RequestType, target: TargetType) {
+    fileprivate func willSendRequest(_ request: RequestType, target: TargetType) {
         
     }
     
-    private func didReceiveResponse(result: Result<Moya.Response, Moya.Error>, target: TargetType) {
+    fileprivate func didReceiveResponse(_ result: Result<Moya.Response, Moya.Error>, target: TargetType) {
         switch result {
             
-        case .Success(let response):
+        case .success(let response):
             if let params = target.parameters {
-//                print("\(response.statusCode): \(target.method) - \(target.path) (\(params))")
+                print("\(response.statusCode): \(target.method) - \(target.path) (\(params))")
             } else {
-//                print("\(response.statusCode): \(target.method) - \(target.path)")
+                print("\(response.statusCode): \(target.method) - \(target.path)")
             }
         default: break
         }
@@ -54,46 +54,46 @@ private class Logger : PluginType {
 }
 
 enum PendlerGoTarget {
-    case Board(locationId: String, offset: Int)
-    case Location(query: String)
-    case Detail(ref: String)
+    case board(locationId: String, offset: Int)
+    case location(query: String)
+    case detail(ref: String)
 }
 
 extension PendlerGoTarget: TargetType {
-    var baseURL : NSURL {
+    var baseURL : URL {
         switch self {
             
         default:
-            return NSURL(string: "http://xmlopen.rejseplanen.dk/bin/rest.exe")!
+            return URL(string: "http://xmlopen.rejseplanen.dk/bin/rest.exe")!
         }
     }
     
     var method : Moya.Method {
         switch self {
         default:
-            return .GET
+            return .get
         }
     }
     
     var path : String {
         switch self {
-        case .Board:
+        case .board:
             return "/departureBoard"
-        case .Location(_):
+        case .location(_):
             return "/location"
-        case .Detail(_):
+        case .detail(_):
             return "/journeyDetail"
         }
         
     }
     
-    var parameters : [String: AnyObject]? {
+    var parameters : [String: Any]? {
         switch self {
-        case .Board(let locationId, let offset):
+        case .board(let locationId, let offset):
             return ["id":locationId, "format":"json", "useBus":false, "offsetTime": offset]
-        case .Location(let query):
+        case .location(let query):
             return ["input":query, "format":"json"]
-        case .Detail(let ref):
+        case .detail(let ref):
             return ["ref": ref]
 //        default:
 //            return nil
@@ -104,16 +104,22 @@ extension PendlerGoTarget: TargetType {
         return nil
     }
     
-    var sampleData : NSData {
+    var sampleData : Data {
         switch self {
-        case .Board:
-            let path = NSBundle.mainBundle().pathForResource("KBH", ofType: "json")
-            return NSData(contentsOfFile: path!)!
-        case .Detail(_):
-            let path = NSBundle.mainBundle().pathForResource("Detail", ofType: "json")
-            return NSData(contentsOfFile: path!)!
+        case .board:
+            let path = Bundle.main.path(forResource: "KBH", ofType: "json")
+            return (try! Data(contentsOf: URL(fileURLWithPath: path!)))
+        case .detail(_):
+            let path = Bundle.main.path(forResource: "Detail", ofType: "json")
+            return (try! Data(contentsOf: URL(fileURLWithPath: path!)))
         default:
-            return NSData()
+            return Data()
+        }
+    }
+    
+    var task: Task {
+        switch self {
+        default: return .request
         }
     }
 }

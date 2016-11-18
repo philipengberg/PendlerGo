@@ -13,8 +13,8 @@ class LoadMoreCell : UITableViewCell, ReuseableView {
     
     let bag = DisposeBag()
     
-    private let loadMoreLabel = UILabel().setUp {
-        $0.font = Theme.font.medium(size: .Medium)
+    fileprivate let loadMoreLabel = UILabel().setUp {
+        $0.font = Theme.font.medium(size: .medium)
         $0.textColor = Theme.color.darkTextColor
         $0.text = "Hent flere..."
     }
@@ -41,7 +41,7 @@ class LoadMoreCell : UITableViewCell, ReuseableView {
         let superview = contentView
         
         loadMoreLabel.x = 15
-        loadMoreLabel.size = loadMoreLabel.intrinsicContentSize()
+        loadMoreLabel.size = loadMoreLabel.intrinsicContentSize
         loadMoreLabel.centerY = superview.boundsCenterY
     }
     

@@ -36,28 +36,30 @@ class BoardViewController : UIViewController, ScrollableViewController {
         _view.tableView.dataSource = self
         _view.tableView.delegate = self
         
-        _view.refreshControl.rx_controlEvent(.ValueChanged).subscribeNext { [weak self] in
-            if let _ = self?._view.refreshControl.refreshing {
+        _view.refreshControl.rx.controlEvent(.valueChanged).subscribe(onNext: { [weak self] in
+            if let _ = self?._view.refreshControl.isRefreshing {
                 self?.viewModel.update()
+                guard let s = self else { return }
+                Analytics.Events.trackForceRefreshDepartureBoard(for: s.viewModel.locationType)
             }
-        }.addDisposableTo(bag)
+        }).addDisposableTo(bag)
         
-        viewModel.departures.asObservable().subscribeNext { [weak self] (departures) -> Void in
+        viewModel.departures.asObservable().subscribe(onNext: { [weak self] (departures) -> Void in
             guard let s = self else { return }
             
-            let currentCount = s._view.tableView.numberOfRowsInSection(0) - 1
+            let currentCount = s._view.tableView.numberOfRows(inSection: 0) - 1
             let newCount = departures.count
             let diff = newCount - currentCount
             
             if currentCount > 0 && diff > 0 {
                 
-                var newIndexPaths: [NSIndexPath] = []
+                var newIndexPaths: [IndexPath] = []
                 for index in currentCount...(newCount - 1) {
-                    newIndexPaths.append(NSIndexPath(forRow: index, inSection: 0))
+                    newIndexPaths.append(IndexPath(row: index, section: 0))
                 }
                 
                 s._view.tableView.beginUpdates()
-                s._view.tableView.insertRowsAtIndexPaths(newIndexPaths, withRowAnimation: .Fade)
+                s._view.tableView.insertRows(at: newIndexPaths, with: .fade)
                 s._view.tableView.endUpdates()
                 
             } else {
@@ -68,9 +70,9 @@ class BoardViewController : UIViewController, ScrollableViewController {
             }
             
             self?._view.refreshControl.endRefreshing()
-        }.addDisposableTo(bag)
+        }).addDisposableTo(bag)
         
-        viewModel.details.asObservable().subscribeNext { [weak self] (details) -> Void in
+        viewModel.details.asObservable().subscribe(onNext: { [weak self] (details) -> Void in
             self?._view.tableView.reloadData()
 //            guard let s = self where details.count > 0 && details.count <= s.viewModel.departures.value.count else { return }
 //            var toReload: [NSIndexPath] = []
@@ -81,7 +83,7 @@ class BoardViewController : UIViewController, ScrollableViewController {
 //            }
 //            
 //            self?._view.tableView.reloadRowsAtIndexPaths(toReload, withRowAnimation: .Fade)
-        }.addDisposableTo(bag)
+        }).addDisposableTo(bag)
         
     }
     
@@ -89,8 +91,8 @@ class BoardViewController : UIViewController, ScrollableViewController {
         view = _view
     }
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
     }
     
     func scrollToTop() {
@@ -104,16 +106,16 @@ class BoardViewController : UIViewController, ScrollableViewController {
 }
 
 extension BoardViewController : UITableViewDataSource, UITableViewDelegate {
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let count = viewModel.departures.value.count
         return count + (count > 0 ? 1 : 0)
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.row == viewModel.departures.value.count {
             return tableView.dequeueCell(LoadMoreCell.self, indexPath: indexPath)
@@ -128,7 +130,7 @@ extension BoardViewController : UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == viewModel.departures.value.count {
             return LoadMoreCell.height()
         } else {
@@ -140,14 +142,15 @@ extension BoardViewController : UITableViewDataSource, UITableViewDelegate {
         }
     }
     
-    func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return indexPath.row == viewModel.departures.value.count
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == viewModel.departures.value.count {
             viewModel.loadMore()
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            tableView.deselectRow(at: indexPath, animated: true)
+            Analytics.Events.trackForceLoadedMoreDepartures(for: viewModel.locationType, numberOfExistingDepartures: viewModel.departures.value.count)
         }
     }
 }

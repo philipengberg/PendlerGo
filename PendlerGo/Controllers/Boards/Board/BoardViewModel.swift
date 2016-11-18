@@ -19,13 +19,13 @@ class BoardViewModel {
     let details = Variable<[JourneyDetail]>([])
     
     
-    private let locationType: Settings.LocationType
+    let locationType: Settings.LocationType
     
-    private var locationId: String? {
+    fileprivate var locationId: String? {
         get {
             switch self.locationType {
-            case .Home: return (Settings.homeLocation ?? Settings.homeLocationVariable.value)?.id
-            case .Work: return (Settings.workLocation ?? Settings.workLocationVariable.value)?.id
+            case .home: return (Settings.homeLocation ?? Settings.homeLocationVariable.value)?.id
+            case .work: return (Settings.workLocation ?? Settings.workLocationVariable.value)?.id
             }
         }
     }
@@ -34,35 +34,35 @@ class BoardViewModel {
         self.locationType = locationType
         
         switch locationType {
-        case .Home: Settings.homeLocationVariable.asObservable().subscribeNext({ (_) -> Void in self.update() }).addDisposableTo(bag)
-        case .Work: Settings.workLocationVariable.asObservable().subscribeNext({ (_) -> Void in self.update() }).addDisposableTo(bag)
+        case .home: Settings.homeLocationVariable.asObservable().subscribe(onNext: { (_) -> Void in self.update() }).addDisposableTo(bag)
+        case .work: Settings.workLocationVariable.asObservable().subscribe(onNext: { (_) -> Void in self.update() }).addDisposableTo(bag)
         }
         
-        [Settings.includeTrainsVariable.asObservable(), Settings.includeSTrainsVariable.asObservable(), Settings.includeMetroVariable.asObservable()].toObservable().merge().subscribeNext { [weak self] (_) in
+        Observable.from([Settings.includeTrainsVariable.asObservable(), Settings.includeSTrainsVariable.asObservable(), Settings.includeMetroVariable.asObservable()]).merge().subscribe(onNext: { [weak self] (_) in
             self?.update()
-        }.addDisposableTo(bag)
+        }).addDisposableTo(bag)
         
-        self.departures.asObservable().subscribeNext { (departures) in
+        self.departures.asObservable().subscribe(onNext: { (departures) in
 //            guard let lastDeparture = departures.last else { return }
 //            if lastDeparture.combinedDepartureDateTime.hoursUntil() < 1 {
 //                self.loadMore()
 //            }
-        }.addDisposableTo(bag)
+        }).addDisposableTo(bag)
         
     }
     
     func update() {
         
         if let locationId = self.locationId {
-            PendlerGoAPI.request(.Board(locationId: locationId, offset: 0)).mapJSON().mapToObject(DepartureBoard).map({ (board) -> [Departure] in
+            PendlerGoAPI.request(.board(locationId: locationId, offset: 0)).mapJSON().mapToObject(DepartureBoard.self).map({ (board) -> [Departure] in
                 
                 let departures = board.departures.filter({ (departure) -> Bool in
                     switch departure.transportationType {
-                    case .Train:
+                    case .train:
                         return Settings.includeTrainsVariable.value
-                    case .STrain:
+                    case .sTrain:
                         return Settings.includeSTrainsVariable.value
-                    case .Metro:
+                    case .metro:
                         return Settings.includeMetroVariable.value
                     default:
                         return false
@@ -72,13 +72,13 @@ class BoardViewModel {
                 var requests: [Observable<JourneyDetail>] = []
                 for departure in departures {
                     if departure.hasMessages {
-                        requests.append(PendlerGoAPI.request(PendlerGoTarget.Detail(ref: departure.detailPath)).filterSuccessfulStatusCodes().mapJSON().mapToObject(JourneyDetail))
+                        requests.append(PendlerGoAPI.request(PendlerGoTarget.detail(ref: departure.detailPath)).filterSuccessfulStatusCodes().mapJSON().mapToObject(JourneyDetail.self))
                     } else {
                         requests.append(Observable.just(JourneyDetail(messages: [Message(header: "", text: "")])))
                     }
                 }
                 
-                requests.combineLatest({ (details) -> [JourneyDetail] in
+                Observable.combineLatest(requests, { (details) -> [JourneyDetail] in
                     return details
                 }).bindTo(self.details).addDisposableTo(self.bag)
                 
@@ -91,20 +91,20 @@ class BoardViewModel {
     func loadMore() {
         
         guard let lastDeparture = departures.value.last else { return }
-        let offset = Int(ceil(lastDeparture.combinedDepartureDateTime.minutesUntil())) + 1
+        let offset = Int(ceil((lastDeparture.combinedDepartureDateTime as NSDate).minutesUntil())) + 1
         
-        print("Count=\(departures.value.count): \(NSDate()) - \(lastDeparture.combinedDepartureDateTime) + \(offset) = \(NSDate().dateByAddingMinutes(offset))")
+        print("Count=\(departures.value.count): \(Date()) - \(lastDeparture.combinedDepartureDateTime) + \(offset) = \((Date() as NSDate).addingMinutes(offset))")
         
         if let locationId = self.locationId {
-            PendlerGoAPI.request(.Board(locationId: locationId, offset: offset)).mapJSON().mapToObject(DepartureBoard).map({ (board) -> [Departure] in
+            PendlerGoAPI.request(.board(locationId: locationId, offset: offset)).mapJSON().mapToObject(DepartureBoard.self).map({ (board) -> [Departure] in
                 
                 let departures = board.departures.filter({ (departure) -> Bool in
                     switch departure.transportationType {
-                    case .Train:
+                    case .train:
                         return Settings.includeTrainsVariable.value
-                    case .STrain:
+                    case .sTrain:
                         return Settings.includeSTrainsVariable.value
-                    case .Metro:
+                    case .metro:
                         return Settings.includeMetroVariable.value
                     default:
                         return false
@@ -114,22 +114,22 @@ class BoardViewModel {
                 var requests: [Observable<JourneyDetail>] = []
                 for departure in departures {
                     if departure.hasMessages {
-                        requests.append(PendlerGoAPI.request(PendlerGoTarget.Detail(ref: departure.detailPath)).filterSuccessfulStatusCodes().mapJSON().mapToObject(JourneyDetail))
+                        requests.append(PendlerGoAPI.request(PendlerGoTarget.detail(ref: departure.detailPath)).filterSuccessfulStatusCodes().mapJSON().mapToObject(JourneyDetail.self))
                     } else {
                         requests.append(Observable.just(JourneyDetail(messages: [Message(header: "", text: "")])))
                     }
                 }
                 
-                requests.combineLatest({ (details) -> [JourneyDetail] in
+                Observable.combineLatest(requests, { (details) -> [JourneyDetail] in
                     return details
-                }).subscribeNext({ (details) in
-                    self.details.value.appendContentsOf(details)
+                }).subscribe(onNext: { (details) in
+                    self.details.value.append(contentsOf: details)
                 }).addDisposableTo(self.bag)
                 
                 return departures
                 
-            }).subscribeNext({ (departures) in
-                self.departures.value.appendContentsOf(departures)
+            }).subscribe(onNext: { (departures) in
+                self.departures.value.append(contentsOf: departures)
             }).addDisposableTo(bag)
         }
     }

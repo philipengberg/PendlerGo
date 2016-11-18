@@ -12,8 +12,8 @@ import UIKit
 class LocationCell : UITableViewCell, ReuseableView {
     
     let nameLabel = UILabel().setUp {
-        $0.font = Theme.font.regular(size: .Medium)
-        $0.textColor = UIColor.whiteColor()
+        $0.font = Theme.font.regular(size: .medium)
+        $0.textColor = UIColor.white
     }
     
     let homeAccessoryImageView = UIImageView().setUp {
@@ -28,7 +28,7 @@ class LocationCell : UITableViewCell, ReuseableView {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         backgroundView = nil
-        backgroundColor = UIColor.clearColor()
+        backgroundColor = UIColor.clear
         
         addSubviews([nameLabel])
     }
@@ -46,13 +46,13 @@ class LocationCell : UITableViewCell, ReuseableView {
         nameLabel.centerY = contentView.centerY
     }
     
-    func configure(location: Location) {
+    func configure(_ location: Location) {
         nameLabel.text = location.name
         
-        if let homeId = Settings.homeLocation?.id where homeId.isEqual(location.id) {
+        if let homeId = Settings.homeLocation?.id, homeId.isEqual(location.id) {
             self.accessoryView = homeAccessoryImageView
             self.accessoryView?.size = CGSize(width: 15, height: 15)
-        } else if let workId = Settings.workLocation?.id where workId.isEqual(location.id) {
+        } else if let workId = Settings.workLocation?.id, workId.isEqual(location.id) {
             self.accessoryView = workAccessoryImageView
             self.accessoryView?.size = CGSize(width: 15, height: 15)
         } else {
