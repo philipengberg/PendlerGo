@@ -62,11 +62,11 @@ class BoardContainmentViewController : FinitePagedContainmentViewController {
         
         Settings.homeLocationVariable.asObservable().map({ (location) -> String in
             return location?.name ?? ""
-        }).bindTo(_view.tabView.homeButton.subtitleLabel.rx.text).addDisposableTo(bag)
+        }).bind(to: _view.tabView.homeButton.subtitleLabel.rx.text).addDisposableTo(bag)
         
         Settings.workLocationVariable.asObservable().map({ (location) -> String in
             return location?.name ?? ""
-        }).bindTo(_view.tabView.workButton.subtitleLabel.rx.text).addDisposableTo(bag)
+        }).bind(to: _view.tabView.workButton.subtitleLabel.rx.text).addDisposableTo(bag)
         
         
         

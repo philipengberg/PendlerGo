@@ -26,7 +26,7 @@ class SettingsViewModel {
     func update() {
         PendlerGoAPI.request(.location(query: query.value)).mapJSON().mapToObject(LocationResults.self).map({ (locationResults) -> [Location] in
             return locationResults.locations
-        }).bindTo(locations).addDisposableTo(bag)
+        }).bind(to: locations).addDisposableTo(bag)
     }
     
 }

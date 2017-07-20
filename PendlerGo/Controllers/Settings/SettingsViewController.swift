@@ -63,17 +63,17 @@ class SettingsViewController: UIViewController {
             
         }).addDisposableTo(bag)
         
-        _view.homeTextField.rx.text.orEmpty.throttle(0.2, scheduler: MainScheduler.instance).bindTo(viewModel.query).addDisposableTo(bag)
-        _view.workTextField.rx.text.orEmpty.throttle(0.2, scheduler: MainScheduler.instance).bindTo(viewModel.query).addDisposableTo(bag)
+        _view.homeTextField.rx.text.orEmpty.throttle(0.2, scheduler: MainScheduler.instance).bind(to: viewModel.query).addDisposableTo(bag)
+        _view.workTextField.rx.text.orEmpty.throttle(0.2, scheduler: MainScheduler.instance).bind(to: viewModel.query).addDisposableTo(bag)
         
         
         Settings.homeLocationVariable.asObservable().map { (location) -> String in
             return location?.name ?? ""
-        }.bindTo(_view.homeTextField.rx.text).addDisposableTo(bag)
+        }.bind(to: _view.homeTextField.rx.text).addDisposableTo(bag)
         
         Settings.workLocationVariable.asObservable().map { (location) -> String in
             return location?.name ?? ""
-        }.bindTo(_view.workTextField.rx.text).addDisposableTo(bag)
+        }.bind(to: _view.workTextField.rx.text).addDisposableTo(bag)
         
         
         _view.searchResultsTableView.registerCell(LocationCell.self)

@@ -80,11 +80,11 @@ class BoardViewModel {
                 
                 Observable.combineLatest(requests, { (details) -> [JourneyDetail] in
                     return details
-                }).bindTo(self.details).addDisposableTo(self.bag)
+                }).bind(to: self.details).addDisposableTo(self.bag)
                 
                 return departures
                 
-            }).bindTo(departures).addDisposableTo(bag)
+            }).bind(to: departures).addDisposableTo(bag)
         }
     }
     

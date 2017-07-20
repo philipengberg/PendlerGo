@@ -17,7 +17,7 @@ typealias API = RxMoyaProvider<PendlerGoTarget>
 
 let PendlerGoAPI = API (
     endpointClosure : { (target: PendlerGoTarget) -> Endpoint<PendlerGoTarget> in
-        var endpoint = MoyaProvider.defaultEndpointMapping(target)
+        var endpoint = MoyaProvider.defaultEndpointMapping(for: target)
         return endpoint
     },
     plugins: [Logger(), NetworkActivityPlugin(networkActivityClosure: { (change) -> () in
@@ -39,7 +39,7 @@ private class Logger : PluginType {
         
     }
     
-    fileprivate func didReceiveResponse(_ result: Result<Moya.Response, Moya.Error>, target: TargetType) {
+    fileprivate func didReceiveResponse(_ result: Result<Moya.Response, MoyaError>, target: TargetType) {
         switch result {
             
         case .success(let response):
@@ -98,6 +98,10 @@ extension PendlerGoTarget: TargetType {
 //        default:
 //            return nil
         }
+    }
+    
+    var parameterEncoding: ParameterEncoding {
+        return JSONEncoding.default
     }
     
     var multipartBody: [MultipartFormData]? {

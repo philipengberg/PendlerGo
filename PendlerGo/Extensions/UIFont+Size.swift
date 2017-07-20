@@ -14,7 +14,7 @@ extension UIFont {
         if string.isEmpty {
             return CGSize.zero
         }
-        return NSString(string: string).boundingRect(with: CGSize(width: width, height: DBL_MAX),
+        return NSString(string: string).boundingRect(with: CGSize(width: width, height: Double.infinity),
             options: [.usesLineFragmentOrigin, .usesFontLeading],
             attributes: [NSFontAttributeName: self],
             context: nil).size
