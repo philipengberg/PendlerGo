@@ -40,18 +40,23 @@ struct Settings {
     fileprivate static let includeSTrainsKey = "includeSTrains"
     fileprivate static let includeMetroKey   = "includeMetro"
     
+    private static let appGroupName = "group.com.simplesense.pendlergo.sharedDefaults"
+    private static let defaults = UserDefaults(suiteName: appGroupName)
+    
     static func initialize() {
         
-        if UserDefaults.standard.value(forKey: Settings.includeTrainsKey) == nil {
-            UserDefaults.standard.setValue(true, forKey: Settings.includeTrainsKey)
+        migrateUserDefaultsToAppGroups()
+        
+        if defaults?.value(forKey: Settings.includeTrainsKey) == nil {
+            defaults?.setValue(true, forKey: Settings.includeTrainsKey)
         }
         
-        if UserDefaults.standard.value(forKey: Settings.includeSTrainsKey) == nil {
-            UserDefaults.standard.setValue(true, forKey: Settings.includeSTrainsKey)
+        if defaults?.value(forKey: Settings.includeSTrainsKey) == nil {
+            defaults?.setValue(true, forKey: Settings.includeSTrainsKey)
         }
         
-        if UserDefaults.standard.value(forKey: Settings.includeMetroKey) == nil {
-            UserDefaults.standard.setValue(true, forKey: Settings.includeMetroKey)
+        if defaults?.value(forKey: Settings.includeMetroKey) == nil {
+            defaults?.setValue(true, forKey: Settings.includeMetroKey)
         }
         
         Settings.homeLocation = Settings.homeLocation
@@ -68,10 +73,10 @@ struct Settings {
     static var homeLocation: Location? {
         get {
             if
-                let id = UserDefaults.standard.string(forKey: Settings.homeIdKey),
-                let x = UserDefaults.standard.string(forKey: Settings.homeXKey),
-                let y = UserDefaults.standard.string(forKey: Settings.homeYKey),
-                let name =  UserDefaults.standard.string(forKey: Settings.homeNameKey) {
+                let id = defaults?.string(forKey: Settings.homeIdKey),
+                let x = defaults?.string(forKey: Settings.homeXKey),
+                let y = defaults?.string(forKey: Settings.homeYKey),
+                let name =  defaults?.string(forKey: Settings.homeNameKey) {
                     return Location(
                         name: name,
                         xCoordinate: x,
@@ -82,21 +87,21 @@ struct Settings {
         }
         set {
             homeLocationVariable.value = newValue
-            UserDefaults.standard.setValue(newValue?.id, forKey: Settings.homeIdKey)
-            UserDefaults.standard.setValue(newValue?.xCoordinate, forKey: Settings.homeXKey)
-            UserDefaults.standard.setValue(newValue?.yCoordinate, forKey: Settings.homeYKey)
-            UserDefaults.standard.setValue(newValue?.name, forKey: Settings.homeNameKey)
-            UserDefaults.standard.synchronize()
+            defaults?.setValue(newValue?.id, forKey: Settings.homeIdKey)
+            defaults?.setValue(newValue?.xCoordinate, forKey: Settings.homeXKey)
+            defaults?.setValue(newValue?.yCoordinate, forKey: Settings.homeYKey)
+            defaults?.setValue(newValue?.name, forKey: Settings.homeNameKey)
+            defaults?.synchronize()
         }
     }
     
     static var workLocation: Location? {
         get {
             if
-                let id = UserDefaults.standard.string(forKey: Settings.workIdKey),
-                let x = UserDefaults.standard.string(forKey: Settings.workXKey),
-                let y = UserDefaults.standard.string(forKey: Settings.workYKey),
-                let name =  UserDefaults.standard.string(forKey: Settings.workNameKey) {
+                let id = defaults?.string(forKey: Settings.workIdKey),
+                let x = defaults?.string(forKey: Settings.workXKey),
+                let y = defaults?.string(forKey: Settings.workYKey),
+                let name =  defaults?.string(forKey: Settings.workNameKey) {
                     return Location(
                         name: name,
                         xCoordinate: x,
@@ -107,11 +112,11 @@ struct Settings {
         }
         set {
             workLocationVariable.value = newValue
-            UserDefaults.standard.setValue(newValue?.id, forKey: Settings.workIdKey)
-            UserDefaults.standard.setValue(newValue?.xCoordinate, forKey: Settings.workXKey)
-            UserDefaults.standard.setValue(newValue?.yCoordinate, forKey: Settings.workYKey)
-            UserDefaults.standard.setValue(newValue?.name, forKey: Settings.workNameKey)
-            UserDefaults.standard.synchronize()
+            defaults?.setValue(newValue?.id, forKey: Settings.workIdKey)
+            defaults?.setValue(newValue?.xCoordinate, forKey: Settings.workXKey)
+            defaults?.setValue(newValue?.yCoordinate, forKey: Settings.workYKey)
+            defaults?.setValue(newValue?.name, forKey: Settings.workNameKey)
+            defaults?.synchronize()
         }
     }
     
@@ -122,34 +127,60 @@ struct Settings {
     
     static var includeTrains: Bool {
         get {
-            UserDefaults.standard.value(forKey: Settings.includeTrainsKey)
-            let val = UserDefaults.standard.bool(forKey: Settings.includeTrainsKey)
-            return val
+            return defaults?.bool(forKey: Settings.includeTrainsKey) ?? false
         }
         set {
             includeTrainsVariable.value = newValue
-            UserDefaults.standard.setValue(newValue, forKey: Settings.includeTrainsKey)
+            defaults?.setValue(newValue, forKey: Settings.includeTrainsKey)
         }
     }
     
     static var includeSTrains: Bool {
         get {
-            return UserDefaults.standard.bool(forKey: Settings.includeSTrainsKey)
+            return defaults?.bool(forKey: Settings.includeSTrainsKey) ?? false
         }
         set {
             includeSTrainsVariable.value = newValue
-            UserDefaults.standard.setValue(newValue, forKey: Settings.includeSTrainsKey)
+            defaults?.setValue(newValue, forKey: Settings.includeSTrainsKey)
         }
     }
     
     static var includeMetro: Bool {
         get {
-            return UserDefaults.standard.bool(forKey: Settings.includeMetroKey)
+            return defaults?.bool(forKey: Settings.includeMetroKey) ?? false
         }
         set {
             includeMetroVariable.value = newValue
-            UserDefaults.standard.setValue(newValue, forKey: Settings.includeMetroKey)
+            defaults?.setValue(newValue, forKey: Settings.includeMetroKey)
         }
+    }
+    
+    static func migrateUserDefaultsToAppGroups() {
+        
+        // User Defaults - Old
+        let userDefaults = UserDefaults.standard
+        
+        // App Groups Default - New
+        let groupDefaults = UserDefaults(suiteName: appGroupName)
+        
+        // Key to track if we migrated
+        let didMigrateToAppGroups = "DidMigrateToAppGroups"
+        
+        if let groupDefaults = groupDefaults {
+            if !groupDefaults.bool(forKey: didMigrateToAppGroups) {
+                for key in userDefaults.dictionaryRepresentation().keys {
+                    groupDefaults.set(userDefaults.dictionaryRepresentation()[key], forKey: key)
+                }
+                groupDefaults.set(true, forKey: didMigrateToAppGroups)
+                groupDefaults.synchronize()
+                print("Successfully migrated defaults")
+            } else {
+                print("No need to migrate defaults")
+            }
+        } else {
+            print("Unable to create NSUserDefaults with given app group")
+        }
+        
     }
     
 }

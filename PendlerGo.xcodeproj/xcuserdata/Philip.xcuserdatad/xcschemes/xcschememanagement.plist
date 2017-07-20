@@ -4,11 +4,6 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Departures.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>13</integer>
-		</dict>
 		<key>PendlerGo.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -38,6 +33,11 @@
 			<true/>
 		</dict>
 		<key>D4D129881F2123BE00608372</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D4D129CB1F21354900608372</key>
 		<dict>
 			<key>primary</key>
 			<true/>
