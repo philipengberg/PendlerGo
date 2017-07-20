@@ -59,12 +59,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Analytics.initialize()
         Analytics.UserState.updateUser()
         
+        let settings = UIUserNotificationSettings.init(types: [.alert, .badge], categories: nil)
+        UIApplication.shared.registerUserNotificationSettings(settings)
+        UIApplication.shared.registerForRemoteNotifications()
+        
         return true
     }
     
-    func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings) {
-        
-        
+//    func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings) {
+//        
+//        
 //        UIApplication.sharedApplication().cancelAllLocalNotifications()
 //        let notification = UILocalNotification()
 //        notification.alertBody = "Tjek om dit tog er forsinket"
@@ -74,10 +78,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 ////        notification.repeatInterval = .Minute
 //        UIApplication.sharedApplication().scheduleLocalNotification(notification)
 //        
-        for lol in UIApplication.shared.scheduledLocalNotifications! {
-            print(lol)
-        }
-    }
+//        for lol in UIApplication.shared.scheduledLocalNotifications! {
+//            print(lol)
+//        }
+//    }
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -165,6 +169,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         notification.alertBody = message
         notification.fireDate = Date()
         UIApplication.shared.scheduleLocalNotification(notification)
+    }
+    
+    // MARK: Notifcations 🚩
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
+        
+    }
+    
+    func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings) {
+
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        print("Token: \(deviceToken.map { String(format: "%02.2hhx", $0) }.joined())")
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("didFailToRegisterForRemoteNotificationsWithError: \(error.localizedDescription)")
     }
 
 }
