@@ -101,7 +101,7 @@ extension PendlerGoTarget: TargetType {
     }
     
     var parameterEncoding: ParameterEncoding {
-        return JSONEncoding.default
+        return URLEncoding.default
     }
     
     var multipartBody: [MultipartFormData]? {

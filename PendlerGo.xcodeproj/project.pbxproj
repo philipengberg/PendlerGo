@@ -55,6 +55,7 @@
 		D4EFDC621C763E2700370479 /* Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EFDC611C763E2700370479 /* Setup.swift */; };
 		D4EFDC641C763EB000370479 /* ReuseableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EFDC631C763EB000370479 /* ReuseableView.swift */; };
 		D4EFDC671C763EF900370479 /* UITableView+ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EFDC661C763EF900370479 /* UITableView+ReusableView.swift */; };
+		E3EE9245F5053E9A6F93B34F /* Pods_TodayWidget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22101853CB02A06EE07BB783 /* Pods_TodayWidget.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,13 +73,37 @@
 			remoteGlobalIDString = D485465B1C761BED0011E149;
 			remoteInfo = PendlerGo;
 		};
+		D4D129931F2123BE00608372 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D48546541C761BED0011E149 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D4D129881F2123BE00608372;
+			remoteInfo = TodayWidget;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D4D129991F2123BE00608372 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				D4D129951F2123BE00608372 /* TodayWidget.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		17A6ED3B4758E725B493E8F7 /* Pods_PendlerGo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PendlerGo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		22101853CB02A06EE07BB783 /* Pods_TodayWidget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TodayWidget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4562FC6DD0F50D5FADBB240F /* Pods-PendlerGo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PendlerGo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PendlerGo/Pods-PendlerGo.debug.xcconfig"; sourceTree = "<group>"; };
 		7F48C99DB38411C94910FBF9 /* Pods-PendlerGo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PendlerGo.release.xcconfig"; path = "Pods/Target Support Files/Pods-PendlerGo/Pods-PendlerGo.release.xcconfig"; sourceTree = "<group>"; };
+		8445B16403B738BA885B31FE /* Pods-TodayWidget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodayWidget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TodayWidget/Pods-TodayWidget.debug.xcconfig"; sourceTree = "<group>"; };
 		9E622AB873B4A24576375853 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B0E8F6FE928B618EEA1B3A59 /* Pods-TodayWidget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodayWidget.release.xcconfig"; path = "Pods/Target Support Files/Pods-TodayWidget/Pods-TodayWidget.release.xcconfig"; sourceTree = "<group>"; };
 		D40117CB1C92AFED009E5CEB /* Detail.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Detail.json; sourceTree = "<group>"; };
 		D40117CD1C92B10E009E5CEB /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		D40117CF1C92B185009E5CEB /* JourneyDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JourneyDetail.swift; sourceTree = "<group>"; };
@@ -111,6 +136,11 @@
 		D4B7F6651C76F7BA00B6762D /* LocationResults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationResults.swift; sourceTree = "<group>"; };
 		D4B7F6671C76FDA800B6762D /* LocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
 		D4CF6C9E1C96A24000E7334E /* UIFont+Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Size.swift"; sourceTree = "<group>"; };
+		D4D129891F2123BE00608372 /* TodayWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TodayWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4D1298A1F2123BE00608372 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		D4D1298D1F2123BE00608372 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		D4D129901F2123BE00608372 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		D4D129921F2123BE00608372 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4E4B3581C7774EE00D4DC66 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		D4E577E01D8D5FEA00460A46 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D4E577E41D8EE7C700460A46 /* LoadMoreCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadMoreCell.swift; sourceTree = "<group>"; };
@@ -161,6 +191,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D4D129861F2123BE00608372 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4D1298B1F2123BE00608372 /* NotificationCenter.framework in Frameworks */,
+				E3EE9245F5053E9A6F93B34F /* Pods_TodayWidget.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -172,6 +211,8 @@
 				D42E31D71C77BCAB003C98A2 /* CoreGraphics.framework */,
 				9E622AB873B4A24576375853 /* Pods.framework */,
 				17A6ED3B4758E725B493E8F7 /* Pods_PendlerGo.framework */,
+				D4D1298A1F2123BE00608372 /* NotificationCenter.framework */,
+				22101853CB02A06EE07BB783 /* Pods_TodayWidget.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -181,6 +222,8 @@
 			children = (
 				4562FC6DD0F50D5FADBB240F /* Pods-PendlerGo.debug.xcconfig */,
 				7F48C99DB38411C94910FBF9 /* Pods-PendlerGo.release.xcconfig */,
+				8445B16403B738BA885B31FE /* Pods-TodayWidget.debug.xcconfig */,
+				B0E8F6FE928B618EEA1B3A59 /* Pods-TodayWidget.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -201,6 +244,7 @@
 				D485465E1C761BED0011E149 /* PendlerGo */,
 				D48546731C761BED0011E149 /* PendlerGoTests */,
 				D485467E1C761BED0011E149 /* PendlerGoUITests */,
+				D4D1298C1F2123BE00608372 /* TodayWidget */,
 				D485465D1C761BED0011E149 /* Products */,
 				5C7E74AD1C7DC92D64A48318 /* Frameworks */,
 				82EB7F250C18B227B610BE3D /* Pods */,
@@ -213,6 +257,7 @@
 				D485465C1C761BED0011E149 /* PendlerGo.app */,
 				D48546701C761BED0011E149 /* PendlerGoTests.xctest */,
 				D485467B1C761BED0011E149 /* PendlerGoUITests.xctest */,
+				D4D129891F2123BE00608372 /* TodayWidget.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -263,6 +308,16 @@
 				D4B7F6671C76FDA800B6762D /* LocationCell.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		D4D1298C1F2123BE00608372 /* TodayWidget */ = {
+			isa = PBXGroup;
+			children = (
+				D4D1298D1F2123BE00608372 /* TodayViewController.swift */,
+				D4D1298F1F2123BE00608372 /* MainInterface.storyboard */,
+				D4D129921F2123BE00608372 /* Info.plist */,
+			);
+			path = TodayWidget;
 			sourceTree = "<group>";
 		};
 		D4E72F4E1C7896AE00C3369D /* Boards */ = {
@@ -371,10 +426,12 @@
 				D4DEF5091C7B4633007738DC /* Crashlytics */,
 				EE44E786FFE393810E25DFE1 /* [CP] Embed Pods Frameworks */,
 				AAC40D125648FE78B4DDFFD7 /* [CP] Copy Pods Resources */,
+				D4D129991F2123BE00608372 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				D4D129941F2123BE00608372 /* PBXTargetDependency */,
 			);
 			name = PendlerGo;
 			productName = PendlerGo;
@@ -417,19 +474,39 @@
 			productReference = D485467B1C761BED0011E149 /* PendlerGoUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		D4D129881F2123BE00608372 /* TodayWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D4D129981F2123BE00608372 /* Build configuration list for PBXNativeTarget "TodayWidget" */;
+			buildPhases = (
+				D676724AEE2703F24C70A2F6 /* [CP] Check Pods Manifest.lock */,
+				D4D129851F2123BE00608372 /* Sources */,
+				D4D129861F2123BE00608372 /* Frameworks */,
+				D4D129871F2123BE00608372 /* Resources */,
+				C8F0C16550C98263D6B44001 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TodayWidget;
+			productName = TodayWidget;
+			productReference = D4D129891F2123BE00608372 /* TodayWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		D48546541C761BED0011E149 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0730;
+				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0720;
 				TargetAttributes = {
 					D485465B1C761BED0011E149 = {
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = 3X36G2LREE;
 						LastSwiftMigration = 0810;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 0;
@@ -445,6 +522,11 @@
 						CreatedOnToolsVersion = 7.2.1;
 						LastSwiftMigration = 0810;
 						TestTargetID = D485465B1C761BED0011E149;
+					};
+					D4D129881F2123BE00608372 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 3X36G2LREE;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -464,6 +546,7 @@
 				D485465B1C761BED0011E149 /* PendlerGo */,
 				D485466F1C761BED0011E149 /* PendlerGoTests */,
 				D485467A1C761BED0011E149 /* PendlerGoUITests */,
+				D4D129881F2123BE00608372 /* TodayWidget */,
 			);
 		};
 /* End PBXProject section */
@@ -491,6 +574,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4D129871F2123BE00608372 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4D129911F2123BE00608372 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,6 +618,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PendlerGo/Pods-PendlerGo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		C8F0C16550C98263D6B44001 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TodayWidget/Pods-TodayWidget-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		D4DEF5091C7B4633007738DC /* Crashlytics */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -540,6 +646,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\" 7e1cadfe7407e1504543c7edb88f9522ffda23af 84387811faf6fcd7efa625c03a7d5d0f968c820018b238dc142f4cb2748e52cc";
+		};
+		D676724AEE2703F24C70A2F6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
 		};
 		EE44E786FFE393810E25DFE1 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -634,7 +755,23 @@
 			target = D485465B1C761BED0011E149 /* PendlerGo */;
 			targetProxy = D485467C1C761BED0011E149 /* PBXContainerItemProxy */;
 		};
+		D4D129941F2123BE00608372 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D4D129881F2123BE00608372 /* TodayWidget */;
+			targetProxy = D4D129931F2123BE00608372 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D4D1298F1F2123BE00608372 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D4D129901F2123BE00608372 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		D48546821C761BED0011E149 /* Debug */ = {
@@ -725,17 +862,20 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4562FC6DD0F50D5FADBB240F /* Pods-PendlerGo.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Philip Nielsen (T3P66BDGE4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Philip Nielsen (T3P66BDGE4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 23;
+				DEVELOPMENT_TEAM = 3X36G2LREE;
 				INFOPLIST_FILE = PendlerGo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.simplesense.PendlerGo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "16a8b02e-649f-40f3-b6e9-f74c25f4df82";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "PendlerGo/PendlerGo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -746,17 +886,20 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7F48C99DB38411C94910FBF9 /* Pods-PendlerGo.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Philip Nielsen (3X36G2LREE)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Philip Nielsen (3X36G2LREE)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CURRENT_PROJECT_VERSION = 23;
+				DEVELOPMENT_TEAM = 3X36G2LREE;
 				INFOPLIST_FILE = PendlerGo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.simplesense.PendlerGo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1bab7ac8-8487-47bb-b695-668620f70344";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "PendlerGo/PendlerGo-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
@@ -814,6 +957,52 @@
 			};
 			name = Release;
 		};
+		D4D129961F2123BE00608372 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8445B16403B738BA885B31FE /* Pods-TodayWidget.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 3X36G2LREE;
+				INFOPLIST_FILE = TodayWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.simplesense.PendlerGo.TodayWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		D4D129971F2123BE00608372 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B0E8F6FE928B618EEA1B3A59 /* Pods-TodayWidget.release.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = 3X36G2LREE;
+				INFOPLIST_FILE = TodayWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.simplesense.PendlerGo.TodayWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -849,6 +1038,15 @@
 			buildConfigurations = (
 				D485468B1C761BED0011E149 /* Debug */,
 				D485468C1C761BED0011E149 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D4D129981F2123BE00608372 /* Build configuration list for PBXNativeTarget "TodayWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D4D129961F2123BE00608372 /* Debug */,
+				D4D129971F2123BE00608372 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

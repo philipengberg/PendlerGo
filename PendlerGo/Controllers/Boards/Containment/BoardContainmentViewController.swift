@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import RxSwift
+import RxSwiftExt
 import RxCocoa
 import GoogleMobileAds
 import Google
@@ -60,13 +61,8 @@ class BoardContainmentViewController : FinitePagedContainmentViewController {
         self.extendedLayoutIncludesOpaqueBars = false
         self.automaticallyAdjustsScrollViewInsets = false
         
-        Settings.homeLocationVariable.asObservable().map({ (location) -> String in
-            return location?.name ?? ""
-        }).bind(to: _view.tabView.homeButton.subtitleLabel.rx.text).addDisposableTo(bag)
-        
-        Settings.workLocationVariable.asObservable().map({ (location) -> String in
-            return location?.name ?? ""
-        }).bind(to: _view.tabView.workButton.subtitleLabel.rx.text).addDisposableTo(bag)
+        Settings.homeLocationVariable.asObservable().unwrap().map { $0.name }.bind(to: _view.tabView.homeButton.subtitleLabel.rx.text).addDisposableTo(bag)
+        Settings.workLocationVariable.asObservable().unwrap().map { $0.name }.bind(to: _view.tabView.workButton.subtitleLabel.rx.text).addDisposableTo(bag)
         
         
         
@@ -109,17 +105,9 @@ class BoardContainmentViewController : FinitePagedContainmentViewController {
         }).addDisposableTo(bag)
         
         
-        Settings.includeTrainsVariable.asObservable().subscribe(onNext: { [weak self] (include) in
-            self?._view.filterView.trainsButton.isSelected = include
-        }).addDisposableTo(bag)
-        
-        Settings.includeSTrainsVariable.asObservable().subscribe(onNext: { [weak self] (include) in
-            self?._view.filterView.sTrainsButton.isSelected = include
-        }).addDisposableTo(bag)
-        
-        Settings.includeMetroVariable.asObservable().subscribe(onNext: { [weak self] (include) in
-            self?._view.filterView.metroButton.isSelected = include
-        }).addDisposableTo(bag)
+        Settings.includeTrainsVariable.asObservable().bind(to: _view.filterView.trainsButton.rx.isSelected).addDisposableTo(bag)
+        Settings.includeSTrainsVariable.asObservable().bind(to: _view.filterView.sTrainsButton.rx.isSelected).addDisposableTo(bag)
+        Settings.includeMetroVariable.asObservable().bind(to: _view.filterView.metroButton.rx.isSelected).addDisposableTo(bag)
         
         
         
@@ -164,9 +152,9 @@ class BoardContainmentViewController : FinitePagedContainmentViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        let tracker = GAI.sharedInstance().defaultTracker
-        tracker?.set(kGAIScreenName, value: "Board")
-        tracker?.send(GAIDictionaryBuilder.createScreenView().build() as Dictionary<NSObject, AnyObject>)
+//        let tracker = GAI.sharedInstance().defaultTracker
+//        tracker?.set(kGAIScreenName, value: "Board")
+//        tracker?.send(GAIDictionaryBuilder.createScreenView().build() as Dictionary<NSObject, AnyObject>)
     }
     
     override func viewDidAppear(_ animated: Bool) {

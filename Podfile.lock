@@ -6,7 +6,7 @@ PODS:
   - Amplitude-iOS (3.14.1)
   - Crashlytics (3.8.5):
     - Fabric (~> 1.6.3)
-  - DateTools (1.7.0)
+  - DateTools (2.0.0)
   - Fabric (1.6.12)
   - FirebaseAnalytics (3.4.2):
     - FirebaseInstanceID (~> 1.0)
@@ -17,7 +17,7 @@ PODS:
   - GBDeviceInfo (4.3.0):
     - GBDeviceInfo/Core (= 4.3.0)
   - GBDeviceInfo/Core (4.3.0)
-  - Google-Mobile-Ads-SDK (7.14.0)
+  - Google-Mobile-Ads-SDK (7.21.0)
   - Google/Analytics (3.0.3):
     - Google/Core
     - GoogleAnalytics (~> 3.12)
@@ -40,6 +40,10 @@ PODS:
   - RxCocoa (3.6.0):
     - RxSwift (~> 3.6)
   - RxSwift (3.6.0)
+  - RxSwiftExt (2.5.1):
+    - RxSwiftExt/Core (= 2.5.1)
+  - RxSwiftExt/Core (2.5.1):
+    - RxSwift (~> 3.4)
   - SnapKit (3.2.0)
   - SwiftyJSON (3.1.4)
 
@@ -48,15 +52,16 @@ DEPENDENCIES:
   - Alamofire (= 4.5.0)
   - Amplitude-iOS (= 3.14.1)
   - Crashlytics (= 3.8.5)
-  - DateTools (= 1.7.0)
+  - DateTools (= 2.0.0)
   - Fabric (= 1.6.12)
   - GBDeviceInfo (= 4.3.0)
-  - Google-Mobile-Ads-SDK (= 7.14.0)
+  - Google-Mobile-Ads-SDK (= 7.21.0)
   - Google/Analytics
   - Moya/RxSwift (= 8.0.5)
   - Reveal-SDK (= 9)
   - RxCocoa (= 3.6.0)
   - RxSwift (= 3.6.0)
+  - RxSwiftExt (= 2.5.1)
   - SnapKit (= 3.2.0)
   - SwiftyJSON (= 3.1.4)
 
@@ -65,13 +70,13 @@ SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
   Amplitude-iOS: 4a3c8807b2ea5369dc11e87e23825bff01e5a922
   Crashlytics: dfbae35ef22ca189240d230ad501feea4ee85d2d
-  DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
+  DateTools: 933ac9c490f21f92127cf690ccd8c397e0126caf
   Fabric: f050464eac45a2ce5a8e6e6a07e977c0df32fe28
   FirebaseAnalytics: 3f5358d9104adf159cc8d99b7b501e50099a39ad
   FirebaseInstanceID: ba1e640935235e5fac39dfa816fe7660e72e1a8a
   GBDeviceInfo: caae36532afcc209b51ac62bba547aadab9e88f2
   Google: cd92fab98f800f509da88c1e0c570275713bc9d5
-  Google-Mobile-Ads-SDK: dbb0211c52ca02f72331b831ce4ccd218cf08748
+  Google-Mobile-Ads-SDK: 4a6f1b43c8cc0e1e95a3b59d9f52a01671c6f9f3
   GoogleAnalytics: f42cc53a87a51fe94334821868d9c8481ff47a7b
   GoogleInterchangeUtilities: def8415a862effc67d549d5b5b0b9c7a2f97d4de
   GoogleSymbolUtilities: 33117db1b5f290c6fbf259585e4885b4c84b98d7
@@ -81,9 +86,10 @@ SPEC CHECKSUMS:
   Reveal-SDK: d977a1ec41e7c076025c1005da6e6d7c1b8ed254
   RxCocoa: cb865569239ebf1b1434056e5c8859d99dff103a
   RxSwift: a0925c7fb11fbe60055285f6f2062241aa37a175
+  RxSwiftExt: ec25c6df68d15ad6fe326792d60452b52e83d606
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 19ee21453fba89b2e4802587fe90b55fd23d5676
+PODFILE CHECKSUM: 81b56e252673c67f67243b5da6a6f90299b478a3
 
 COCOAPODS: 1.2.1
