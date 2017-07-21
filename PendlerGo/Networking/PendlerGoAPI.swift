@@ -21,10 +21,10 @@ let PendlerGoAPI = API (
         return endpoint
     },
     plugins: [Logger(), NetworkActivityPlugin(networkActivityClosure: { (change) -> () in
-        switch change {
-        case .began: UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        case .ended: UIApplication.shared.isNetworkActivityIndicatorVisible = false
-        }
+//        switch change {
+//        case .began: UIApplication.shared.isNetworkActivityIndicatorVisible = true
+//        case .ended: UIApplication.shared.isNetworkActivityIndicatorVisible = false
+//        }
     })]
 )
 
