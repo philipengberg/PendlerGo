@@ -8,10 +8,33 @@
 
 /* Begin PBXBuildFile section */
 		381AC46EE9221DBEC4A6EA5E /* Pods_TodayWidget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22101853CB02A06EE07BB783 /* Pods_TodayWidget.framework */; };
+		3A3873BA6332D3879DEA3E40 /* Pods_WatchApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74B13FC929599F44208F01D5 /* Pods_WatchApp.framework */; };
 		61347EE9A7420D17E37F2AB1 /* Pods_PendlerGo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17A6ED3B4758E725B493E8F7 /* Pods_PendlerGo.framework */; };
+		CF2263D512EA7232FD5C10EF /* Pods_WatchApp_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B75B41A72789A663DAD811B /* Pods_WatchApp_Extension.framework */; };
 		D40117CC1C92AFED009E5CEB /* Detail.json in Resources */ = {isa = PBXBuildFile; fileRef = D40117CB1C92AFED009E5CEB /* Detail.json */; };
 		D40117CE1C92B10E009E5CEB /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40117CD1C92B10E009E5CEB /* Message.swift */; };
 		D40117D01C92B185009E5CEB /* JourneyDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40117CF1C92B185009E5CEB /* JourneyDetail.swift */; };
+		D429F0C31F23B67400AB3CC2 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D429F0C11F23B67400AB3CC2 /* Interface.storyboard */; };
+		D429F0C51F23B67400AB3CC2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D429F0C41F23B67400AB3CC2 /* Assets.xcassets */; };
+		D429F0CC1F23B67400AB3CC2 /* WatchApp Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D429F0CB1F23B67400AB3CC2 /* WatchApp Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D429F0D11F23B67400AB3CC2 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D429F0D01F23B67400AB3CC2 /* InterfaceController.swift */; };
+		D429F0D31F23B67400AB3CC2 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D429F0D21F23B67400AB3CC2 /* ExtensionDelegate.swift */; };
+		D429F0D51F23B67400AB3CC2 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D429F0D41F23B67400AB3CC2 /* ComplicationController.swift */; };
+		D429F0D71F23B67400AB3CC2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D429F0D61F23B67400AB3CC2 /* Assets.xcassets */; };
+		D429F0DB1F23B67400AB3CC2 /* WatchApp.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = D429F0BF1F23B67400AB3CC2 /* WatchApp.app */; };
+		D429F0E51F23C26B00AB3CC2 /* ComplicationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D429F0E41F23C26B00AB3CC2 /* ComplicationViewModel.swift */; };
+		D429F0E61F23C54E00AB3CC2 /* DepartureBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EFDC511C761F3300370479 /* DepartureBoard.swift */; };
+		D429F0E71F23C54E00AB3CC2 /* Departure.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EFDC531C761F3B00370479 /* Departure.swift */; };
+		D429F0EA1F23C54E00AB3CC2 /* ModelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EFDC551C761FC200370479 /* ModelExtensions.swift */; };
+		D429F0EB1F23C54E00AB3CC2 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B7F6631C76F71300B6762D /* Location.swift */; };
+		D429F0EC1F23C54E00AB3CC2 /* LocationResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B7F6651C76F7BA00B6762D /* LocationResults.swift */; };
+		D429F0ED1F23C54E00AB3CC2 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E4B3581C7774EE00D4DC66 /* Settings.swift */; };
+		D429F0EE1F23C5BF00AB3CC2 /* NSDateFormatter+PendlerGo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E75FB01C764C42005AC9DA /* NSDateFormatter+PendlerGo.swift */; };
+		D429F0EF1F23C5D100AB3CC2 /* JSON+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E75FB21C764D16005AC9DA /* JSON+Date.swift */; };
+		D429F0F01F23C60500AB3CC2 /* PendlerGoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EFDC4E1C761E5900370479 /* PendlerGoAPI.swift */; };
+		D429F0F11F23C61000AB3CC2 /* JourneyDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40117CF1C92B185009E5CEB /* JourneyDetail.swift */; };
+		D429F0F21F23C62100AB3CC2 /* String+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D463D2131CA7257100C23CBD /* String+Utilities.swift */; };
+		D429F0F31F23C62300AB3CC2 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40117CD1C92B10E009E5CEB /* Message.swift */; };
 		D42E31D61C77BB7F003C98A2 /* UIImage+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42E31D51C77BB7F003C98A2 /* UIImage+Utilities.swift */; };
 		D42E31D81C77BCAB003C98A2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D42E31D71C77BCAB003C98A2 /* CoreGraphics.framework */; };
 		D43756301C78FBD20005730D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D437562F1C78FBD20005730D /* GoogleService-Info.plist */; };
@@ -87,6 +110,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		D429F0CD1F23B67400AB3CC2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D48546541C761BED0011E149 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D429F0CA1F23B67400AB3CC2;
+			remoteInfo = "WatchApp Extension";
+		};
+		D429F0D91F23B67400AB3CC2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D48546541C761BED0011E149 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D429F0BE1F23B67400AB3CC2;
+			remoteInfo = WatchApp;
+		};
 		D48546711C761BED0011E149 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D48546541C761BED0011E149 /* Project object */;
@@ -111,6 +148,28 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		D429F0E11F23B67400AB3CC2 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				D429F0CC1F23B67400AB3CC2 /* WatchApp Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D429F0E31F23B67400AB3CC2 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				D429F0DB1F23B67400AB3CC2 /* WatchApp.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D4D129991F2123BE00608372 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -125,17 +184,36 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0E4C34C31591F5463CE774F6 /* Pods-WatchApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatchApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-WatchApp/Pods-WatchApp.release.xcconfig"; sourceTree = "<group>"; };
+		143C8E3F18E91099553FBF26 /* Pods-WatchApp Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatchApp Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-WatchApp Extension/Pods-WatchApp Extension.release.xcconfig"; sourceTree = "<group>"; };
 		17A6ED3B4758E725B493E8F7 /* Pods_PendlerGo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PendlerGo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		22101853CB02A06EE07BB783 /* Pods_TodayWidget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TodayWidget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4562FC6DD0F50D5FADBB240F /* Pods-PendlerGo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PendlerGo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PendlerGo/Pods-PendlerGo.debug.xcconfig"; sourceTree = "<group>"; };
+		5B75B41A72789A663DAD811B /* Pods_WatchApp_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WatchApp_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		74B13FC929599F44208F01D5 /* Pods_WatchApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WatchApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F48C99DB38411C94910FBF9 /* Pods-PendlerGo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PendlerGo.release.xcconfig"; path = "Pods/Target Support Files/Pods-PendlerGo/Pods-PendlerGo.release.xcconfig"; sourceTree = "<group>"; };
 		8445B16403B738BA885B31FE /* Pods-TodayWidget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodayWidget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TodayWidget/Pods-TodayWidget.debug.xcconfig"; sourceTree = "<group>"; };
+		84AA09A0A668F55325799440 /* Pods-WatchApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatchApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WatchApp/Pods-WatchApp.debug.xcconfig"; sourceTree = "<group>"; };
 		9E622AB873B4A24576375853 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1601F8068B09C06D93ED093 /* Pods-WatchApp Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatchApp Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WatchApp Extension/Pods-WatchApp Extension.debug.xcconfig"; sourceTree = "<group>"; };
 		B0E8F6FE928B618EEA1B3A59 /* Pods-TodayWidget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodayWidget.release.xcconfig"; path = "Pods/Target Support Files/Pods-TodayWidget/Pods-TodayWidget.release.xcconfig"; sourceTree = "<group>"; };
 		D40117CB1C92AFED009E5CEB /* Detail.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Detail.json; sourceTree = "<group>"; };
 		D40117CD1C92B10E009E5CEB /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		D40117CF1C92B185009E5CEB /* JourneyDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JourneyDetail.swift; sourceTree = "<group>"; };
 		D41BD1361D8C73C000F38288 /* PendlerGo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PendlerGo-Bridging-Header.h"; sourceTree = "<group>"; };
+		D429F0BF1F23B67400AB3CC2 /* WatchApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D429F0C21F23B67400AB3CC2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		D429F0C41F23B67400AB3CC2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D429F0C61F23B67400AB3CC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D429F0CB1F23B67400AB3CC2 /* WatchApp Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "WatchApp Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D429F0D01F23B67400AB3CC2 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		D429F0D21F23B67400AB3CC2 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		D429F0D41F23B67400AB3CC2 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
+		D429F0D61F23B67400AB3CC2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D429F0D81F23B67400AB3CC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D429F0E41F23C26B00AB3CC2 /* ComplicationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComplicationViewModel.swift; sourceTree = "<group>"; };
+		D429F0F41F23C66800AB3CC2 /* WatchApp Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "WatchApp Extension.entitlements"; sourceTree = "<group>"; };
+		D429F0F51F23CA3B00AB3CC2 /* WatchApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WatchApp.entitlements; sourceTree = "<group>"; };
 		D42E31D51C77BB7F003C98A2 /* UIImage+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Utilities.swift"; sourceTree = "<group>"; };
 		D42E31D71C77BCAB003C98A2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		D437562F1C78FBD20005730D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -198,6 +276,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		D429F0C81F23B67400AB3CC2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF2263D512EA7232FD5C10EF /* Pods_WatchApp_Extension.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D48546591C761BED0011E149 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -231,6 +317,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E1EB56F79DC724032BA9D110 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A3873BA6332D3879DEA3E40 /* Pods_WatchApp.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -244,6 +338,8 @@
 				17A6ED3B4758E725B493E8F7 /* Pods_PendlerGo.framework */,
 				D4D1298A1F2123BE00608372 /* NotificationCenter.framework */,
 				22101853CB02A06EE07BB783 /* Pods_TodayWidget.framework */,
+				5B75B41A72789A663DAD811B /* Pods_WatchApp_Extension.framework */,
+				74B13FC929599F44208F01D5 /* Pods_WatchApp.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -255,8 +351,37 @@
 				7F48C99DB38411C94910FBF9 /* Pods-PendlerGo.release.xcconfig */,
 				8445B16403B738BA885B31FE /* Pods-TodayWidget.debug.xcconfig */,
 				B0E8F6FE928B618EEA1B3A59 /* Pods-TodayWidget.release.xcconfig */,
+				A1601F8068B09C06D93ED093 /* Pods-WatchApp Extension.debug.xcconfig */,
+				143C8E3F18E91099553FBF26 /* Pods-WatchApp Extension.release.xcconfig */,
+				84AA09A0A668F55325799440 /* Pods-WatchApp.debug.xcconfig */,
+				0E4C34C31591F5463CE774F6 /* Pods-WatchApp.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		D429F0C01F23B67400AB3CC2 /* WatchApp */ = {
+			isa = PBXGroup;
+			children = (
+				D429F0F51F23CA3B00AB3CC2 /* WatchApp.entitlements */,
+				D429F0C11F23B67400AB3CC2 /* Interface.storyboard */,
+				D429F0C41F23B67400AB3CC2 /* Assets.xcassets */,
+				D429F0C61F23B67400AB3CC2 /* Info.plist */,
+			);
+			path = WatchApp;
+			sourceTree = "<group>";
+		};
+		D429F0CF1F23B67400AB3CC2 /* WatchApp Extension */ = {
+			isa = PBXGroup;
+			children = (
+				D429F0F41F23C66800AB3CC2 /* WatchApp Extension.entitlements */,
+				D429F0D01F23B67400AB3CC2 /* InterfaceController.swift */,
+				D429F0D21F23B67400AB3CC2 /* ExtensionDelegate.swift */,
+				D429F0D41F23B67400AB3CC2 /* ComplicationController.swift */,
+				D429F0E41F23C26B00AB3CC2 /* ComplicationViewModel.swift */,
+				D429F0D61F23B67400AB3CC2 /* Assets.xcassets */,
+				D429F0D81F23B67400AB3CC2 /* Info.plist */,
+			);
+			path = "WatchApp Extension";
 			sourceTree = "<group>";
 		};
 		D451402D1C77B62D00627184 /* PagedContainment */ = {
@@ -276,6 +401,8 @@
 				D48546731C761BED0011E149 /* PendlerGoTests */,
 				D485467E1C761BED0011E149 /* PendlerGoUITests */,
 				D4D129CE1F21354900608372 /* TodayWidget */,
+				D429F0C01F23B67400AB3CC2 /* WatchApp */,
+				D429F0CF1F23B67400AB3CC2 /* WatchApp Extension */,
 				D485465D1C761BED0011E149 /* Products */,
 				5C7E74AD1C7DC92D64A48318 /* Frameworks */,
 				82EB7F250C18B227B610BE3D /* Pods */,
@@ -289,6 +416,8 @@
 				D48546701C761BED0011E149 /* PendlerGoTests.xctest */,
 				D485467B1C761BED0011E149 /* PendlerGoUITests.xctest */,
 				D4D129CC1F21354900608372 /* TodayWidget.appex */,
+				D429F0BF1F23B67400AB3CC2 /* WatchApp.app */,
+				D429F0CB1F23B67400AB3CC2 /* WatchApp Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -449,6 +578,46 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		D429F0BE1F23B67400AB3CC2 /* WatchApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D429F0E21F23B67400AB3CC2 /* Build configuration list for PBXNativeTarget "WatchApp" */;
+			buildPhases = (
+				B8B0881F22FD8AAB056D6165 /* [CP] Check Pods Manifest.lock */,
+				D429F0BD1F23B67400AB3CC2 /* Resources */,
+				D429F0E11F23B67400AB3CC2 /* Embed App Extensions */,
+				E1EB56F79DC724032BA9D110 /* Frameworks */,
+				33A7C317BD176B47B00C524F /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D429F0CE1F23B67400AB3CC2 /* PBXTargetDependency */,
+			);
+			name = WatchApp;
+			productName = WatchApp;
+			productReference = D429F0BF1F23B67400AB3CC2 /* WatchApp.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		D429F0CA1F23B67400AB3CC2 /* WatchApp Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D429F0E01F23B67400AB3CC2 /* Build configuration list for PBXNativeTarget "WatchApp Extension" */;
+			buildPhases = (
+				F57A2681D73315583D2441F7 /* [CP] Check Pods Manifest.lock */,
+				D429F0C71F23B67400AB3CC2 /* Sources */,
+				D429F0C81F23B67400AB3CC2 /* Frameworks */,
+				D429F0C91F23B67400AB3CC2 /* Resources */,
+				46ABD676756A1803DE5F608E /* [CP] Embed Pods Frameworks */,
+				30F708BF40F8E208A012BD5A /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "WatchApp Extension";
+			productName = "WatchApp Extension";
+			productReference = D429F0CB1F23B67400AB3CC2 /* WatchApp Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
 		D485465B1C761BED0011E149 /* PendlerGo */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D48546841C761BED0011E149 /* Build configuration list for PBXNativeTarget "PendlerGo" */;
@@ -461,11 +630,13 @@
 				EE44E786FFE393810E25DFE1 /* [CP] Embed Pods Frameworks */,
 				AAC40D125648FE78B4DDFFD7 /* [CP] Copy Pods Resources */,
 				D4D129991F2123BE00608372 /* Embed App Extensions */,
+				D429F0E31F23B67400AB3CC2 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				D4D129D61F21354900608372 /* PBXTargetDependency */,
+				D429F0DA1F23B67400AB3CC2 /* PBXTargetDependency */,
 			);
 			name = PendlerGo;
 			productName = PendlerGo;
@@ -536,6 +707,26 @@
 				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0720;
 				TargetAttributes = {
+					D429F0BE1F23B67400AB3CC2 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 3X36G2LREE;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
+					D429F0CA1F23B67400AB3CC2 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 3X36G2LREE;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
 					D485465B1C761BED0011E149 = {
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = 3X36G2LREE;
@@ -589,11 +780,30 @@
 				D485466F1C761BED0011E149 /* PendlerGoTests */,
 				D485467A1C761BED0011E149 /* PendlerGoUITests */,
 				D4D129CB1F21354900608372 /* TodayWidget */,
+				D429F0BE1F23B67400AB3CC2 /* WatchApp */,
+				D429F0CA1F23B67400AB3CC2 /* WatchApp Extension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		D429F0BD1F23B67400AB3CC2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D429F0C51F23B67400AB3CC2 /* Assets.xcassets in Resources */,
+				D429F0C31F23B67400AB3CC2 /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D429F0C91F23B67400AB3CC2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D429F0D71F23B67400AB3CC2 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D485465A1C761BED0011E149 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -660,6 +870,51 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TodayWidget/Pods-TodayWidget-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		30F708BF40F8E208A012BD5A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WatchApp Extension/Pods-WatchApp Extension-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		33A7C317BD176B47B00C524F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WatchApp/Pods-WatchApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		46ABD676756A1803DE5F608E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WatchApp Extension/Pods-WatchApp Extension-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		567EBC56C543ADC0A097A88F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -688,6 +943,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PendlerGo/Pods-PendlerGo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B8B0881F22FD8AAB056D6165 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		D4DEF5091C7B4633007738DC /* Crashlytics */ = {
@@ -719,9 +989,47 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PendlerGo/Pods-PendlerGo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		F57A2681D73315583D2441F7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		D429F0C71F23B67400AB3CC2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D429F0E71F23C54E00AB3CC2 /* Departure.swift in Sources */,
+				D429F0E51F23C26B00AB3CC2 /* ComplicationViewModel.swift in Sources */,
+				D429F0EB1F23C54E00AB3CC2 /* Location.swift in Sources */,
+				D429F0E61F23C54E00AB3CC2 /* DepartureBoard.swift in Sources */,
+				D429F0EE1F23C5BF00AB3CC2 /* NSDateFormatter+PendlerGo.swift in Sources */,
+				D429F0F11F23C61000AB3CC2 /* JourneyDetail.swift in Sources */,
+				D429F0F01F23C60500AB3CC2 /* PendlerGoAPI.swift in Sources */,
+				D429F0D31F23B67400AB3CC2 /* ExtensionDelegate.swift in Sources */,
+				D429F0EA1F23C54E00AB3CC2 /* ModelExtensions.swift in Sources */,
+				D429F0ED1F23C54E00AB3CC2 /* Settings.swift in Sources */,
+				D429F0F21F23C62100AB3CC2 /* String+Utilities.swift in Sources */,
+				D429F0EC1F23C54E00AB3CC2 /* LocationResults.swift in Sources */,
+				D429F0D11F23B67400AB3CC2 /* InterfaceController.swift in Sources */,
+				D429F0F31F23C62300AB3CC2 /* Message.swift in Sources */,
+				D429F0EF1F23C5D100AB3CC2 /* JSON+Date.swift in Sources */,
+				D429F0D51F23B67400AB3CC2 /* ComplicationController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D48546581C761BED0011E149 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -819,6 +1127,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		D429F0CE1F23B67400AB3CC2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D429F0CA1F23B67400AB3CC2 /* WatchApp Extension */;
+			targetProxy = D429F0CD1F23B67400AB3CC2 /* PBXContainerItemProxy */;
+		};
+		D429F0DA1F23B67400AB3CC2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D429F0BE1F23B67400AB3CC2 /* WatchApp */;
+			targetProxy = D429F0D91F23B67400AB3CC2 /* PBXContainerItemProxy */;
+		};
 		D48546721C761BED0011E149 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D485465B1C761BED0011E149 /* PendlerGo */;
@@ -837,6 +1155,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		D429F0C11F23B67400AB3CC2 /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D429F0C21F23B67400AB3CC2 /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
 		D4D129D11F21354900608372 /* MainInterface.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -848,6 +1174,112 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		D429F0DC1F23B67400AB3CC2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 84AA09A0A668F55325799440 /* Pods-WatchApp.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CODE_SIGN_ENTITLEMENTS = WatchApp/WatchApp.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 3X36G2LREE;
+				IBSC_MODULE = WatchApp_Extension;
+				INFOPLIST_FILE = WatchApp/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.simplesense.PendlerGo.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.2;
+			};
+			name = Debug;
+		};
+		D429F0DD1F23B67400AB3CC2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0E4C34C31591F5463CE774F6 /* Pods-WatchApp.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CODE_SIGN_ENTITLEMENTS = WatchApp/WatchApp.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = 3X36G2LREE;
+				IBSC_MODULE = WatchApp_Extension;
+				INFOPLIST_FILE = WatchApp/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.simplesense.PendlerGo.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.2;
+			};
+			name = Release;
+		};
+		D429F0DE1F23B67400AB3CC2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A1601F8068B09C06D93ED093 /* Pods-WatchApp Extension.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CODE_SIGN_ENTITLEMENTS = "WatchApp Extension/WatchApp Extension.entitlements";
+				DEVELOPMENT_TEAM = 3X36G2LREE;
+				INFOPLIST_FILE = "WatchApp Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.simplesense.PendlerGo.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.2;
+			};
+			name = Debug;
+		};
+		D429F0DF1F23B67400AB3CC2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 143C8E3F18E91099553FBF26 /* Pods-WatchApp Extension.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CODE_SIGN_ENTITLEMENTS = "WatchApp Extension/WatchApp Extension.entitlements";
+				DEVELOPMENT_TEAM = 3X36G2LREE;
+				INFOPLIST_FILE = "WatchApp Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.simplesense.PendlerGo.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.2;
+			};
+			name = Release;
+		};
 		D48546821C761BED0011E149 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1084,6 +1516,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		D429F0E01F23B67400AB3CC2 /* Build configuration list for PBXNativeTarget "WatchApp Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D429F0DE1F23B67400AB3CC2 /* Debug */,
+				D429F0DF1F23B67400AB3CC2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D429F0E21F23B67400AB3CC2 /* Build configuration list for PBXNativeTarget "WatchApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D429F0DC1F23B67400AB3CC2 /* Debug */,
+				D429F0DD1F23B67400AB3CC2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D48546571C761BED0011E149 /* Build configuration list for PBXProject "PendlerGo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -67,6 +67,10 @@ struct Settings {
         Settings.includeMetro = Settings.includeMetro
     }
     
+    static var watchAppRepresentation: [String: Any]? {
+        return defaults?.dictionaryRepresentation()
+    }
+    
     static var homeLocationVariable = Variable<Location?>(nil)
     static var workLocationVariable = Variable<Location?>(nil)
     

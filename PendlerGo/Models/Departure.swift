@@ -8,7 +8,6 @@
 
 import Foundation
 import SwiftyJSON
-import DateTools
 
 struct Departure {
     let name: String
@@ -150,6 +149,8 @@ extension Departure {
         mergedComponments.hour = timeComponents.hour
         mergedComponments.minute = timeComponents.minute
         mergedComponments.second = timeComponents.second
+        
+//        print("Combining \(self.date) and \(self.time) to \(calendar.date(from: mergedComponments) ?? date)")
         
         return calendar.date(from: mergedComponments) ?? date
     }

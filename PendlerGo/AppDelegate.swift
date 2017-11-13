@@ -13,13 +13,15 @@ import Crashlytics
 import RxSwift
 import RxCocoa
 import DateTools
+import WatchConnectivity
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     let bag = DisposeBag()
-
+    
+    let session: WCSession = WCSession.default()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -27,6 +29,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #if !(TARGET_IPHONE_SIMULATOR)
             Fabric.with([Crashlytics.self])
         #endif
+        
+        session.delegate = self
+        session.activate()
         
         UIApplication.shared.statusBarStyle = .lightContent
         
@@ -167,5 +172,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.shared.scheduleLocalNotification(notification)
     }
 
+}
+
+extension AppDelegate : WCSessionDelegate {
+    /** Called when the session has completed activation. If session state is WCSessionActivationStateNotActivated there will be an error with more details. */
+    @available(iOS 9.3, *)
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        
+    }
+    
+    func sessionDidBecomeInactive(_ session: WCSession) {
+        
+    }
+    
+    func sessionDidDeactivate(_ session: WCSession) {
+        
+    }
+    
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
+        print("Received message: \(message)")
+        if let request = message["request"] as? String, request == "homeId",
+            let homeId = Settings.homeLocation?.id {
+            replyHandler(["homeId": homeId])
+            return
+        }
+        replyHandler([:])
+    }
+    
 }
 
