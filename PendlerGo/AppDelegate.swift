@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Google
 import Fabric
 import Crashlytics
 import RxSwift
@@ -43,11 +42,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = UINavigationController(rootViewController: BoardContainmentViewController())
         
         self.window?.makeKeyAndVisible()
-        
-        // Configure tracker from GoogleService-Info.plist.
-        var configureError:NSError?
-        GGLContext.sharedInstance().configureWithError(&configureError)
-        assert(configureError == nil, "Error configuring Google services: \(String(describing: configureError))")
         
 //        UIApplication.sharedApplication().setMinimumBackgroundFetchInterval( UIApplicationBackgroundFetchIntervalMinimum)
 //        UIApplication.sharedApplication().registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Sound], categories: nil))
@@ -116,13 +110,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            
 //            completionHandler(.NewData)
 //            
-//        }).addDisposableTo(bag)
+//        }).disposed(by: bag)
         
 //        Settings.sharedSettings.homeLocationVariable.asObservable().take(1).subscribe(onNext: { (_) -> Void in
 //            
 //            
 //            completionHandler(.NewData)
-//        }).addDisposableTo(bag)
+//        }).disposed(by: bag)
         
         Settings.initialize()
         

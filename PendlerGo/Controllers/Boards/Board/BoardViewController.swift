@@ -42,7 +42,7 @@ class BoardViewController : UIViewController, ScrollableViewController {
                 guard let s = self else { return }
                 Analytics.Events.trackForceRefreshDepartureBoard(for: s.viewModel.locationType)
             }
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         
         viewModel.departures.asObservable().subscribe(onNext: { [weak self] (departures) -> Void in
             guard let s = self else { return }
@@ -70,7 +70,7 @@ class BoardViewController : UIViewController, ScrollableViewController {
             }
             
             self?._view.refreshControl.endRefreshing()
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         
         viewModel.details.asObservable().subscribe(onNext: { [weak self] (details) -> Void in
             self?._view.tableView.reloadData()
@@ -83,7 +83,7 @@ class BoardViewController : UIViewController, ScrollableViewController {
 //            }
 //            
 //            self?._view.tableView.reloadRowsAtIndexPaths(toReload, withRowAnimation: .Fade)
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         
     }
     

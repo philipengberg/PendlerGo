@@ -9,18 +9,22 @@
 import Foundation
 import Moya
 import Result
-
+import RxSwift
 
 //MARK: Main API
 
-typealias API = RxMoyaProvider<PendlerGoTarget>
+class API: MoyaProvider<PendlerGoTarget> {
+    func request(_ token: PendlerGoTarget) -> Observable<Response> {
+        return super.rx.request(token).asObservable()
+    }
+}
 
 let PendlerGoAPI = API (
     endpointClosure : { (target: PendlerGoTarget) -> Endpoint<PendlerGoTarget> in
         var endpoint = MoyaProvider.defaultEndpointMapping(for: target)
         return endpoint
     },
-    plugins: [Logger(), NetworkActivityPlugin(networkActivityClosure: { (change) -> () in
+    plugins: [Logger(), NetworkActivityPlugin(networkActivityClosure: { (change, target) -> () in
         switch change {
         case .began: UIApplication.shared.isNetworkActivityIndicatorVisible = true
         case .ended: UIApplication.shared.isNetworkActivityIndicatorVisible = false
@@ -36,18 +40,14 @@ let PendlerGoDebugAPI = API(stubClosure: { target -> StubBehavior in
 private class Logger : PluginType {
     
     fileprivate func willSendRequest(_ request: RequestType, target: TargetType) {
-        
+        print("\(target.method) - \(target.path)")
     }
     
     fileprivate func didReceiveResponse(_ result: Result<Moya.Response, MoyaError>, target: TargetType) {
         switch result {
             
         case .success(let response):
-            if let params = target.parameters {
-                print("\(response.statusCode): \(target.method) - \(target.path) (\(params))")
-            } else {
-                print("\(response.statusCode): \(target.method) - \(target.path)")
-            }
+            print("\(response.statusCode): \(target.method) - \(target.path)")
         default: break
         }
     }
@@ -60,6 +60,11 @@ enum PendlerGoTarget {
 }
 
 extension PendlerGoTarget: TargetType {
+    
+    var headers: [String : String]? {
+        return nil
+    }
+    
     var baseURL : URL {
         switch self {
             
@@ -95,8 +100,6 @@ extension PendlerGoTarget: TargetType {
             return ["input":query, "format":"json"]
         case .detail(let ref):
             return ["ref": ref]
-//        default:
-//            return nil
         }
     }
     
@@ -122,9 +125,8 @@ extension PendlerGoTarget: TargetType {
     }
     
     var task: Task {
-        switch self {
-        default: return .request
-        }
+        print("PARAMETERS: \(parameters)")
+        return .requestParameters(parameters: parameters ?? [:], encoding: parameterEncoding)
     }
 }
 

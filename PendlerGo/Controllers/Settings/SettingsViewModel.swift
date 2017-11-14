@@ -9,24 +9,25 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import RxSwiftExt
 
 class SettingsViewModel {
     
     let bag = DisposeBag()
     
     let locations = Variable<[Location]>([])
-    let query = Variable<String>("")
+    let query = Variable<String?>(nil)
     
     init() {
-        query.asObservable().subscribe(onNext: { (query) in
-            self.update()
-        }).addDisposableTo(bag)
+        query
+            .asObservable()
+            .unwrap()
+            .distinctUntilChanged()
+            .flatMapLatest { query -> Observable<[Location]> in
+                PendlerGoAPI.request(.location(query: query)).filterSuccessfulStatusCodes().mapJSON().mapToObject(LocationResults.self).map({ (locationResults) -> [Location] in
+                    return locationResults.locations
+                })
+            }.bind(to: locations)
+            .disposed(by: bag)
     }
-    
-    func update() {
-        PendlerGoAPI.request(.location(query: query.value)).mapJSON().mapToObject(LocationResults.self).map({ (locationResults) -> [Location] in
-            return locationResults.locations
-        }).bind(to: locations).addDisposableTo(bag)
-    }
-    
 }

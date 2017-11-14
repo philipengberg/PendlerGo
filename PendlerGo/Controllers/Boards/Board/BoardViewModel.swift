@@ -34,27 +34,27 @@ class BoardViewModel {
         self.locationType = locationType
         
         switch locationType {
-        case .home: Settings.homeLocationVariable.asObservable().subscribe(onNext: { (_) -> Void in self.update() }).addDisposableTo(bag)
-        case .work: Settings.workLocationVariable.asObservable().subscribe(onNext: { (_) -> Void in self.update() }).addDisposableTo(bag)
+        case .home: Settings.homeLocationVariable.asObservable().subscribe(onNext: { (_) -> Void in self.update() }).disposed(by: bag)
+        case .work: Settings.workLocationVariable.asObservable().subscribe(onNext: { (_) -> Void in self.update() }).disposed(by: bag)
         }
         
         Observable.from([Settings.includeTrainsVariable.asObservable(), Settings.includeSTrainsVariable.asObservable(), Settings.includeMetroVariable.asObservable()]).merge().subscribe(onNext: { [weak self] (_) in
             self?.update()
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         
         self.departures.asObservable().subscribe(onNext: { (departures) in
 //            guard let lastDeparture = departures.last else { return }
 //            if lastDeparture.combinedDepartureDateTime.hoursUntil() < 1 {
 //                self.loadMore()
 //            }
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         
     }
     
     func update() {
         
         if let locationId = self.locationId {
-            PendlerGoAPI.request(.board(locationId: locationId, offset: 0)).mapJSON().mapToObject(DepartureBoard.self).map({ (board) -> [Departure] in
+            PendlerGoAPI.request(.board(locationId: "008600608", offset: 0)).mapJSON().mapToObject(DepartureBoard.self).map({ (board) -> [Departure] in
                 
                 let departures = board.departures.filter({ (departure) -> Bool in
                     switch departure.transportationType {
@@ -80,11 +80,11 @@ class BoardViewModel {
                 
                 Observable.combineLatest(requests, { (details) -> [JourneyDetail] in
                     return details
-                }).bind(to: self.details).addDisposableTo(self.bag)
+                }).bind(to: self.details).disposed(by: self.bag)
                 
                 return departures
                 
-            }).bind(to: departures).addDisposableTo(bag)
+            }).bind(to: departures).disposed(by: bag)
         }
     }
     
@@ -96,7 +96,7 @@ class BoardViewModel {
         print("Count=\(departures.value.count): \(Date()) - \(lastDeparture.combinedDepartureDateTime) + \(offset) = \((Date() as NSDate).addingMinutes(offset))")
         
         if let locationId = self.locationId {
-            PendlerGoAPI.request(.board(locationId: locationId, offset: offset)).mapJSON().mapToObject(DepartureBoard.self).map({ (board) -> [Departure] in
+            PendlerGoAPI.request(.board(locationId: "008600608", offset: offset)).mapJSON().mapToObject(DepartureBoard.self).map({ (board) -> [Departure] in
                 
                 let departures = board.departures.filter({ (departure) -> Bool in
                     switch departure.transportationType {
@@ -124,13 +124,13 @@ class BoardViewModel {
                     return details
                 }).subscribe(onNext: { (details) in
                     self.details.value.append(contentsOf: details)
-                }).addDisposableTo(self.bag)
+                }).disposed(by: self.bag)
                 
                 return departures
                 
             }).subscribe(onNext: { (departures) in
                 self.departures.value.append(contentsOf: departures)
-            }).addDisposableTo(bag)
+            }).disposed(by: bag)
         }
     }
 }

@@ -6,31 +6,23 @@ target 'PendlerGo'
 
 pod 'Reveal-SDK', '9', :configurations => ['Debug']
 
-pod 'Alamofire', '4.5.0'
-pod 'Moya/RxSwift', '8.0.5'
-pod 'SwiftyJSON', '3.1.4'
+pod 'Alamofire', '4.5.1'
+pod 'Moya/RxSwift', '10.0.0'
+pod 'SwiftyJSON', '4.0.0'
 
-pod 'Fabric', '1.6.12'
-pod 'Crashlytics', '3.8.5'
+pod 'Fabric', '1.7.2'
+pod 'Crashlytics', '3.9.3'
 
 pod 'SnapKit', '3.2.0'
 
-pod 'RxSwift', '3.6.0'
-pod 'RxCocoa', '3.6.0'
-pod 'Action', '3.1.1'
+pod 'RxSwift', '4.0.0'
+pod 'RxCocoa', '4.0.0'
+pod 'Action', '3.4.0'
+pod 'RxSwiftExt', '3.0.0'
 
 pod 'DateTools', '1.7.0'
 
-pod 'Google/Analytics'
-pod 'Google-Mobile-Ads-SDK', '7.14.0'
-pod 'Amplitude-iOS', '3.14.1'
+pod 'Google-Mobile-Ads-SDK', '7.25.0'
+pod 'Amplitude-iOS', '4.0.4'
 
 pod 'GBDeviceInfo', '4.3.0'
-
-post_install do |installer|
-    installer.pods_project.targets.each do |target|
-        target.build_configurations.each do |configuration|
-            configuration.build_settings['SWIFT_VERSION'] = "3.0"
-        end
-    end
-end

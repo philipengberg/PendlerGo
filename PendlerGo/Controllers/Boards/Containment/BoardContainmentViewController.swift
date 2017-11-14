@@ -11,7 +11,6 @@ import UIKit
 import RxSwift
 import RxCocoa
 import GoogleMobileAds
-import Google
 import CoreLocation
 
 class BoardContainmentViewController : FinitePagedContainmentViewController {
@@ -62,11 +61,11 @@ class BoardContainmentViewController : FinitePagedContainmentViewController {
         
         Settings.homeLocationVariable.asObservable().map({ (location) -> String in
             return location?.name ?? ""
-        }).bind(to: _view.tabView.homeButton.subtitleLabel.rx.text).addDisposableTo(bag)
+        }).bind(to: _view.tabView.homeButton.subtitleLabel.rx.text).disposed(by: bag)
         
         Settings.workLocationVariable.asObservable().map({ (location) -> String in
             return location?.name ?? ""
-        }).bind(to: _view.tabView.workButton.subtitleLabel.rx.text).addDisposableTo(bag)
+        }).bind(to: _view.tabView.workButton.subtitleLabel.rx.text).disposed(by: bag)
         
         
         
@@ -75,7 +74,7 @@ class BoardContainmentViewController : FinitePagedContainmentViewController {
         settings.rx.tap.subscribe(onNext: { [weak self] (_) -> Void in
             self?.presentSettings()
             Analytics.Events.trackSettingsButtonTapped()
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         
         
         
@@ -85,41 +84,41 @@ class BoardContainmentViewController : FinitePagedContainmentViewController {
         
         _view.filterView.tapGesture.rx.event.subscribe(onNext: { [weak self] (_) -> Void in
             self?.toggleFilterView()
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         
         filters.rx.tap.subscribe(onNext: { [weak self] (_) -> Void in
             self?.toggleFilterView()
             Analytics.Events.trackFilterButtonTapped()
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         
         
         _view.filterView.trainsButton.rx.tap.subscribe(onNext: { _ -> Void in
             Settings.includeTrains = !Settings.includeTrains
             Analytics.Events.trackToggledIncludeTrains(to: Settings.includeTrains)
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         
         _view.filterView.sTrainsButton.rx.tap.subscribe(onNext: { _ -> Void in
             Settings.includeSTrains = !Settings.includeSTrains
             Analytics.Events.trackToggledIncludeSTrains(to: Settings.includeSTrains)
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         
         _view.filterView.metroButton.rx.tap.subscribe(onNext: { _ -> Void in
             Settings.includeMetro = !Settings.includeMetro
             Analytics.Events.trackToggledIncludeMetro(to: Settings.includeMetro)
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         
         
         Settings.includeTrainsVariable.asObservable().subscribe(onNext: { [weak self] (include) in
             self?._view.filterView.trainsButton.isSelected = include
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         
         Settings.includeSTrainsVariable.asObservable().subscribe(onNext: { [weak self] (include) in
             self?._view.filterView.sTrainsButton.isSelected = include
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         
         Settings.includeMetroVariable.asObservable().subscribe(onNext: { [weak self] (include) in
             self?._view.filterView.metroButton.isSelected = include
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         
         
         
@@ -132,12 +131,12 @@ class BoardContainmentViewController : FinitePagedContainmentViewController {
         _view.tabView.homeButton.rx.tap.subscribe(onNext: { [weak self] () -> Void in
             self?.setTabIndex(0)
             Analytics.Events.trackManuallySwitchedDepartureBoard(to: .home)
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         
         _view.tabView.workButton.rx.tap.subscribe(onNext: { [weak self] () -> Void in
             self?.setTabIndex(1)
             Analytics.Events.trackManuallySwitchedDepartureBoard(to: .work)
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         
         
         
@@ -150,7 +149,7 @@ class BoardContainmentViewController : FinitePagedContainmentViewController {
         NotificationCenter.default.rx.notification(NSNotification.Name.UIApplicationDidBecomeActive).subscribe(onNext: { [weak self] (_) in
             guard let s = self else { return }
             s.findNearestStation()
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
     }
     
     override var preferredStatusBarStyle : UIStatusBarStyle {
@@ -159,14 +158,6 @@ class BoardContainmentViewController : FinitePagedContainmentViewController {
     
     override var childViewControllerForStatusBarStyle : UIViewController? {
         return nil
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        let tracker = GAI.sharedInstance().defaultTracker
-        tracker?.set(kGAIScreenName, value: "Board")
-        tracker?.send(GAIDictionaryBuilder.createScreenView().build() as Dictionary<NSObject, AnyObject>)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -199,7 +190,7 @@ class BoardContainmentViewController : FinitePagedContainmentViewController {
         
         modal.doneAction.elements.subscribe(onNext: { [weak self] (_) -> Void in
             self?.dismiss(animated: true, completion: nil)
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         
         modal.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
         self.present(modal, animated: true, completion: {})

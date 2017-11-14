@@ -10,9 +10,8 @@ import Foundation
 import UIKit
 import RxSwift
 import RxCocoa
+import RxSwiftExt
 import Action
-import Google
-import GGLAnalytics
 import MessageUI
 import GBDeviceInfo
 
@@ -61,19 +60,19 @@ class SettingsViewController: UIViewController {
             
             s.present(mailComposerVC, animated: true, completion: nil)
             
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         
-        _view.homeTextField.rx.text.orEmpty.throttle(0.2, scheduler: MainScheduler.instance).bind(to: viewModel.query).addDisposableTo(bag)
-        _view.workTextField.rx.text.orEmpty.throttle(0.2, scheduler: MainScheduler.instance).bind(to: viewModel.query).addDisposableTo(bag)
+        _view.homeTextField.rx.text.debounce(0.2, scheduler: MainScheduler.instance).bind(to: viewModel.query).disposed(by: bag)
+        _view.workTextField.rx.text.debounce(0.2, scheduler: MainScheduler.instance).bind(to: viewModel.query).disposed(by: bag)
         
         
         Settings.homeLocationVariable.asObservable().map { (location) -> String in
             return location?.name ?? ""
-        }.bind(to: _view.homeTextField.rx.text).addDisposableTo(bag)
+        }.bind(to: _view.homeTextField.rx.text).disposed(by: bag)
         
         Settings.workLocationVariable.asObservable().map { (location) -> String in
             return location?.name ?? ""
-        }.bind(to: _view.workTextField.rx.text).addDisposableTo(bag)
+        }.bind(to: _view.workTextField.rx.text).disposed(by: bag)
         
         
         _view.searchResultsTableView.registerCell(LocationCell.self)
@@ -91,7 +90,7 @@ class SettingsViewController: UIViewController {
                 })
             }
             
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         
         NotificationCenter.default.rx.notification(NSNotification.Name.UIKeyboardWillChangeFrame).subscribe(onNext: { [weak self] (notification) -> Void in
             guard
@@ -109,16 +108,8 @@ class SettingsViewController: UIViewController {
             }, completion: { finished in
             })
             
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        let tracker = GAI.sharedInstance().defaultTracker
-        tracker?.set(kGAIScreenName, value: "Settings")
-        tracker?.send(GAIDictionaryBuilder.createScreenView().build() as Dictionary<NSObject, AnyObject>)
     }
     
     override func viewDidAppear(_ animated: Bool) {
