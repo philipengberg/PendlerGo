@@ -54,7 +54,7 @@ class SettingsView: UIView {
         $0.textColor = UIColor.white
         $0.clearButtonMode = .unlessEditing
         $0.textAlignment = .center
-        $0.attributedPlaceholder = NSAttributedString(string: "Station hjemme", attributes: [NSForegroundColorAttributeName: UIColor.white.withAlphaComponent(0.5)])
+        $0.attributedPlaceholder = NSAttributedString(string: "Station hjemme", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white.withAlphaComponent(0.5)])
     }
     
     let homeTextFieldMagnifier = UIImageView(image: UIImage(named: "search")).setUp {
@@ -74,7 +74,7 @@ class SettingsView: UIView {
         $0.textColor = UIColor.white
         $0.clearButtonMode = .unlessEditing
         $0.textAlignment = .center
-        $0.attributedPlaceholder = NSAttributedString(string: "Station arbejde", attributes: [NSForegroundColorAttributeName: UIColor.white.withAlphaComponent(0.5)])
+        $0.attributedPlaceholder = NSAttributedString(string: "Station arbejde", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white.withAlphaComponent(0.5)])
     }
     
     let workTextFieldMagnifier = UIImageView(image: UIImage(named: "search")).setUp {

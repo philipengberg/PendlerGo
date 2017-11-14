@@ -429,7 +429,7 @@
 					D485465B1C761BED0011E149 = {
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = 3X36G2LREE;
-						LastSwiftMigration = 0810;
+						LastSwiftMigration = 0910;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 0;
@@ -438,12 +438,12 @@
 					};
 					D485466F1C761BED0011E149 = {
 						CreatedOnToolsVersion = 7.2.1;
-						LastSwiftMigration = 0810;
+						LastSwiftMigration = 0910;
 						TestTargetID = D485465B1C761BED0011E149;
 					};
 					D485467A1C761BED0011E149 = {
 						CreatedOnToolsVersion = 7.2.1;
-						LastSwiftMigration = 0810;
+						LastSwiftMigration = 0910;
 						TestTargetID = D485465B1C761BED0011E149;
 					};
 				};
@@ -761,15 +761,18 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Philip Nielsen (T3P66BDGE4)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Philip Nielsen (T3P66BDGE4)";
 				CURRENT_PROJECT_VERSION = 23;
+				DEVELOPMENT_TEAM = 3X36G2LREE;
 				INFOPLIST_FILE = PendlerGo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.simplesense.PendlerGo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "16a8b02e-649f-40f3-b6e9-f74c25f4df82";
+				PROVISIONING_PROFILE = "88e27253-e09f-481d-92b0-f46d25c30ab0";
+				PROVISIONING_PROFILE_SPECIFIER = "PendlerGo Development";
 				SWIFT_OBJC_BRIDGING_HEADER = "PendlerGo/PendlerGo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -791,7 +794,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "1bab7ac8-8487-47bb-b695-668620f70344";
 				SWIFT_OBJC_BRIDGING_HEADER = "PendlerGo/PendlerGo-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -804,7 +808,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.simplesense.PendlerGoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PendlerGo.app/PendlerGo";
 			};
 			name = Debug;
@@ -817,7 +822,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.simplesense.PendlerGoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PendlerGo.app/PendlerGo";
 			};
 			name = Release;
@@ -829,7 +835,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.simplesense.PendlerGoUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = PendlerGo;
 				USES_XCTRUNNER = YES;
 			};
@@ -842,7 +849,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.simplesense.PendlerGoUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = PendlerGo;
 				USES_XCTRUNNER = YES;
 			};

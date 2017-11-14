@@ -25,7 +25,7 @@ class SettingsViewController: UIViewController {
         return CocoaAction(workFactory: { [weak self] (_) -> Observable<Void> in
             self?._view.homeTextField.resignFirstResponder()
             self?._view.workTextField.resignFirstResponder()
-            return Observable.just()
+            return Observable.just(())
         })
     }()
     

@@ -159,8 +159,8 @@ class BoardDepartureCell: UITableViewCell, ReuseableView {
             delayedLabel.text = "Aflyst"
             
             let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: departure.time)
-            attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 1, range: NSMakeRange(0, attributeString.length))
-            attributeString.addAttribute(NSForegroundColorAttributeName, value: realTimeLabel.textColor, range: NSMakeRange(0, attributeString.length))
+            attributeString.addAttribute(NSAttributedStringKey.strikethroughStyle, value: 1, range: NSMakeRange(0, attributeString.length))
+            attributeString.addAttribute(NSAttributedStringKey.foregroundColor, value: realTimeLabel.textColor, range: NSMakeRange(0, attributeString.length))
             timeLabel.attributedText = attributeString
             
         // DELAYED
