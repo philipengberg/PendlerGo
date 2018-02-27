@@ -11,24 +11,19 @@ import UIKit
 
 class BoardContainmentTabView: TabView {
     
-    let homeButton   = IconTabViewButton(icon: UIImage.imageNamed("home", coloredWithColor: UIColor.whiteColor(), blendMode: .Overlay), subtitle: "Hjem")
-    let workButton   = IconTabViewButton(icon: UIImage.imageNamed("work", coloredWithColor: UIColor.whiteColor(), blendMode: .Multiply), subtitle: "Arbejde")
-    
-//    let bottomSeparator = UIView().setUp {
-//        $0.backgroundColor = Theme.color.mainColor
-//    }
+    let homeButton   = IconTabViewButton(icon: UIImage.imageNamed("home", coloredWithColor: UIColor.white, blendMode: .overlay), subtitle: "Hjem")
+    let workButton   = IconTabViewButton(icon: UIImage.imageNamed("work", coloredWithColor: UIColor.white, blendMode: .multiply), subtitle: "Arbejde")
     
     override init(numberOfTabs: Int, outerMargin: Double, innerMargin: Double) {
         super.init(numberOfTabs: numberOfTabs, outerMargin: outerMargin, innerMargin: innerMargin)
         
-//        addSubview(bottomSeparator)
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func buttonAtIndex(index: Int) -> UIButton {
+    override func buttonAtIndex(_ index: Int) -> UIButton {
             
             switch index {
             case 0:   return homeButton
@@ -39,15 +34,5 @@ class BoardContainmentTabView: TabView {
         fatalError("There was an inconsistency in the setup of \(self)")
         
     }
-    
-//    override func updateConstraints() {
-//        
-//        bottomSeparator.snp_updateConstraintsWithSuper { (make, superview) -> Void in
-//            make.left.bottom.right.equalTo(superview)
-//            make.height.equalTo(0.5)
-//        }
-//        
-//        super.updateConstraints()
-//    }
     
 }

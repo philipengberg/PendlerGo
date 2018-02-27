@@ -11,22 +11,22 @@ import SwiftyJSON
 
 extension JSON {
     
-    public var date: NSDate? {
+    public var date: Date? {
         get {
             switch self.type {
-            case .String:
-                return NSDateFormatter.dateFormatter().dateFromString(self.object as! String)
+            case .string:
+                return DateFormatter.dateFormatter().date(from: self.object as! String)
             default:
                 return nil
             }
         }
     }
     
-    public var dateTime: NSDate? {
+    public var dateTime: Date? {
         get {
             switch self.type {
-            case .String:
-                return NSDateFormatter.timeFormatter().dateFromString(self.object as! String)
+            case .string:
+                return DateFormatter.timeFormatter().date(from: self.object as! String)
             default:
                 return nil
             }

@@ -39,8 +39,8 @@ class BoardView : UIView {
     
     override func updateConstraints() {
         
-        tableView.snp_updateConstraintsWithSuper { (make, superview) -> Void in
-            make.edges.equalTo(superview)
+        tableView.snp.updateConstraints { make in
+            make.edges.equalToSuperview()
         }
         
         super.updateConstraints()

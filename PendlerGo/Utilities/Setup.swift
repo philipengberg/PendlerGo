@@ -11,7 +11,7 @@ import Foundation
 public protocol Setup {}
 
 extension Setup {
-    public func setUp(@noescape block: Self -> Void) -> Self {
+    public func setUp(_ block: (Self) -> Void) -> Self {
         block(self)
         return self
     }

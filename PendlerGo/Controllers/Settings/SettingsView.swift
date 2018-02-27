@@ -11,7 +11,7 @@ import UIKit
 
 class SettingsView: UIView {
     
-    let visualEffect = UIBlurEffect(style: .Dark)
+    let visualEffect = UIBlurEffect(style: .dark)
     let visualEffectView = UIVisualEffectView().setUp {
         $0.contentView.translatesAutoresizingMaskIntoConstraints = false
     }
@@ -22,23 +22,23 @@ class SettingsView: UIView {
     
     let fakeNavBar = UIView()
     let fakeNavBarTitleLabel = UILabel().setUp {
-        $0.font = Theme.font.regular(size: .XtraXtraLarge)
-        $0.textColor = UIColor.whiteColor()
+        $0.font = Theme.font.regular(size: .xtraXtraLarge)
+        $0.textColor = UIColor.white
     }
     
-    let fakeNavBarCloseButton = LargeHitAreaButton(type: .System).setUp {
-        $0.setTitle("OK", forState: .Normal)
-        $0.titleLabel!.font = Theme.font.regular(size: .Large)
+    var fakeNavBarCloseButton = LargeHitAreaButton(type: .system).setUp {
+        $0.setTitle("OK", for: UIControlState())
+        $0.titleLabel!.font = Theme.font.regular(size: .large)
     }
     
-    let fakeNavBarFeedbackButton = LargeHitAreaButton(type: .System).setUp {
-        $0.setTitle("Hjælp", forState: .Normal)
-        $0.titleLabel!.font = Theme.font.regular(size: .Large)
+    let fakeNavBarFeedbackButton = LargeHitAreaButton(type: .system).setUp {
+        $0.setTitle("Hjælp", for: UIControlState())
+        $0.titleLabel!.font = Theme.font.regular(size: .large)
     }
     
     let containerView = UIView()
     let searchResultsTableView = UITableView().setUp {
-        $0.backgroundColor = UIColor.clearColor()
+        $0.backgroundColor = UIColor.clear
     }
     
     let homeImageView = UIImageView().setUp {
@@ -50,11 +50,11 @@ class SettingsView: UIView {
     let spacer3 = UIView()
     
     let homeTextField = UITextField().setUp {
-        $0.font = Theme.font.medium(size: .XtraLarge)
-        $0.textColor = UIColor.whiteColor()
-        $0.clearButtonMode = .UnlessEditing
-        $0.textAlignment = .Center
-        $0.attributedPlaceholder = NSAttributedString(string: "Station hjemme", attributes: [NSForegroundColorAttributeName: UIColor.whiteColor().colorWithAlphaComponent(0.5)])
+        $0.font = Theme.font.medium(size: .xtraLarge)
+        $0.textColor = UIColor.white
+        $0.clearButtonMode = .unlessEditing
+        $0.textAlignment = .center
+        $0.attributedPlaceholder = NSAttributedString(string: "Station hjemme", attributes: [NSForegroundColorAttributeName: UIColor.white.withAlphaComponent(0.5)])
     }
     
     let homeTextFieldMagnifier = UIImageView(image: UIImage(named: "search")).setUp {
@@ -62,7 +62,7 @@ class SettingsView: UIView {
     }
     
     let homeTextFieldUnderline = UIView().setUp {
-        $0.backgroundColor = UIColor.whiteColor()
+        $0.backgroundColor = UIColor.white
     }
     
     let workImageView = UIImageView().setUp {
@@ -70,11 +70,11 @@ class SettingsView: UIView {
     }
     
     let workTextField = UITextField().setUp {
-        $0.font = Theme.font.medium(size: .XtraLarge)
-        $0.textColor = UIColor.whiteColor()
-        $0.clearButtonMode = .UnlessEditing
-        $0.textAlignment = .Center
-        $0.attributedPlaceholder = NSAttributedString(string: "Station arbejde", attributes: [NSForegroundColorAttributeName: UIColor.whiteColor().colorWithAlphaComponent(0.5)])
+        $0.font = Theme.font.medium(size: .xtraLarge)
+        $0.textColor = UIColor.white
+        $0.clearButtonMode = .unlessEditing
+        $0.textAlignment = .center
+        $0.attributedPlaceholder = NSAttributedString(string: "Station arbejde", attributes: [NSForegroundColorAttributeName: UIColor.white.withAlphaComponent(0.5)])
     }
     
     let workTextFieldMagnifier = UIImageView(image: UIImage(named: "search")).setUp {
@@ -82,22 +82,22 @@ class SettingsView: UIView {
     }
     
     let workTextFieldUnderline = UIView().setUp {
-        $0.backgroundColor = UIColor.whiteColor()
+        $0.backgroundColor = UIColor.white
     }
     
     let textFieldContainerView = UIView()
     
     var bottomInset: CGFloat = 0
     
-    private var resultsTableViewHidden = true
+    fileprivate var resultsTableViewHidden = true
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.backgroundColor = UIColor.clearColor()
+        self.backgroundColor = UIColor.clear
         
         visualEffectView.effect = visualEffect
-        let vibrancyEffect = UIVibrancyEffect(forBlurEffect: visualEffect)
+        let vibrancyEffect = UIVibrancyEffect(blurEffect: visualEffect)
         vibrancyView.effect = vibrancyEffect
         
         addSubviews([visualEffectView])
@@ -110,10 +110,10 @@ class SettingsView: UIView {
         
 
         homeTextField.rightView = homeTextFieldMagnifier
-        homeTextField.rightViewMode = .WhileEditing
+        homeTextField.rightViewMode = .whileEditing
         
         workTextField.rightView = workTextFieldMagnifier
-        workTextField.rightViewMode = .WhileEditing
+        workTextField.rightViewMode = .whileEditing
         
         setNeedsUpdateConstraints()
     }
@@ -124,146 +124,146 @@ class SettingsView: UIView {
     
     override func updateConstraints() {
         
-        visualEffectView.snp_updateConstraintsWithSuper { (make, superview) -> Void in
-            make.edges.equalTo(superview)
+        visualEffectView.snp.updateConstraints { make in
+            make.edges.equalToSuperview()
         }
         
-        visualEffectView.contentView.snp_updateConstraintsWithSuper { (make, superview) -> Void in
-            make.edges.equalTo(superview)
+        visualEffectView.contentView.snp.updateConstraints { make in
+            make.edges.equalToSuperview()
         }
         
-        vibrancyView.snp_updateConstraintsWithSuper { (make, superview) -> Void in
-            make.edges.equalTo(superview)
+        vibrancyView.snp.updateConstraints { make in
+            make.edges.equalToSuperview()
         }
         
-        vibrancyView.contentView.snp_updateConstraintsWithSuper { (make, superview) -> Void in
-            make.edges.equalTo(superview)
+        vibrancyView.contentView.snp.updateConstraints { make in
+            make.edges.equalToSuperview()
         }
         
         
         
-        fakeNavBar.snp_updateConstraintsWithSuper { (make, superview) -> Void in
-            make.left.top.right.equalTo(superview)
+        fakeNavBar.snp.updateConstraints { make in
+            make.left.top.right.equalToSuperview()
             make.height.equalTo(20+44)
         }
         
-        fakeNavBarTitleLabel.snp_updateConstraintsWithSuper { (make, superview) -> Void in
-            make.centerX.equalTo(superview)
-            make.centerY.equalTo(superview).offset(5)
+        fakeNavBarTitleLabel.snp.updateConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview().offset(5)
         }
         
-        fakeNavBarCloseButton.snp_updateConstraintsWithSuper { (make, superview) -> Void in
+        fakeNavBarCloseButton.snp.updateConstraints { make in
             make.right.equalTo(-15)
-            make.baseline.equalTo(fakeNavBarTitleLabel)
+            make.lastBaseline.equalTo(fakeNavBarTitleLabel)
         }
         
-        fakeNavBarFeedbackButton.snp_updateConstraintsWithSuper { (make, superview) -> Void in
-            make.baseline.equalTo(fakeNavBarTitleLabel)
+        fakeNavBarFeedbackButton.snp.updateConstraints { make in
+            make.lastBaseline.equalTo(fakeNavBarTitleLabel)
             make.left.equalTo(15)
         }
         
         
         
-        containerView.snp_remakeConstraintsWithSuper({ (make, superview) -> Void in
-            make.top.equalTo(fakeNavBar.snp_bottom)
-            make.left.right.equalTo(superview)
-            make.bottom.equalTo(superview).offset(-bottomInset)
-        })
+        containerView.snp.remakeConstraints { make in
+            make.top.equalTo(fakeNavBar.snp.bottom)
+            make.left.right.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-bottomInset)
+        }
         
-        searchResultsTableView.snp_remakeConstraintsWithSuper { (make, superview) -> Void in
-            make.left.bottom.right.equalTo(superview)
+        searchResultsTableView.snp.remakeConstraints { make in
+            make.left.bottom.right.equalToSuperview()
             if resultsTableViewHidden {
-                make.top.equalTo(superview.snp_bottom)
+                make.top.equalTo(searchResultsTableView.superview!.snp.bottom)
             } else {
-                make.top.equalTo(superview.snp_centerY)
+                make.top.equalTo(searchResultsTableView.superview!.snp.centerY)
             }
         }
         
-        textFieldContainerView.snp_updateConstraintsWithSuper { (make, superview) -> Void in
-            make.left.top.right.equalTo(superview)
-            make.bottom.equalTo(searchResultsTableView.snp_top)
+        textFieldContainerView.snp.updateConstraints { make in
+            make.left.top.right.equalToSuperview()
+            make.bottom.equalTo(searchResultsTableView.snp.top)
         }
         
         
         
-        spacer1.snp_updateConstraintsWithSuper { (make, superview) -> Void in
-            make.centerX.equalTo(superview)
-            make.top.equalTo(superview)
-            make.bottom.equalTo(homeTextField.snp_top)
+        spacer1.snp.updateConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalToSuperview()
+            make.bottom.equalTo(homeTextField.snp.top)
         }
         
-        spacer2.snp_updateConstraintsWithSuper { (make, superview) -> Void in
-            make.centerX.equalTo(superview)
-            make.top.equalTo(homeTextField.snp_bottom)
-            make.bottom.equalTo(workTextField.snp_top)
+        spacer2.snp.updateConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(homeTextField.snp.bottom)
+            make.bottom.equalTo(workTextField.snp.top)
             make.height.equalTo(spacer1)
         }
         
-        spacer3.snp_updateConstraintsWithSuper { (make, superview) -> Void in
-            make.centerX.equalTo(superview)
-            make.top.equalTo(workTextField.snp_bottom)
-            make.bottom.equalTo(superview)
+        spacer3.snp.updateConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(workTextField.snp.bottom)
+            make.bottom.equalToSuperview()
             make.height.equalTo(spacer2)
         }
         
         
         
-        homeImageView.snp_updateConstraintsWithSuper { (make, superview) -> Void in
+        homeImageView.snp.updateConstraints { make in
             make.bottom.equalTo(homeTextField)
             make.size.equalTo(20)
-            make.right.equalTo(homeTextField.snp_left).offset(-10)
+            make.right.equalTo(homeTextField.snp.left).offset(-10)
         }
         
-        homeTextField.snp_updateConstraintsWithSuper { (make, superview) -> Void in
-            make.centerX.equalTo(superview)
+        homeTextField.snp.updateConstraints { make in
+            make.centerX.equalToSuperview()
             make.height.equalTo(30)
-            make.width.equalTo(superview).multipliedBy(0.6)
+            make.width.equalToSuperview().multipliedBy(0.6)
         }
         
-        homeTextFieldUnderline.snp_updateConstraintsWithSuper { (make, superview) -> Void in
+        homeTextFieldUnderline.snp.updateConstraints { make in
             make.left.right.equalTo(homeTextField)
-            make.top.equalTo(homeTextField.snp_bottom)
+            make.top.equalTo(homeTextField.snp.bottom)
             make.height.equalTo(0.5)
         }
         
         
         
-        workImageView.snp_updateConstraintsWithSuper { (make, superview) -> Void in
+        workImageView.snp.updateConstraints { make in
             make.bottom.equalTo(workTextField)
             make.size.equalTo(homeImageView)
             make.right.equalTo(homeImageView)
         }
         
-        workTextField.snp_updateConstraintsWithSuper { (make, superview) -> Void in
+        workTextField.snp.updateConstraints { make in
             make.centerX.equalTo(homeTextField)
             make.height.equalTo(homeTextField)
             make.width.equalTo(homeTextField)
         }
         
-        workTextFieldUnderline.snp_updateConstraintsWithSuper { (make, superview) -> Void in
+        workTextFieldUnderline.snp.updateConstraints { make in
             make.left.right.equalTo(workTextField)
-            make.top.equalTo(workTextField.snp_bottom)
+            make.top.equalTo(workTextField.snp.bottom)
             make.height.equalTo(homeTextFieldUnderline)
         }
         
         super.updateConstraints()
     }
     
-    func hideResults(completion: ((Bool) -> Void)?) {
+    func hideResults(_ completion: ((Bool) -> Void)?) {
         resultsTableViewHidden = true
         update(completion)
     }
     
-    func showResults(completion: ((Bool) -> Void)?) {
+    func showResults(_ completion: ((Bool) -> Void)?) {
         resultsTableViewHidden = false
         update(completion)
     }
     
-    private func update(completion: ((Bool) -> Void)?) {
+    fileprivate func update(_ completion: ((Bool) -> Void)?) {
         
         setNeedsUpdateConstraints()
         
-        UIView.animateWithDuration(0.25, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 10, options: UIViewAnimationOptions.BeginFromCurrentState, animations: { () -> Void in
+        UIView.animate(withDuration: 0.25, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 10, options: UIViewAnimationOptions.beginFromCurrentState, animations: { () -> Void in
             self.layoutIfNeeded()
         }, completion: completion)
     }

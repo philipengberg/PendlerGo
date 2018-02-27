@@ -21,12 +21,17 @@ class BoardContainmentView : UIView {
         $0.adSize = kGADAdSizeSmartBannerPortrait
     }
     
+    let filterView = BoardContainmentFilterView().setUp {
+        $0.backgroundColor = Theme.color.mainColor.withAlphaComponent(1) //UIColor(red: 237, green: 159, blue: 33)
+    }
+    
+    var showFilter: Bool = false
     var showAdBanner: Bool = false
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        addSubviews([tabView, adBannerView])
+        addSubviews([adBannerView, filterView, tabView])
         
         setNeedsUpdateConstraints()
         
@@ -39,20 +44,31 @@ class BoardContainmentView : UIView {
     
     override func updateConstraints() {
         
-        tabView.snp_updateConstraintsWithSuper { (make, superview) -> Void in
-            make.top.equalTo(superview).offset(0)
-            make.left.right.equalTo(superview)
+        tabView.snp.updateConstraints { make in
+            make.top.equalToSuperview().offset(0)
+            make.left.right.equalToSuperview()
             make.height.equalTo(50)
         }
         
         
-        adBannerView.snp_remakeConstraintsWithSuper { (make, superview) -> Void in
-            make.width.equalTo(superview)
+        adBannerView.snp.remakeConstraints { make in
+            make.width.equalToSuperview()
             make.height.equalTo(50)
-            if showAdBanner {
-                make.bottom.equalTo(superview)
+            if self.showAdBanner {
+                make.bottom.equalToSuperview()
             } else {
-                make.top.equalTo(superview.snp_bottom)
+                make.top.equalTo(self.snp.bottom)
+            }
+        }
+        
+        filterView.snp.remakeConstraints { make in
+            make.width.equalToSuperview()
+            make.height.equalTo(60)
+            make.left.right.equalToSuperview()
+            if self.showFilter {
+                make.top.equalTo(self.tabView.snp.bottom).offset(-10)
+            } else {
+                make.bottom.equalTo(self.tabView.snp.bottom).offset(-5)
             }
         }
         

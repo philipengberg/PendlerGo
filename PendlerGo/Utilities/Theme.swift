@@ -41,39 +41,39 @@ struct Theme {
     
     
     struct font {
-        static func light(size size: FontSize) -> UIFont? {
+        static func light(size: FontSize) -> UIFont? {
             return UIFont(name: "AvenirNext-Light", size: size.rawValue)
         }
         
-        static func regular(size size: FontSize) -> UIFont? {
+        static func regular(size: FontSize) -> UIFont? {
             return UIFont(name: "AvenirNext-Regular", size: size.rawValue)
         }
         
-        static func medium(size size: FontSize) -> UIFont? {
+        static func medium(size: FontSize) -> UIFont? {
             return UIFont(name: "AvenirNext-Medium", size: size.rawValue)
         }
         
-        static func demiBold(size size: FontSize) -> UIFont? {
+        static func demiBold(size: FontSize) -> UIFont? {
             return UIFont(name: "AvenirNext-DemiBold", size: size.rawValue)
         }
         
-        static func bold(size size: FontSize) -> UIFont? {
+        static func bold(size: FontSize) -> UIFont? {
             return UIFont(name: "AvenirNext-Bold", size: size.rawValue)
         }
     }
     
     
     enum FontSize: CGFloat {
-        case Micro = 8
-        case Tiny = 9
-        case XtraSmall = 10
-        case Small = 12
-        case Medium = 14
-        case Large = 16
-        case XtraLarge = 18
-        case XtraXtraLarge = 20
-        case Big = 24
-        case Huge = 50
+        case micro = 8
+        case tiny = 9
+        case xtraSmall = 10
+        case small = 12
+        case medium = 14
+        case large = 16
+        case xtraLarge = 18
+        case xtraXtraLarge = 20
+        case big = 24
+        case huge = 40
     }
     
 }

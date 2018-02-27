@@ -16,7 +16,7 @@ struct DepartureBoard {
 extension DepartureBoard : JSONAble {
     typealias T = DepartureBoard
     
-    static func fromJSON(dict : JSONDict) -> DepartureBoard? {
+    static func fromJSON(_ dict : JSONDict) -> DepartureBoard? {
         let json = JSON(dict)
        
         let board = json["DepartureBoard"].dictionaryValue

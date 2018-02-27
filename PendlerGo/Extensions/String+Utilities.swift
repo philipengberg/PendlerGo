@@ -10,11 +10,11 @@ import Foundation
 import UIKit
 
 extension String {
-    init(htmlEncodedString: String) {
-        let encodedData = htmlEncodedString.dataUsingEncoding(NSUTF8StringEncoding)!
+    init?(htmlEncodedString: String) {
+        let encodedData = htmlEncodedString.data(using: String.Encoding.utf8)!
         let attributedOptions : Dictionary<String, AnyObject> = [
-            NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
-            NSCharacterEncodingDocumentAttribute: NSUTF8StringEncoding
+            NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType as AnyObject,
+            NSCharacterEncodingDocumentAttribute: String.Encoding.utf8 as AnyObject
         ]
         do {
             let attributedString = try NSAttributedString(data: encodedData, options: attributedOptions, documentAttributes: nil)

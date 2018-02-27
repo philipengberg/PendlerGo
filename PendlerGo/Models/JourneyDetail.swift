@@ -16,7 +16,7 @@ struct JourneyDetail {
 extension JourneyDetail : JSONAble {
     typealias T = JourneyDetail
     
-    static func fromJSON(dict : JSONDict) -> JourneyDetail? {
+    static func fromJSON(_ dict : JSONDict) -> JourneyDetail? {
         let json = JSON(dict)
         
         let detail = json["JourneyDetail"].dictionaryValue
@@ -41,7 +41,7 @@ extension JourneyDetail {
     var allMessages: String {
         get {
             var string = ""
-            for (index, message) in self.messages.enumerate() {
+            for (index, message) in self.messages.enumerated() {
                 string += "\(message.header)\(message.header.hasSuffix(".") ? "" : ".") \(message.text)\(message.text.hasSuffix(".") ? "" : ".")"
                 if index < messages.count - 1 {
                     string += "\n"
