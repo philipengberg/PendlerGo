@@ -35,15 +35,15 @@ let PendlerGoDebugAPI = API(stubClosure: { target -> StubBehavior in
 
 private class Logger : PluginType {
     
-    fileprivate func willSendRequest(_ request: RequestType, target: TargetType) {
-        print("\(target.method) - \(target.path)")
+    func willSend(_ request: RequestType, target: TargetType) {
+        print("\(target.method.rawValue.uppercased()) - \(request.request!.url)")
     }
     
-    fileprivate func didReceiveResponse(_ result: Result<Moya.Response, MoyaError>, target: TargetType) {
+    func didReceive(_ result: Result<Response, MoyaError>, target: TargetType) {
         switch result {
             
         case .success(let response):
-            print("\(response.statusCode): \(target.method) - \(target.path)")
+            print("\(response.statusCode): \(target.method.rawValue.uppercased()) - \(target.path)")
         default: break
         }
     }
@@ -62,11 +62,7 @@ extension PendlerGoTarget: TargetType {
     }
     
     var baseURL : URL {
-        switch self {
-            
-        default:
-            return URL(string: "http://xmlopen.rejseplanen.dk/bin/rest.exe")!
-        }
+        return URL(string: "http://xmlopen.rejseplanen.dk/bin/rest.exe")!
     }
     
     var method : Moya.Method {
@@ -91,7 +87,7 @@ extension PendlerGoTarget: TargetType {
     var parameters : [String: Any]? {
         switch self {
         case .board(let locationId, let offset):
-            return ["id":locationId, "format":"json", "useBus":false, "offsetTime": offset]
+            return ["id":locationId, "format":"json", "useBus": false, "offsetTime": offset]
         case .location(let query):
             return ["input":query, "format":"json"]
         case .detail(let ref):
@@ -100,7 +96,7 @@ extension PendlerGoTarget: TargetType {
     }
     
     var parameterEncoding: ParameterEncoding {
-        return JSONEncoding.default
+        return URLEncoding.default
     }
     
     var multipartBody: [MultipartFormData]? {
@@ -121,7 +117,6 @@ extension PendlerGoTarget: TargetType {
     }
     
     var task: Task {
-        print("PARAMETERS: \(parameters)")
         return .requestParameters(parameters: parameters ?? [:], encoding: parameterEncoding)
     }
 }

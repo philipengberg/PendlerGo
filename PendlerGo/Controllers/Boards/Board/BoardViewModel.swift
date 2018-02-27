@@ -54,7 +54,7 @@ class BoardViewModel {
     func update() {
         
         if let locationId = self.locationId {
-            PendlerGoAPI.request(.board(locationId: "008600608", offset: 0)).mapJSON().mapToObject(DepartureBoard.self).map({ (board) -> [Departure] in
+            PendlerGoAPI.request(.board(locationId: locationId, offset: 0)).mapJSON().mapToObject(DepartureBoard.self).map({ (board) -> [Departure] in
                 
                 let departures = board.departures.filter({ (departure) -> Bool in
                     switch departure.transportationType {
@@ -96,7 +96,7 @@ class BoardViewModel {
         print("Count=\(departures.value.count): \(Date()) - \(lastDeparture.combinedDepartureDateTime) + \(offset) = \((Date() as NSDate).addingMinutes(offset))")
         
         if let locationId = self.locationId {
-            PendlerGoAPI.request(.board(locationId: "008600608", offset: offset)).mapJSON().mapToObject(DepartureBoard.self).map({ (board) -> [Departure] in
+            PendlerGoAPI.request(.board(locationId: locationId, offset: offset)).mapJSON().mapToObject(DepartureBoard.self).map({ (board) -> [Departure] in
                 
                 let departures = board.departures.filter({ (departure) -> Bool in
                     switch departure.transportationType {
