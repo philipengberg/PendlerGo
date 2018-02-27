@@ -52,9 +52,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings) {
-        
-        
+//    func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings) {
+//        
+//        
 //        UIApplication.sharedApplication().cancelAllLocalNotifications()
 //        let notification = UILocalNotification()
 //        notification.alertBody = "Tjek om dit tog er forsinket"
@@ -64,10 +64,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 ////        notification.repeatInterval = .Minute
 //        UIApplication.sharedApplication().scheduleLocalNotification(notification)
 //        
-        for lol in UIApplication.shared.scheduledLocalNotifications! {
-            print(lol)
-        }
-    }
+//        for lol in UIApplication.shared.scheduledLocalNotifications! {
+//            print(lol)
+//        }
+//    }
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -94,8 +94,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        
+//    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+    
         
         
 //        PendlerGoAPI.request(.Board(locationId: Settings.sharedSettings.homeLocation!.id)).mapJSON().mapToObject(DepartureBoard).map({ (board) -> [Departure] in
@@ -114,9 +114,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            completionHandler(.NewData)
 //        }).disposed(by: bag)
         
-        Settings.initialize()
-        
-    }
+//        Settings.initialize()
+//
+//    }
     
     func checkForAnomalies(_ departures: [Departure]) {
         var changes = Dictionary<String, String>()
@@ -150,11 +150,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func scheduleNotification(_ message: String) {
-        UIApplication.shared.cancelAllLocalNotifications()
-        let notification = UILocalNotification()
-        notification.alertBody = message
-        notification.fireDate = Date()
-        UIApplication.shared.scheduleLocalNotification(notification)
+//        UIApplication.shared.cancelAllLocalNotifications()
+//        let notification = UILocalNotification()
+//        notification.alertBody = message
+//        notification.fireDate = Date()
+//        UIApplication.shared.scheduleLocalNotification(notification)
     }
 
 }
