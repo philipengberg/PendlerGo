@@ -143,7 +143,12 @@ class SettingsView: UIView {
         
         
         fakeNavBar.snp.updateConstraints { make in
-            make.left.top.right.equalToSuperview()
+            make.left.right.equalToSuperview()
+            if #available(iOS 11.0, *) {
+                make.top.equalTo(safeAreaLayoutGuide)
+            } else {
+                make.top.equalToSuperview()
+            }
             make.height.equalTo(20+44)
         }
         
