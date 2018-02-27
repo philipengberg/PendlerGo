@@ -20,10 +20,6 @@ class API: MoyaProvider<PendlerGoTarget> {
 }
 
 let PendlerGoAPI = API (
-    endpointClosure : { (target: PendlerGoTarget) -> Endpoint<PendlerGoTarget> in
-        var endpoint = MoyaProvider.defaultEndpointMapping(for: target)
-        return endpoint
-    },
     plugins: [Logger(), NetworkActivityPlugin(networkActivityClosure: { (change, target) -> () in
         switch change {
         case .began: UIApplication.shared.isNetworkActivityIndicatorVisible = true
