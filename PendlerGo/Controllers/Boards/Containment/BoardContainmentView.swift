@@ -55,7 +55,11 @@ class BoardContainmentView : UIView {
             make.width.equalToSuperview()
             make.height.equalTo(50)
             if self.showAdBanner {
-                make.bottom.equalToSuperview()
+                if #available(iOS 11.0, *) {
+                    make.bottom.equalTo(safeAreaLayoutGuide)
+                } else {
+                    make.bottom.equalToSuperview()
+                }
             } else {
                 make.top.equalTo(self.snp.bottom)
             }

@@ -33,7 +33,11 @@ class BoardContainmentViewController : FinitePagedContainmentViewController {
     }
     
     override var pagedScrollViewBottomOffset: Float {
-        return Float(self._view.showAdBanner ? 50 : 0)
+        if #available(iOS 11.0, *) {
+            return Float(self._view.showAdBanner ? 50 + _view.safeAreaInsets.bottom : 0)
+        } else {
+            return Float(self._view.showAdBanner ? 50 : 0)
+        }
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
