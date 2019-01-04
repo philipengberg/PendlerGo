@@ -42,7 +42,9 @@
 		<true/>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>PendlerGo vælger automatisk den station du er tættest på, når du åbner app'en.</string>
+	<string>PendlerGo vælger automatisk den station du er tættest på, når du åbner app&apos;en</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>PendlerGo bruger din lokation i baggrunden til at advisere om eventuelle ændringer ved ankomst til stationen eller stoppestedet</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

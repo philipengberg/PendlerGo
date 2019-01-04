@@ -164,9 +164,9 @@ class BoardDepartureCell: UITableViewCell, ReuseableView {
             timeLabel.attributedText = attributeString
             
         // DELAYED
-        } else if departure.isDelayed {
+        } else if let realDepartureTime = departure.realDepartureTime, departure.isDelayed {
             
-            let minutesDelayed = abs(departure.realDepartureTime.minutes(from: departure.departureTime))
+            let minutesDelayed = abs(realDepartureTime.minutes(from: departure.departureTime))
             
             delayedLabel.isHidden = false
             delayedLabel.text = "+\(minutesDelayed)"

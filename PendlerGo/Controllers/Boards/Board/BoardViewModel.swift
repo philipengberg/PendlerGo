@@ -10,6 +10,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 import DateToolsSwift
+import UserNotifications
 
 class BoardViewModel {
     
@@ -49,12 +50,35 @@ class BoardViewModel {
 //            }
         }).disposed(by: bag)
         
+        NotificationCenter.default.rx.notification(Notification.Name(rawValue: "pendlergo.check-changes.work")).subscribe(onNext: { [weak self] _ in
+            guard self?.locationType == .work else { return }
+            guard let departure = self?.departures.value.first(where: { $0.type == .IC && ($0.departureTime.minute == 39 || $0.departureTime.minute == 30) }) else { return }
+            
+            let content = UNMutableNotificationContent()
+            
+            if departure.cancelled {
+                content.title = "AFLYST"
+                content.body = "\(departure.name) 👉 \(departure.finalStop) kl. \(departure.time) er desværre AFLYST. Tryk her for at se andre afgange."
+            } else if let realDepartureTime = departure.realDepartureTime, departure.isDelayed  {
+                content.title = "Forsinket"
+                content.body = "\(departure.name) 👉 \(departure.finalStop) kl. \(departure.time) er forsinket ca. \(abs(realDepartureTime.minutes(from: departure.departureTime))) minutter. Forventet afgang kl. \(departure.realTime) fra Spor \(departure.realTrack ?? departure.track). Tryk her for at se andre afgange."
+            } else {
+                content.title = "\(departure.name) 👉 \(departure.finalStop) kl. \(departure.time)"
+                content.body = "Kører fra Spor \(departure.realTrack ?? departure.track) om ca. \(abs(departure.departureTime.minutes(from: Date()))) minutter"
+            }
+            
+            content.sound = UNNotificationSound.default
+            let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: nil)
+            UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+            
+        }).disposed(by: bag)
+        
     }
     
     func update() {
         
         if let locationId = self.locationId {
-            PendlerGoAPI.request(.board(locationId: locationId, offset: 0)).mapJSON().mapToObject(DepartureBoard.self).map({ (board) -> [Departure] in
+            PendlerGoDebugAPI.request(.board(locationId: locationId, offset: 0)).mapJSON().mapToObject(DepartureBoard.self).map({ (board) -> [Departure] in
                 
                 let departures = board.departures.filter({ (departure) -> Bool in
                     switch departure.transportationType {

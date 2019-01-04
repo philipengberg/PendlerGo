@@ -12,6 +12,7 @@ import Crashlytics
 import RxSwift
 import RxCocoa
 import DateToolsSwift
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -46,6 +47,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Analytics.initialize()
         Analytics.UserState.updateUser()
+        
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound], completionHandler: { (granted, error) in
+            UNUserNotificationCenter.current().delegate = self
+        })
+        
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+        
+        LocationManager.shared.requestAutorization().subscribe(onNext: { status in
+            guard status == .authorizedAlways else { return }
+            LocationManager.shared.startMonitoring()
+        }).disposed(by: bag)
         
         return true
     }
@@ -129,7 +141,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             
             if departure.isDelayed {
-                changes[departure.name] = "\(departure.name) kl. \(departure.time) er \(abs(Int(departure.realDepartureTime.minutes(from: departure.departureTime)))) min forsinket"
+//                changes[departure.name] = "\(departure.name) kl. \(departure.time) er \(abs(Int(departure.realDepartureTime.minutes(from: departure.departureTime)))) min forsinket"
             }
             
             if let realTrack = departure.realTrack, departure.hasChangedTrack {
@@ -157,3 +169,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .sound])
+    }
+}

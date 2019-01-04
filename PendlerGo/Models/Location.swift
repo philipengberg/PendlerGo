@@ -28,4 +28,16 @@ extension Location : JSONAble {
             yCoordinate: json["y"].stringValue,
             id: json["id"].stringValue)
     }
+    
+    var latitude: Double? {
+        var latitude = yCoordinate
+        latitude.insert(".", at: latitude.index(latitude.endIndex, offsetBy: -6))
+        return Double(latitude)
+    }
+    
+    var longitude: Double? {
+        var longitude = xCoordinate
+        longitude.insert(".", at: longitude.index(longitude.endIndex, offsetBy: -6))
+        return Double(longitude)
+    }
 }

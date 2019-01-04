@@ -56,6 +56,8 @@
 		D4EFDC641C763EB000370479 /* ReuseableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EFDC631C763EB000370479 /* ReuseableView.swift */; };
 		D4EFDC671C763EF900370479 /* UITableView+ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EFDC661C763EF900370479 /* UITableView+ReusableView.swift */; };
 		DE5E54D121DFE9FF0089420E /* Date+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5E54D021DFE9FF0089420E /* Date+Utility.swift */; };
+		DE5E54D321DFF2100089420E /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5E54D221DFF2100089420E /* LocationManager.swift */; };
+		DE5E54D521DFF27A0089420E /* CLRegion+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5E54D421DFF27A0089420E /* CLRegion+Utility.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -136,6 +138,9 @@
 		D4EFDC631C763EB000370479 /* ReuseableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReuseableView.swift; sourceTree = "<group>"; };
 		D4EFDC661C763EF900370479 /* UITableView+ReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+ReusableView.swift"; sourceTree = "<group>"; };
 		DE5E54D021DFE9FF0089420E /* Date+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Utility.swift"; sourceTree = "<group>"; };
+		DE5E54D221DFF2100089420E /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		DE5E54D421DFF27A0089420E /* CLRegion+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLRegion+Utility.swift"; sourceTree = "<group>"; };
+		DE5E54D621DFFAC20089420E /* København H.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "København H.gpx"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,6 +238,7 @@
 				D485466B1C761BED0011E149 /* Info.plist */,
 				D4A92F881C76642C00834380 /* KBH.json */,
 				D40117CB1C92AFED009E5CEB /* Detail.json */,
+				DE5E54D621DFFAC20089420E /* København H.gpx */,
 				D41BD1361D8C73C000F38288 /* PendlerGo-Bridging-Header.h */,
 			);
 			path = PendlerGo;
@@ -340,6 +346,7 @@
 				D4EFDC631C763EB000370479 /* ReuseableView.swift */,
 				D4E75FB61C765212005AC9DA /* Theme.swift */,
 				D4E72F611C789E6600C3369D /* LargeHitAreaButton.swift */,
+				DE5E54D221DFF2100089420E /* LocationManager.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -356,6 +363,7 @@
 				D4CF6C9E1C96A24000E7334E /* UIFont+Size.swift */,
 				D463D2131CA7257100C23CBD /* String+Utilities.swift */,
 				DE5E54D021DFE9FF0089420E /* Date+Utility.swift */,
+				DE5E54D421DFF27A0089420E /* CLRegion+Utility.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -605,8 +613,10 @@
 				D4B7F6681C76FDA800B6762D /* LocationCell.swift in Sources */,
 				D4B7F6641C76F71300B6762D /* Location.swift in Sources */,
 				D4E75FB31C764D16005AC9DA /* JSON+Date.swift in Sources */,
+				DE5E54D521DFF27A0089420E /* CLRegion+Utility.swift in Sources */,
 				D4E72F591C7896AE00C3369D /* BoardView.swift in Sources */,
 				D4E75FB11C764C42005AC9DA /* NSDateFormatter+PendlerGo.swift in Sources */,
+				DE5E54D321DFF2100089420E /* LocationManager.swift in Sources */,
 				D4E72F5A1C7896AE00C3369D /* BoardViewController.swift in Sources */,
 				D4B7F6621C76F62F00B6762D /* SettingsViewModel.swift in Sources */,
 				D4E4B3591C7774EE00D4DC66 /* Settings.swift in Sources */,

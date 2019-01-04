@@ -107,9 +107,9 @@ extension Departure {
         }
     }
     
-    var realDepartureTime: Date {
+    var realDepartureTime: Date? {
         get {
-            return DateFormatter.timeFormatter().date(from: self.realTime)!
+            return DateFormatter.timeFormatter().date(from: self.realTime)
         }
     }
     
