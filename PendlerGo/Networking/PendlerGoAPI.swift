@@ -35,17 +35,13 @@ let PendlerGoDebugAPI = API(stubClosure: { target -> StubBehavior in
 
 private class Logger : PluginType {
     
-    func willSend(_ request: RequestType, target: TargetType) {
-        print("\(target.method.rawValue.uppercased()) - \(request.request!.url)")
-    }
-    
     func didReceive(_ result: Result<Response, MoyaError>, target: TargetType) {
-        switch result {
-            
-        case .success(let response):
-            print("\(response.statusCode): \(target.method.rawValue.uppercased()) - \(target.path)")
-        default: break
-        }
+//        switch result {
+//
+//        case .success(let response):
+//            print("\(response.statusCode): \(target.method.rawValue.uppercased()) - \(target.path)")
+//        default: break
+//        }
     }
 }
 

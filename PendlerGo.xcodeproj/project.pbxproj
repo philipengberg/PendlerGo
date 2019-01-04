@@ -15,6 +15,8 @@
 		D42E31D81C77BCAB003C98A2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D42E31D71C77BCAB003C98A2 /* CoreGraphics.framework */; };
 		D43756301C78FBD20005730D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D437562F1C78FBD20005730D /* GoogleService-Info.plist */; };
 		D4453E951CA565F10053AA79 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4453E941CA565F10053AA79 /* CoreLocation.framework */; };
+		D44D516F20472C510024E7CB /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44D516E20472C510024E7CB /* StoreKit.framework */; };
+		D44D517120472D740024E7CB /* InAppPurchaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44D517020472D740024E7CB /* InAppPurchaseHelper.swift */; };
 		D450AD6F1D8F1A0100864F73 /* BoardContainmentFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D450AD6E1D8F1A0100864F73 /* BoardContainmentFilterView.swift */; };
 		D45140311C77B62D00627184 /* FinitePagedContainmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D451402E1C77B62D00627184 /* FinitePagedContainmentViewController.swift */; };
 		D45140321C77B62D00627184 /* IconTabViewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D451402F1C77B62D00627184 /* IconTabViewButton.swift */; };
@@ -87,6 +89,8 @@
 		D42E31D71C77BCAB003C98A2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		D437562F1C78FBD20005730D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D4453E941CA565F10053AA79 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		D44D516E20472C510024E7CB /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		D44D517020472D740024E7CB /* InAppPurchaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppPurchaseHelper.swift; sourceTree = "<group>"; };
 		D450AD6E1D8F1A0100864F73 /* BoardContainmentFilterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardContainmentFilterView.swift; sourceTree = "<group>"; };
 		D451402E1C77B62D00627184 /* FinitePagedContainmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinitePagedContainmentViewController.swift; sourceTree = "<group>"; };
 		D451402F1C77B62D00627184 /* IconTabViewButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconTabViewButton.swift; sourceTree = "<group>"; };
@@ -144,6 +148,7 @@
 				D4453E951CA565F10053AA79 /* CoreLocation.framework in Frameworks */,
 				D42E31D81C77BCAB003C98A2 /* CoreGraphics.framework in Frameworks */,
 				61347EE9A7420D17E37F2AB1 /* Pods_PendlerGo.framework in Frameworks */,
+				D44D516F20472C510024E7CB /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,6 +172,7 @@
 		5C7E74AD1C7DC92D64A48318 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D44D516E20472C510024E7CB /* StoreKit.framework */,
 				D4E577E01D8D5FEA00460A46 /* QuartzCore.framework */,
 				D4453E941CA565F10053AA79 /* CoreLocation.framework */,
 				D42E31D71C77BCAB003C98A2 /* CoreGraphics.framework */,
@@ -338,6 +344,7 @@
 				D4EFDC631C763EB000370479 /* ReuseableView.swift */,
 				D4E75FB61C765212005AC9DA /* Theme.swift */,
 				D4E72F611C789E6600C3369D /* LargeHitAreaButton.swift */,
+				D44D517020472D740024E7CB /* InAppPurchaseHelper.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -433,6 +440,9 @@
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 0;
+							};
+							com.apple.InAppPurchase = {
+								enabled = 1;
 							};
 						};
 					};
@@ -600,6 +610,7 @@
 				D4E72F5D1C7896AE00C3369D /* BoardContainmentView.swift in Sources */,
 				D4EFDC641C763EB000370479 /* ReuseableView.swift in Sources */,
 				D40117CE1C92B10E009E5CEB /* Message.swift in Sources */,
+				D44D517120472D740024E7CB /* InAppPurchaseHelper.swift in Sources */,
 				D463D2141CA7257100C23CBD /* String+Utilities.swift in Sources */,
 				D4E72F581C7896AE00C3369D /* BoardDepartureCell.swift in Sources */,
 				D4E75FB51C764E6A005AC9DA /* UIView+PendlerGo.swift in Sources */,

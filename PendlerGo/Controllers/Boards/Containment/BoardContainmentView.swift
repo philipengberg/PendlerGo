@@ -25,6 +25,8 @@ class BoardContainmentView : UIView {
         $0.backgroundColor = Theme.color.mainColor.withAlphaComponent(1) //UIColor(red: 237, green: 159, blue: 33)
     }
     
+    let removeAdsView = RemoveAdsView()
+    
     var showFilter: Bool = false
     var showAdBanner: Bool = false
     
@@ -74,6 +76,42 @@ class BoardContainmentView : UIView {
             } else {
                 make.bottom.equalTo(self.tabView.snp.bottom).offset(-5)
             }
+        }
+        
+//        removeAdsView.snp.updateConstraints { (make) in
+//            make.left.right.equalToSuperview()
+//            make.height.equalTo(50)
+//            make.bottom.equalTo(adBannerView.snp.top)
+//        }
+        
+        super.updateConstraints()
+    }
+    
+}
+
+class RemoveAdsView: UIView {
+    
+    let label = UILabel().setUp {
+        $0.font = Theme.font.medium(size: .large)
+        $0.textColor = .white
+        $0.text = "Fjern reklamer >"
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        addSubviews([label])
+        backgroundColor = Theme.color.mainColor
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func updateConstraints() {
+        
+        label.snp.updateConstraints { (make) in
+            make.left.equalToSuperview().offset(10)
+            make.centerY.equalToSuperview()
         }
         
         super.updateConstraints()

@@ -12,6 +12,7 @@ import RxSwift
 import RxCocoa
 import GoogleMobileAds
 import CoreLocation
+import StoreKit
 
 class BoardContainmentViewController : FinitePagedContainmentViewController {
     
@@ -19,6 +20,10 @@ class BoardContainmentViewController : FinitePagedContainmentViewController {
     fileprivate let bag = DisposeBag()
     
     fileprivate let locationManager = CLLocationManager()
+    
+    let fullscreenAdReady = PublishSubject<Void>()
+    
+    private let interstitial = GADInterstitial(adUnitID: "ca-app-pub-7606160133081216/1886579700")
     
     lazy var homeBoardViewController: BoardViewController = {
         return BoardViewController(locationType: .home)
@@ -39,6 +44,8 @@ class BoardContainmentViewController : FinitePagedContainmentViewController {
             return Float(self._view.showAdBanner ? 50 : 0)
         }
     }
+    
+    let helper = InAppPurchaseHelper(productIds: Set<InAppPurchaseHelper.ProductIdentifier>(["com.simplesense.pendlergo.RemoveAdsYearly"]))
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -143,11 +150,18 @@ class BoardContainmentViewController : FinitePagedContainmentViewController {
         }).disposed(by: bag)
         
         
-        
-        
         _view.adBannerView.rootViewController = self
         _view.adBannerView.delegate = self
-        _view.adBannerView.load(genreateAdRequest())
+        interstitial.delegate = self
+        
+        if !helper.isProductPurchased(for: .removeAdsYearly) {
+            _view.adBannerView.load(genreateAdRequest())
+            interstitial.load(genreateAdRequest())
+        }
+        
+        fullscreenAdReady.subscribe(onNext: { [weak self] (_) in
+            self?.interstitial.present(fromRootViewController: self!)
+        }).disposed(by: bag)
         
         
         NotificationCenter.default.rx.notification(NSNotification.Name.UIApplicationDidBecomeActive).subscribe(onNext: { [weak self] (_) in
@@ -251,6 +265,55 @@ class BoardContainmentViewController : FinitePagedContainmentViewController {
     func setHairLineImageViewHidden(_ hidden: Bool) {
         findHairlineImageViewUnder(self.navigationController!.navigationBar)!.isHidden = hidden;
     }
+    
+    private func askToRemoveAds() {
+        helper.requestProducts().subscribe(onNext: { [weak self] products in
+            print("Products: \(products)")
+            
+            if let product = products.first {
+                
+                let priceFormatter: NumberFormatter = {
+                    let formatter = NumberFormatter()
+                    
+                    formatter.formatterBehavior = .behavior10_4
+                    formatter.numberStyle = .currency
+                    formatter.locale = product.priceLocale
+                    
+                    return formatter
+                }()
+                
+//                var subscriptionPeriod: String = ""
+//                if #available(iOS 11.2, *) {
+//                    let isSingular = product.subscriptionPeriod!.numberOfUnits == 1
+//                    switch product.subscriptionPeriod!.unit {
+//                    case .year: subscriptionPeriod = "år"
+//                    case .month: subscriptionPeriod = isSingular ? "måned" : "måneder"
+//                    case .week: subscriptionPeriod = isSingular ? "uge" : "uger"
+//                    case .day: subscriptionPeriod = isSingular ? "dag" : "dage"
+//                    }
+                
+                    let alert = UIAlertController(title: "Fjern reklamer", message: "Fjern reklamer for \(priceFormatter.string(from: product.price)!) om året", preferredStyle: .alert)
+                    
+                    alert.addAction(UIAlertAction(title: "Køb", style: .default, handler: { _ in
+                        self?.buyAdRemoval(from: product)
+                    }))
+                    
+                    alert.addAction(UIAlertAction(title: "Annuller", style: .cancel, handler: nil))
+                    
+                    self?.present(alert, animated: true, completion: nil)
+//                }
+            }
+        }).disposed(by: bag)
+    }
+    
+    private func buyAdRemoval(from product: SKProduct) {
+        helper.buyProduct(product).subscribe(onNext: { [weak self] (productIdentifier) in
+            self?._view.showAdBanner = false
+        }, onError: { (error) in
+            
+        }).disposed(by: bag)
+    }
+    
 }
 
 extension BoardContainmentViewController : GADBannerViewDelegate {
@@ -273,6 +336,25 @@ extension BoardContainmentViewController : GADBannerViewDelegate {
     }
 }
 
+extension BoardContainmentViewController: GADInterstitialDelegate {
+    
+    func interstitialDidDismissScreen(_ ad: GADInterstitial) {
+        let alert = UIAlertController(title: "Fjern reklamer?", message: "Vil du gerne fjerne reklamer?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Nej", style: .default, handler: nil))
+        
+        alert.addAction(UIAlertAction(title: "Fjern reklamer", style: .default, handler: { _ in
+            self.askToRemoveAds()
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func interstitialDidReceiveAd(_ ad: GADInterstitial) {
+        fullscreenAdReady.onNext(())
+    }
+    
+}
+
 extension BoardContainmentViewController : CLLocationManagerDelegate {
     
     func findNearestStation() {
@@ -288,9 +370,15 @@ extension BoardContainmentViewController : CLLocationManagerDelegate {
         manager.stopUpdatingLocation()
         
         // Make ads more relevant
-        let adRequest = genreateAdRequest()
-        adRequest.setLocationWithLatitude(CGFloat(location.coordinate.latitude), longitude: CGFloat(location.coordinate.longitude), accuracy: CGFloat(location.horizontalAccuracy))
-        _view.adBannerView.load(adRequest)
+        if !helper.isProductPurchased(for: .removeAdsYearly) {
+            let adRequest = genreateAdRequest()
+            adRequest.setLocationWithLatitude(CGFloat(location.coordinate.latitude), longitude: CGFloat(location.coordinate.longitude), accuracy: CGFloat(location.horizontalAccuracy))
+            _view.adBannerView.load(adRequest)
+            
+            let adRequest2 = genreateAdRequest()
+            adRequest2.setLocationWithLatitude(CGFloat(location.coordinate.latitude), longitude: CGFloat(location.coordinate.longitude), accuracy: CGFloat(location.horizontalAccuracy))
+            interstitial.load(adRequest2)
+        }
         
         guard
             let home = Settings.homeLocation,
