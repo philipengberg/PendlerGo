@@ -55,6 +55,7 @@
 		D4EFDC621C763E2700370479 /* Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EFDC611C763E2700370479 /* Setup.swift */; };
 		D4EFDC641C763EB000370479 /* ReuseableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EFDC631C763EB000370479 /* ReuseableView.swift */; };
 		D4EFDC671C763EF900370479 /* UITableView+ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EFDC661C763EF900370479 /* UITableView+ReusableView.swift */; };
+		DE5E54D121DFE9FF0089420E /* Date+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5E54D021DFE9FF0089420E /* Date+Utility.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -134,6 +135,7 @@
 		D4EFDC611C763E2700370479 /* Setup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Setup.swift; sourceTree = "<group>"; };
 		D4EFDC631C763EB000370479 /* ReuseableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReuseableView.swift; sourceTree = "<group>"; };
 		D4EFDC661C763EF900370479 /* UITableView+ReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+ReusableView.swift"; sourceTree = "<group>"; };
+		DE5E54D021DFE9FF0089420E /* Date+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Utility.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -353,6 +355,7 @@
 				D42E31D51C77BB7F003C98A2 /* UIImage+Utilities.swift */,
 				D4CF6C9E1C96A24000E7334E /* UIFont+Size.swift */,
 				D463D2131CA7257100C23CBD /* String+Utilities.swift */,
+				DE5E54D021DFE9FF0089420E /* Date+Utility.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -370,7 +373,6 @@
 				D485465A1C761BED0011E149 /* Resources */,
 				D4DEF5091C7B4633007738DC /* Crashlytics */,
 				EE44E786FFE393810E25DFE1 /* [CP] Embed Pods Frameworks */,
-				AAC40D125648FE78B4DDFFD7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -515,21 +517,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AAC40D125648FE78B4DDFFD7 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PendlerGo/Pods-PendlerGo-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		D4DEF5091C7B4633007738DC /* Crashlytics */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -554,11 +541,12 @@
 				"${BUILT_PRODUCTS_DIR}/Action/Action.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Amplitude-iOS/Amplitude_iOS.framework",
-				"${BUILT_PRODUCTS_DIR}/DateTools/DateTools.framework",
+				"${BUILT_PRODUCTS_DIR}/DateToolsSwift/DateToolsSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/GBDeviceInfo/GBDeviceInfo.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
-				"${PODS_ROOT}/Reveal-SDK/RevealServer-13/iOS/RevealServer.framework",
+				"${PODS_ROOT}/Reveal-SDK/RevealServer-19/iOS/RevealServer.framework",
+				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
@@ -570,11 +558,12 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Action.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Amplitude_iOS.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DateTools.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DateToolsSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GBDeviceInfo.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RevealServer.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
@@ -595,6 +584,7 @@
 			files = (
 				D4EFDC4F1C761E5900370479 /* PendlerGoAPI.swift in Sources */,
 				D4EFDC561C761FC200370479 /* ModelExtensions.swift in Sources */,
+				DE5E54D121DFE9FF0089420E /* Date+Utility.swift in Sources */,
 				D48546601C761BED0011E149 /* AppDelegate.swift in Sources */,
 				D4EFDC621C763E2700370479 /* Setup.swift in Sources */,
 				D4E72F5D1C7896AE00C3369D /* BoardContainmentView.swift in Sources */,

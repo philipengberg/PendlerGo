@@ -8,7 +8,7 @@
 
 import Foundation
 import SwiftyJSON
-import DateTools
+import DateToolsSwift
 
 struct Departure {
     let name: String

@@ -1,70 +1,97 @@
 PODS:
-  - Action (3.5.0):
-    - RxCocoa (~> 4.0)
-    - RxSwift (~> 4.0)
-  - Alamofire (4.6.0)
-  - Amplitude-iOS (4.0.4)
-  - Crashlytics (3.10.0):
-    - Fabric (~> 1.7.3)
-  - DateTools (2.0.0)
-  - Fabric (1.7.5)
-  - GBDeviceInfo (5.1.0):
-    - GBDeviceInfo/Core (= 5.1.0)
-  - GBDeviceInfo/Core (5.1.0)
-  - Google-Mobile-Ads-SDK (7.29.0)
-  - Moya/Core (11.0.1):
+  - Action (3.9.1):
+    - RxCocoa (~> 4.3)
+    - RxSwift (~> 4.3)
+  - Alamofire (4.8.0)
+  - Amplitude-iOS (4.5.0)
+  - Crashlytics (3.12.0):
+    - Fabric (~> 1.9.0)
+  - DateToolsSwift (4.0.0)
+  - Fabric (1.9.0)
+  - GBDeviceInfo (6.0.0):
+    - GBDeviceInfo/Core (= 6.0.0)
+  - GBDeviceInfo/Core (6.0.0)
+  - Google-Mobile-Ads-SDK (7.37.0)
+  - Moya/Core (12.0.1):
     - Alamofire (~> 4.1)
-    - Result (~> 3.0)
-  - Moya/RxSwift (11.0.1):
+    - Result (~> 4.0)
+  - Moya/RxSwift (12.0.1):
     - Moya/Core
     - RxSwift (~> 4.0)
-  - Result (3.2.4)
-  - Reveal-SDK (13)
-  - RxCocoa (4.1.2):
+  - Result (4.1.0)
+  - Reveal-SDK (19)
+  - RxAtomic (4.4.0)
+  - RxCocoa (4.4.0):
     - RxSwift (~> 4.0)
-  - RxSwift (4.1.2)
-  - RxSwiftExt (3.2.0):
-    - RxSwiftExt/Core (= 3.2.0)
-  - RxSwiftExt/Core (3.2.0):
+  - RxSwift (4.4.0):
+    - RxAtomic (~> 4.4)
+  - RxSwiftExt (3.4.0):
+    - RxSwiftExt/Core (= 3.4.0)
+    - RxSwiftExt/RxCocoa (= 3.4.0)
+  - RxSwiftExt/Core (3.4.0):
     - RxSwift (~> 4.0)
-  - SnapKit (4.0.0)
-  - SwiftyJSON (4.0.0)
+  - RxSwiftExt/RxCocoa (3.4.0):
+    - RxCocoa (~> 4.0)
+    - RxSwiftExt/Core
+  - SnapKit (4.2.0)
+  - SwiftyJSON (4.2.0)
 
 DEPENDENCIES:
-  - Action (= 3.5.0)
-  - Alamofire (= 4.6.0)
-  - Amplitude-iOS (= 4.0.4)
-  - Crashlytics (= 3.10.0)
-  - DateTools (= 2.0.0)
-  - Fabric (= 1.7.5)
-  - GBDeviceInfo (= 5.1.0)
-  - Google-Mobile-Ads-SDK (= 7.29.0)
-  - Moya/RxSwift (= 11.0.1)
-  - Reveal-SDK (= 13)
-  - RxCocoa (= 4.1.2)
-  - RxSwift (= 4.1.2)
-  - RxSwiftExt (= 3.2.0)
-  - SnapKit (= 4.0.0)
-  - SwiftyJSON (= 4.0.0)
+  - Action (= 3.9.1)
+  - Alamofire (= 4.8.0)
+  - Amplitude-iOS (= 4.5.0)
+  - Crashlytics (= 3.12.0)
+  - DateToolsSwift (= 4.0.0)
+  - Fabric (= 1.9.0)
+  - GBDeviceInfo (= 6.0.0)
+  - Google-Mobile-Ads-SDK (= 7.37.0)
+  - Moya/RxSwift (= 12.0.1)
+  - Reveal-SDK (= 19)
+  - RxCocoa (= 4.4.0)
+  - RxSwift (= 4.4.0)
+  - RxSwiftExt (= 3.4.0)
+  - SnapKit (= 4.2.0)
+  - SwiftyJSON (= 4.2.0)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Action
+    - Alamofire
+    - Amplitude-iOS
+    - Crashlytics
+    - DateToolsSwift
+    - Fabric
+    - GBDeviceInfo
+    - Google-Mobile-Ads-SDK
+    - Moya
+    - Result
+    - Reveal-SDK
+    - RxAtomic
+    - RxCocoa
+    - RxSwift
+    - RxSwiftExt
+    - SnapKit
+    - SwiftyJSON
 
 SPEC CHECKSUMS:
-  Action: d60087ebce41b969d1afdad01e2fa1372a82f26e
-  Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
-  Amplitude-iOS: 2ad4d7270c99186236c1272a3a9425463b1ae1a7
-  Crashlytics: a989ef242b66605577a425733797f810bd2725eb
-  DateTools: 933ac9c490f21f92127cf690ccd8c397e0126caf
-  Fabric: ae7146a5f505ea370a1e44820b4b1dc8890e2890
-  GBDeviceInfo: 8e43440ae1264d9a79beea81800363cf192ce322
-  Google-Mobile-Ads-SDK: 375bbb821b3df2106c37b74f6b0a97576ddc5f6b
-  Moya: 3d594ada51a21cc02b18739ab578a1984f900c8a
-  Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
-  Reveal-SDK: ccc2b0f8014965ea448b7534a7c2c8da232b75e8
-  RxCocoa: d88ba0f1f6abf040011a9eb4b539324fc426843a
-  RxSwift: e49536837d9901277638493ea537394d4b55f570
-  RxSwiftExt: 64b7140124629a6a084159735f3714f0fb1c61d6
-  SnapKit: a42d492c16e80209130a3379f73596c3454b7694
-  SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
+  Action: 2f461c203c480b17aa99b3bb166e4329ecff6908
+  Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
+  Amplitude-iOS: 1de49103125f9b816ca11df924652e5a303e2c33
+  Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
+  DateToolsSwift: 875d97ff9e3a5d54abdd67a269b3f51c757b71ab
+  Fabric: f988e33c97f08930a413e08123064d2e5f68d655
+  GBDeviceInfo: b7576f403b3050c1d3f4b490ab1d7dbb951bb1d9
+  Google-Mobile-Ads-SDK: d028682d7450749a1955679da050eaf70d997b3e
+  Moya: cf730b3cd9e005401ef37a85143aa141a12fd38f
+  Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
+  Reveal-SDK: 9f0d2c6c12eb7507921e5454ac165b7aa21140a4
+  RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
+  RxCocoa: df63ebf7b9a70d6b4eeea407ed5dd4efc8979749
+  RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
+  RxSwiftExt: 01f8ecbeeb355698e9c75365ebe908b00dacf45d
+  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
+  SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
 
-PODFILE CHECKSUM: 3f930b5f627090adb51eb5bec40865bd557db20f
+PODFILE CHECKSUM: 659603718cfd1c5644130a03b4c77210620da65f
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.3

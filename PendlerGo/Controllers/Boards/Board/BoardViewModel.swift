@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 import RxCocoa
-import DateTools
+import DateToolsSwift
 
 class BoardViewModel {
     
@@ -91,9 +91,9 @@ class BoardViewModel {
     func loadMore() {
         
         guard let lastDeparture = departures.value.last else { return }
-        let offset = Int(ceil((lastDeparture.combinedDepartureDateTime as NSDate).minutesUntil())) + 1
+        let offset = lastDeparture.combinedDepartureDateTime.minutesUntil + 1
         
-        print("Count=\(departures.value.count): \(Date()) - \(lastDeparture.combinedDepartureDateTime) + \(offset) = \((Date() as NSDate).addingMinutes(offset))")
+        print("Count=\(departures.value.count): \(Date()) - \(lastDeparture.combinedDepartureDateTime) + \(offset) = \(Date().add(TimeChunk(minutes: offset)))")
         
         if let locationId = self.locationId {
             PendlerGoAPI.request(.board(locationId: locationId, offset: offset)).mapJSON().mapToObject(DepartureBoard.self).map({ (board) -> [Departure] in

@@ -11,7 +11,7 @@ import Fabric
 import Crashlytics
 import RxSwift
 import RxCocoa
-import DateTools
+import DateToolsSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -123,7 +123,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         for departure in departures {
             
-            guard (departure.departureTime as NSDate).hour() == 7 && (departure.departureTime as NSDate).minute() <= 45 && (departure.departureTime as NSDate).minute() >= 30 else { continue }
+            guard departure.departureTime.hour == 7 && departure.departureTime.minute <= 45 && departure.departureTime.minute >= 30 else { continue }
             
             if departure.cancelled {
                 changes[departure.name] = "\(departure.name) kl. \(departure.time) er AFLYST"
@@ -131,7 +131,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             
             if departure.isDelayed {
-                changes[departure.name] = "\(departure.name) kl. \(departure.time) er \(abs(Int((departure.realDepartureTime as NSDate).minutes(from: departure.departureTime as Date!)))) min forsinket"
+                changes[departure.name] = "\(departure.name) kl. \(departure.time) er \(abs(Int(departure.realDepartureTime.minutes(from: departure.departureTime)))) min forsinket"
             }
             
             if let realTrack = departure.realTrack, departure.hasChangedTrack {

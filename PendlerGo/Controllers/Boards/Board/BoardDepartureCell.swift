@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-import DateTools
+import DateToolsSwift
 import RxSwift
 
 class BoardDepartureCell: UITableViewCell, ReuseableView {
@@ -166,7 +166,7 @@ class BoardDepartureCell: UITableViewCell, ReuseableView {
         // DELAYED
         } else if departure.isDelayed {
             
-            let minutesDelayed = abs(Int((departure.realDepartureTime as NSDate).minutes(from: departure.departureTime as Date!)))
+            let minutesDelayed = abs(departure.realDepartureTime.minutes(from: departure.departureTime))
             
             delayedLabel.isHidden = false
             delayedLabel.text = "+\(minutesDelayed)"
