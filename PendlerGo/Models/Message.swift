@@ -20,11 +20,9 @@ extension Message : JSONAble {
     static func fromJSON(_ dict : JSONDict) -> Message? {
         let json = JSON(dict)
         
-        let header = String(htmlEncodedString: json["Header"].dictionaryValue["$"]!.stringValue.trimmingCharacters(in: .whitespacesAndNewlines))
-        let text = String(htmlEncodedString: json["Text"].dictionaryValue["$"]!.stringValue.trimmingCharacters(in: .whitespacesAndNewlines))
+        let header = json["Header"].dictionaryValue["$"]!.stringValue.trimmingCharacters(in: .whitespacesAndNewlines)
+        let text = json["Text"].dictionaryValue["$"]!.stringValue.trimmingCharacters(in: .whitespacesAndNewlines)
         
-        return Message(
-            header: header ?? "",
-            text: text ?? "")
+        return Message(header: header, text: text)
     }
 }
