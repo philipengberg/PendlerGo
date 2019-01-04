@@ -24,7 +24,7 @@ extension LocationResults : JSONAble {
         let results = json["LocationList"].dictionaryValue
         
         if let locations = results["StopLocation"]?.arrayValue {
-            return LocationResults(locations: locations.flatMap({ (JSON) -> Location? in
+            return LocationResults(locations: locations.compactMap({ (JSON) -> Location? in
                 return Location.fromJSON(JSON.dictionaryObject!)
             }))
         } else {

@@ -224,7 +224,7 @@ class BoardDepartureCell: UITableViewCell, ReuseableView {
             default: break
             }
         case .Metro:
-            switch departure.name.substring(from: departure.name.characters.index(departure.name.endIndex, offsetBy: -2)) {
+            switch String(departure.name[departure.name.index(departure.name.endIndex, offsetBy: -2)...]) {
             case "M1": nameLabel.backgroundColor = Theme.color.metroM1
             case "M2": nameLabel.backgroundColor = Theme.color.metroM2
             case "M3": nameLabel.backgroundColor = Theme.color.metroM3

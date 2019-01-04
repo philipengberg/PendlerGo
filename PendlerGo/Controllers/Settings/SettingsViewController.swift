@@ -52,7 +52,7 @@ class SettingsViewController: UIViewController {
             mailComposerVC.setSubject("PendlerGo feedback")
             mailComposerVC.setMessageBody("Hej PendlerGo,</br></br>Jeg har følgende problemer eller foreslag til PendlerGo: <ul><li></ul>" +
                 "<br/>Detaljer:<ul>" +
-                "<li>\(GBDeviceInfo.deviceInfo().modelString)</li>" +
+                "<li>\(GBDeviceInfo.deviceInfo().modelString!)</li>" +
                 "<li>iOS \(GBDeviceInfo.deviceInfo().osVersion.major).\(GBDeviceInfo.deviceInfo().osVersion.minor).\(GBDeviceInfo.deviceInfo().osVersion.patch)</li>" +
                 "<li>PendlerGo \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String) (\(Bundle.main.infoDictionary?[kCFBundleVersionKey as String] as! String))</li>" +
                 "</ul>" +

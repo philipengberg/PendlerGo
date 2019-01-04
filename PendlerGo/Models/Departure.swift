@@ -133,7 +133,7 @@ extension Departure {
     
     var detailPath: String {
         get {
-            return self.detailRef.substring(from: self.detailRef.range(of: "=")!.lowerBound).removingPercentEncoding!
+            return detailRef[detailRef.index(detailRef.firstIndex(of: "=")!, offsetBy: 1)...].removingPercentEncoding!
         }
     }
     

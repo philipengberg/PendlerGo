@@ -91,7 +91,7 @@ class BoardViewModel {
     func loadMore() {
         
         guard let lastDeparture = departures.value.last else { return }
-        let offset = lastDeparture.combinedDepartureDateTime.minutesUntil + 1
+        let offset = lastDeparture.combinedDepartureDateTime.minutesUntil + 2
         
         print("Count=\(departures.value.count): \(Date()) - \(lastDeparture.combinedDepartureDateTime) + \(offset) = \(Date().add(TimeChunk(minutes: offset)))")
         

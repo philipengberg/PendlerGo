@@ -33,7 +33,7 @@ extension Observable {
     func mapToObjects <T : JSONAble> (_ type : T.Type) -> Observable<[T]> {
         return flatMap{ response -> Observable < [T]> in
             if let json = response as? [JSONDict] {
-                    let results = json.flatMap({ (dict) -> T? in
+                let results = json.compactMap({ (dict) -> T? in
                         return type.fromJSON(dict)
                     })
                     return Observable<[T]>.just(results)

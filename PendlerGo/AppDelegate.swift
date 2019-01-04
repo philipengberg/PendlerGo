@@ -27,8 +27,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             Fabric.with([Crashlytics.self])
         #endif
         
-        UIApplication.shared.statusBarStyle = .lightContent
-        
         UINavigationBar.appearance().backgroundColor = Theme.color.mainColor
         UINavigationBar.appearance().barTintColor = Theme.color.mainColor
         UINavigationBar.appearance().isTranslucent = false

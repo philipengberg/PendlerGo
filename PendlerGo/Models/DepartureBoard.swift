@@ -23,7 +23,7 @@ extension DepartureBoard : JSONAble {
         
         guard let departure = board["Departure"]?.arrayValue else { return DepartureBoard(departures: []) }
         
-        return DepartureBoard(departures: departure.flatMap({ (JSON) -> Departure? in
+        return DepartureBoard(departures: departure.compactMap({ (JSON) -> Departure? in
             return Departure.fromJSON(JSON.dictionaryObject!)
         }))
     }

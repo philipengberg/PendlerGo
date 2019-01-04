@@ -25,7 +25,7 @@ extension JourneyDetail : JSONAble {
         if let messages = list?["Message"]?.arrayValue {
             
             if messages.count > 0 {
-                return JourneyDetail(messages: messages.flatMap({ (JSON) -> Message? in
+                return JourneyDetail(messages: messages.compactMap({ (JSON) -> Message? in
                     return Message.fromJSON(JSON.dictionaryObject!)
                 }))
             } else {
