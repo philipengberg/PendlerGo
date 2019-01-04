@@ -27,12 +27,12 @@ class SettingsView: UIView {
     }
     
     var fakeNavBarCloseButton = LargeHitAreaButton(type: .system).setUp {
-        $0.setTitle("OK", for: UIControlState())
+        $0.setTitle("OK", for: UIControl.State())
         $0.titleLabel!.font = Theme.font.regular(size: .large)
     }
     
     let fakeNavBarFeedbackButton = LargeHitAreaButton(type: .system).setUp {
-        $0.setTitle("Hjælp", for: UIControlState())
+        $0.setTitle("Hjælp", for: UIControl.State())
         $0.titleLabel!.font = Theme.font.regular(size: .large)
     }
     
@@ -54,7 +54,7 @@ class SettingsView: UIView {
         $0.textColor = UIColor.white
         $0.clearButtonMode = .unlessEditing
         $0.textAlignment = .center
-        $0.attributedPlaceholder = NSAttributedString(string: "Station hjemme", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white.withAlphaComponent(0.5)])
+        $0.attributedPlaceholder = NSAttributedString(string: "Station hjemme", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.5)])
     }
     
     let homeTextFieldMagnifier = UIImageView(image: UIImage(named: "search")).setUp {
@@ -74,7 +74,7 @@ class SettingsView: UIView {
         $0.textColor = UIColor.white
         $0.clearButtonMode = .unlessEditing
         $0.textAlignment = .center
-        $0.attributedPlaceholder = NSAttributedString(string: "Station arbejde", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white.withAlphaComponent(0.5)])
+        $0.attributedPlaceholder = NSAttributedString(string: "Station arbejde", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.5)])
     }
     
     let workTextFieldMagnifier = UIImageView(image: UIImage(named: "search")).setUp {
@@ -268,7 +268,7 @@ class SettingsView: UIView {
         
         setNeedsUpdateConstraints()
         
-        UIView.animate(withDuration: 0.25, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 10, options: UIViewAnimationOptions.beginFromCurrentState, animations: { () -> Void in
+        UIView.animate(withDuration: 0.25, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 10, options: UIView.AnimationOptions.beginFromCurrentState, animations: { () -> Void in
             self.layoutIfNeeded()
         }, completion: completion)
     }

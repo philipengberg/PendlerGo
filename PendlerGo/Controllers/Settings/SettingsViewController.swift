@@ -92,18 +92,18 @@ class SettingsViewController: UIViewController {
             
         }).disposed(by: bag)
         
-        NotificationCenter.default.rx.notification(NSNotification.Name.UIKeyboardWillChangeFrame).subscribe(onNext: { [weak self] (notification) -> Void in
+        NotificationCenter.default.rx.notification(UIResponder.keyboardWillChangeFrameNotification).subscribe(onNext: { [weak self] (notification) -> Void in
             guard
                 let s = self,
                 let info = notification.userInfo,
-                let value = info[UIKeyboardFrameEndUserInfoKey] as? NSValue else { return }
+                let value = info[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
             
             let rawFrame = value.cgRectValue
             
             s._view.bottomInset = UIScreen.main.bounds.height - rawFrame.origin.y
             s._view.setNeedsUpdateConstraints()
             
-            UIView.animate(withDuration: info[UIKeyboardAnimationDurationUserInfoKey] as! Double, delay: 0, options: UIViewAnimationOptions(rawValue: info[UIKeyboardAnimationCurveUserInfoKey] as! UInt), animations: {
+            UIView.animate(withDuration: info[UIResponder.keyboardAnimationDurationUserInfoKey] as! Double, delay: 0, options: UIView.AnimationOptions(rawValue: info[UIResponder.keyboardAnimationCurveUserInfoKey] as! UInt), animations: {
                 s._view.layoutIfNeeded()
             }, completion: { finished in
             })
@@ -171,7 +171,7 @@ extension MFMailComposeViewController {
         return .lightContent
     }
     
-    open override var childViewControllerForStatusBarStyle : UIViewController? {
+    open override var childForStatusBarStyle : UIViewController? {
         return nil
     }
 }

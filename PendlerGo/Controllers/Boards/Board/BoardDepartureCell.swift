@@ -62,11 +62,11 @@ class BoardDepartureCell: UITableViewCell, ReuseableView {
         $0.numberOfLines = 0
     }
     
-    let messageSpinner = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+    let messageSpinner = UIActivityIndicatorView(style: .gray)
     
     let bag = DisposeBag()
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         addSubviews([timeLabel, delayedLabel, realTimeLabel, /*typeLabel,*/ nameLabel, destinationLabel, trackLabel, messageLabel, messageSpinner])
@@ -159,8 +159,8 @@ class BoardDepartureCell: UITableViewCell, ReuseableView {
             delayedLabel.text = "Aflyst"
             
             let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: departure.time)
-            attributeString.addAttribute(NSAttributedStringKey.strikethroughStyle, value: 1, range: NSMakeRange(0, attributeString.length))
-            attributeString.addAttribute(NSAttributedStringKey.foregroundColor, value: realTimeLabel.textColor, range: NSMakeRange(0, attributeString.length))
+            attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSMakeRange(0, attributeString.length))
+            attributeString.addAttribute(NSAttributedString.Key.foregroundColor, value: realTimeLabel.textColor, range: NSMakeRange(0, attributeString.length))
             timeLabel.attributedText = attributeString
             
         // DELAYED

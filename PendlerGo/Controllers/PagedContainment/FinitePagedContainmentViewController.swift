@@ -59,7 +59,7 @@ class FinitePagedContainmentViewController: UIViewController, UIScrollViewDelega
         view.addSubview(pagedScrollView)
         
         for (index, viewController) in pagedViewControllers.enumerated() {
-            addChildViewController(viewController)
+            addChild(viewController)
             
             pagedScrollView.addSubview(viewController.view)
             viewController.view.snp.updateConstraints { make in
@@ -73,7 +73,7 @@ class FinitePagedContainmentViewController: UIViewController, UIScrollViewDelega
                 }
             }
             
-            viewController.didMove(toParentViewController: self)
+            viewController.didMove(toParent: self)
         }
         
         pagedScrollView.delegate = self

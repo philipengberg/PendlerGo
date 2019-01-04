@@ -15,7 +15,7 @@ class BoardContainmentFilterView: UIView {
     
     let trainsButton = LargeHitAreaButton(type: .custom).setUp {
         $0.setImage(UIImage(named: "train"), for: .selected)
-        $0.setImage(UIImage(named: "train-off"), for: UIControlState())
+        $0.setImage(UIImage(named: "train-off"), for: UIControl.State())
         $0.tintColor = UIColor.white
         $0.imageView?.contentMode = .scaleAspectFit
         $0.isSelected = true
@@ -23,7 +23,7 @@ class BoardContainmentFilterView: UIView {
     
     let sTrainsButton = LargeHitAreaButton(type: .custom).setUp {
         $0.setImage(UIImage(named: "s-train"), for: .selected)
-        $0.setImage(UIImage(named: "s-train-off"), for: UIControlState())
+        $0.setImage(UIImage(named: "s-train-off"), for: UIControl.State())
         $0.tintColor = UIColor.white
         $0.imageView?.contentMode = .scaleAspectFit
         $0.isSelected = true
@@ -31,7 +31,7 @@ class BoardContainmentFilterView: UIView {
     
     let metroButton = LargeHitAreaButton(type: .custom).setUp {
         $0.setImage(UIImage(named: "metro"), for: .selected)
-        $0.setImage(UIImage(named: "metro-off"), for: UIControlState())
+        $0.setImage(UIImage(named: "metro-off"), for: UIControl.State())
         $0.tintColor = UIColor.white
         $0.imageView?.contentMode = .scaleAspectFit
         $0.isSelected = true

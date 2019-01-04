@@ -150,7 +150,7 @@ class BoardContainmentViewController : FinitePagedContainmentViewController {
         _view.adBannerView.load(genreateAdRequest())
         
         
-        NotificationCenter.default.rx.notification(NSNotification.Name.UIApplicationDidBecomeActive).subscribe(onNext: { [weak self] (_) in
+        NotificationCenter.default.rx.notification(UIApplication.didBecomeActiveNotification).subscribe(onNext: { [weak self] (_) in
             guard let s = self else { return }
             s.findNearestStation()
         }).disposed(by: bag)
@@ -160,7 +160,7 @@ class BoardContainmentViewController : FinitePagedContainmentViewController {
         return .lightContent
     }
     
-    override var childViewControllerForStatusBarStyle : UIViewController? {
+    override var childForStatusBarStyle : UIViewController? {
         return nil
     }
     
@@ -180,7 +180,7 @@ class BoardContainmentViewController : FinitePagedContainmentViewController {
         _view.showFilter = !_view.showFilter
         _view.setNeedsUpdateConstraints()
         
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 20, options: UIViewAnimationOptions.beginFromCurrentState, animations: { () -> Void in
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 20, options: UIView.AnimationOptions.beginFromCurrentState, animations: { () -> Void in
             self._view.layoutIfNeeded()
             self._view.tabView.layer.shadowColor = self._view.showFilter ? UIColor.black.cgColor : nil
             self._view.tabView.layer.shadowOffset = CGSize(width: 0, height: self._view.showFilter ? 1 : 0)
@@ -258,7 +258,7 @@ extension BoardContainmentViewController : GADBannerViewDelegate {
         _view.showAdBanner = true
         _view.setNeedsUpdateConstraints()
         
-        UIView.animate(withDuration: 0.5, delay: 1, usingSpringWithDamping: 0.9, initialSpringVelocity: 20, options: UIViewAnimationOptions.beginFromCurrentState, animations: { () -> Void in
+        UIView.animate(withDuration: 0.5, delay: 1, usingSpringWithDamping: 0.9, initialSpringVelocity: 20, options: UIView.AnimationOptions.beginFromCurrentState, animations: { () -> Void in
             self._view.layoutIfNeeded()
         }, completion: nil)
     }
@@ -267,7 +267,7 @@ extension BoardContainmentViewController : GADBannerViewDelegate {
         _view.showAdBanner = false
         _view.setNeedsUpdateConstraints()
         
-        UIView.animate(withDuration: 0.5, delay: 1, usingSpringWithDamping: 0.9, initialSpringVelocity: 20, options: UIViewAnimationOptions.beginFromCurrentState, animations: { () -> Void in
+        UIView.animate(withDuration: 0.5, delay: 1, usingSpringWithDamping: 0.9, initialSpringVelocity: 20, options: UIView.AnimationOptions.beginFromCurrentState, animations: { () -> Void in
             self._view.layoutIfNeeded()
         }, completion: nil)
     }
